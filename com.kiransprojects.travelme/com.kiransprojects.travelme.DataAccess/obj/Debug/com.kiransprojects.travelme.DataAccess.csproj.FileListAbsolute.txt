@@ -3,3 +3,9 @@ C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.k
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\obj\Debug\com.kiransprojects.travelme.DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\obj\Debug\com.kiransprojects.travelme.DataAccess.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\obj\Debug\com.kiransprojects.travelme.DataAccess.pdb
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\com.kiransprojects.travelme.Framework.dll
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\Iesi.Collections.dll
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\NHibernate.dll
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\com.kiransprojects.travelme.Framework.pdb
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\Iesi.Collections.xml
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\NHibernate.xml
