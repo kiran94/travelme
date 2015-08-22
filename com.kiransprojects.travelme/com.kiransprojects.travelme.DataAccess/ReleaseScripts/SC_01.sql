@@ -23,7 +23,7 @@ GO
 CREATE TABLE Post
 (
 	ID uniqueidentifier PRIMARY KEY NOT NULL,
-	Post nvarchar(256) NOT NULL,
+	PostData nvarchar(256) NOT NULL,
 	PostLat nvarchar(11),
 	PostLong nvarchar(11),
 	TripID uniqueidentifier NOT NULL
@@ -32,7 +32,7 @@ GO
 CREATE TABLE Media
 (
 	ID uniqueidentifier PRIMARY KEY NOT NULL,
-	Media varbinary,
+	MediaData varbinary,
 	PostID uniqueidentifier NOT NULL
 )
 GO

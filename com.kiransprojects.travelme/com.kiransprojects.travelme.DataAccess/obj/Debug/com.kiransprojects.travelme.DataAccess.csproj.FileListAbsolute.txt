@@ -1,0 +1,5 @@
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\com.kiransprojects.travelme.DataAccess.dll
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\bin\Debug\com.kiransprojects.travelme.DataAccess.pdb
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\obj\Debug\com.kiransprojects.travelme.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\obj\Debug\com.kiransprojects.travelme.DataAccess.dll
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess\obj\Debug\com.kiransprojects.travelme.DataAccess.pdb

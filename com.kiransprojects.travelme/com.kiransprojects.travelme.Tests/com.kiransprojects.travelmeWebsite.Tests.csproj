@@ -106,9 +106,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\com.kiransprojects.travelme\com.kiransprojects.travelme.csproj">
+    <ProjectReference Include="..\com.kiransprojects.travelme\com.kiransprojects.travelme.Website.csproj">
       <Project>{26AB4310-CCA4-4CCF-BC5E-C519F2FC89DA}</Project>
-      <Name>com.kiransprojects.travelme</Name>
+      <Name>com.kiransprojects.travelme.Website</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
