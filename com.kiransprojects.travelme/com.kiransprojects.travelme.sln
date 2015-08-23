@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.kiransprojects.travelme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.kiransprojects.travelme.Framework", "com.kiransprojects.travelme.Framework\com.kiransprojects.travelme.Framework.csproj", "{724D9E3D-D242-43B7-8CC1-5299FBA167E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.kiransprojects.travelme.DataAccess.Tests", "UnitTestProject1\com.kiransprojects.travelme.DataAccess.Tests.csproj", "{1FF9BFCB-851D-41FF-8694-D52A4E2162A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{724D9E3D-D242-43B7-8CC1-5299FBA167E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{724D9E3D-D242-43B7-8CC1-5299FBA167E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{724D9E3D-D242-43B7-8CC1-5299FBA167E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF9BFCB-851D-41FF-8694-D52A4E2162A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF9BFCB-851D-41FF-8694-D52A4E2162A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF9BFCB-851D-41FF-8694-D52A4E2162A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF9BFCB-851D-41FF-8694-D52A4E2162A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

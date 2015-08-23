@@ -6,8 +6,14 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    using NUnit;
+    using NUnit.Framework; 
     
+    [TestFixture]
     public class RepositoryBaseTests
     {
+        
+
+
     }
 }
