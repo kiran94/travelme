@@ -13,7 +13,7 @@
         [Required]
         [Display(Name = "Post")]
         [StringLength(256, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public string PostData { get; set; }
+        public virtual string PostData { get; set; }
 
         /// <summary>
         /// Gets or sets the post latitude
@@ -21,7 +21,7 @@
         [Required]
         [Display(Name = "Latitude")]
         [StringLength(11, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public string Latitude { get; set; }
+        public virtual string Latitude { get; set; }
 
         /// <summary>
         /// Gets or sets the post latitude
@@ -29,6 +29,6 @@
         [Required]
         [Display(Name = "Longitude")]
         [StringLength(11, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public string Longitude { get; set; }
+        public virtual string Longitude { get; set; }
     }
 }

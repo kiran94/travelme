@@ -8,6 +8,6 @@
         /// <summary>
         /// Gets or sets the media
         /// </summary>
-        public byte[] MediaData { get; set; }
+        public virtual byte[] MediaData { get; set; }
     }
 }

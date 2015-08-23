@@ -20,7 +20,7 @@
         private readonly IDatabaseConfig config = null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NhibernateConfigurationFactory"/> class.
+        /// Initializes a new instance of the <see cref="NhibernateHelper"/> class.
         /// </summary>
         /// <param name="config"></param>
         public NhibernateHelper(IDatabaseConfig config)

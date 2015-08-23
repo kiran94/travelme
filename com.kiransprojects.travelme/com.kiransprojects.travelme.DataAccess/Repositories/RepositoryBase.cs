@@ -28,7 +28,6 @@
             this.helper = helper; 
         }
 
-
         /// <inheritdoc />
         public void Insert(T Entity)
         {

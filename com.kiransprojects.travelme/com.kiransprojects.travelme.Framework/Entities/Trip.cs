@@ -13,7 +13,7 @@
         [Required]
         [Display(Name = "Trip Name")]
         [StringLength(20, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public string TripName { get; set; }
+        public virtual string TripName { get; set; }
 
         /// <summary>
         /// Gets or sets the trip description
@@ -21,7 +21,7 @@
         [Required]
         [Display(Name = "Trip Description")]
         [StringLength(50, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public string TripDescription { get; set; }
+        public virtual string TripDescription { get; set; }
 
         /// <summary>
         /// Gets or sets the trip location
@@ -29,6 +29,6 @@
         [Required]
         [Display(Name = "Trip Location")]
         [StringLength(75, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public string TripLocation { get; set; }
+        public virtual string TripLocation { get; set; }
     }
 }

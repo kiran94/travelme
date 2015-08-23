@@ -10,6 +10,6 @@
         /// <summary>
         /// Gets or sets the unique identifier
         /// </summary>
-        public Guid ID { get; set; }
+        public virtual Guid ID { get; set; }
     }
 }

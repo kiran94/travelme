@@ -1,19 +1,12 @@
-﻿namespace UnitTestProject1.Repositories
+﻿namespace com.kiransprojects.travelme.DataAccess.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
-    using NUnit;
-    using NUnit.Framework; 
-    
+    using NUnit.Framework;
+
     [TestFixture]
     public class RepositoryBaseTests
     {
-        
-
+      
 
     }
 }
