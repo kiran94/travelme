@@ -1,6 +1,7 @@
 ﻿namespace com.kiransprojects.travelme.Framework.Entities
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -52,5 +53,11 @@
         /// </summary>
         [Display(Name="Profile Picture")]
         public virtual byte[] ProfilePicture { get; set; }
+
+        /// <summary>
+        /// Gets or sets the users trips
+        /// </summary>
+        [Display(Name="Trips")]
+        public virtual List<Trip> Trips { get; set; }
     }
 }

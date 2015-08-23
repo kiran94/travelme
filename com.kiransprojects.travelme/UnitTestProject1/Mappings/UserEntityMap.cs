@@ -3,7 +3,7 @@
     using com.kiransprojects.travelme.Framework.Entities;
     using NHibernate.Mapping.ByCode.Conformist;
     using NHibernate.Type;
-    using System; 
+    using System;
 
     /// <summary>
     /// Maps User Entity object to database table
@@ -24,11 +24,20 @@
             this.Property(o => o.UserPassword, p => { p.Length(128); });
             this.Property(
                 o => o.ProfilePicture,
+                p =>
+                {
+                    p.Type<BinaryBlobType>();
+                    p.Length(Int32.MaxValue);
+                });
+
+            this.ManyToOne(
+                o => o.Trips,
                 p => 
                 {
-                    p.Type<BinaryBlobType>(); 
-                    p.Length(Int32.MaxValue); 
-                }); 
+                    p.Class(typeof(Trip));
+                    p.Column("UserID");
+                    p.Cascade(NHibernate.Mapping.ByCode.Cascade.All);
+                });
         }
     }
 }

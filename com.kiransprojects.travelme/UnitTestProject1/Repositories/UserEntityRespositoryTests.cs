@@ -13,6 +13,9 @@
     using System;
     using System.Reflection;
 
+    /// <summary>
+    /// User Entity Respository Tests
+    /// </summary>
     [TestFixture]
     public class UserEntityRespositoryTests
     {
@@ -31,14 +34,10 @@
             });
 
             var mapper = new ModelMapper();
-            
-            //config.AddAssembly(Assembly.Load("com.kiransprojects.travelme.DataAccess.Mappings")); 
             mapper.AddMappings(Assembly.GetExecutingAssembly().GetExportedTypes());
-
             HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
-
             config.AddMapping(mapping); 
-           
+       
             MockConfig = new Mock<IDatabaseConfig>();
             MockConfig.SetupSequence(o => o.GetConfig()).Returns(config);
 
@@ -70,6 +69,174 @@
             Assert.AreEqual(entity.DateOfBirth, Returned.DateOfBirth);
             Assert.AreEqual(entity.Email, Returned.Email);
             Assert.AreEqual(entity.UserPassword, Returned.UserPassword);
+        }
+
+        /// <summary>
+        /// Ensures null is returned when an non existing entity is passed
+        /// </summary>
+        [Test]
+        public void GetByID_NonExistingEntity_Null()
+        {
+            UserEntity entity = new UserEntity()
+            {
+                ID = Guid.Parse("9fc0b724-d55f-441d-a1be-ec726d7737f7"),
+                FirstName = "fdsf",
+                LastName = "TestsdfdsfLName",
+                DateOfBirth = new DateTime(1934, 08, 05, 10, 00, 00),
+                Email = "test@test.com",
+                UserPassword = "password"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            UserEntity Returned = Repository.GetByID(entity.ID);
+
+            Assert.AreEqual(null, Returned); 
+        }
+
+        /// <summary>
+        /// Ensures that a record can be stored successfully
+        /// </summary>
+        [Test] 
+        public void Insert_ValidEntity_StoredSuccessfully()
+        {
+            UserEntity Entity = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "Unit",
+                LastName = "Test",
+                DateOfBirth = new DateTime(2012, 04, 01),
+                Email = "unit@test.com",
+                UserPassword = "password" 
+            };
+
+            Guid StoredRecord = Entity.ID; 
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(Entity);
+
+            UserEntity RetrievedEntity = Repository.GetByID(StoredRecord);
+            Assert.AreEqual(Entity.ID, RetrievedEntity.ID); 
+        }
+
+        /// <summary>
+        /// Ensures that a null record is handled
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Insert_NullEntity_NullException()
+        {
+            UserEntity Entity = null; 
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(Entity);
+        }
+
+        /// <summary>
+        /// Ensures update functionality works
+        /// </summary>
+        [Test]
+        public void Update_ExistingEntity_SucessfullyUpdated()
+        {
+            Random rand = new Random();
+            int UpdatedData = rand.Next(1, 1000); 
+
+            UserEntity entity = new UserEntity()
+            {
+                ID = Guid.Parse("9fc0b724-d56f-441d-a1ae-ec726d7737f7"),
+                FirstName = "TestFname",
+                LastName = "TestLName",
+                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
+                Email = "test@test.com",
+                UserPassword = UpdatedData.ToString() 
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Update(entity);
+
+            UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
+
+            Assert.AreEqual(entity.UserPassword, RetrievedEntity.UserPassword); 
+        }
+
+        /// <summary>
+        /// Ensures a non existing entity will still be inserted in to the database
+        /// </summary>
+        [Test]
+        public void Update_NonExisting_InsertInto()
+        {
+            UserEntity entity = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "TestFname",
+                LastName = "TestLName",
+                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
+                Email = "test@test.com",
+                UserPassword = "password"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Update(entity);
+
+            Assert.AreEqual(entity.ID, Repository.GetByID(entity.ID).ID);
+        }
+
+        /// <summary>
+        /// Ensures the delete functionality works
+        /// </summary>
+        [Test]
+        public void Delete_ExistingEntity_SuccessfullyDeleted()
+        {
+            UserEntity entity = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "TestFname",
+                LastName = "TestLName",
+                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
+                Email = "test@test.com",
+                UserPassword = "password"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(entity);
+            Repository.Delete(entity);
+
+            UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
+            Assert.AreEqual(null, RetrievedEntity);
+        }
+
+
+        /// <summary>
+        /// Ensures the delete functionality works for non existing 
+        /// </summary>
+        [Test]
+        public void Delete_NonExistingEntity_ReturnsNullNull()
+        {
+            UserEntity entity = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "TestFname",
+                LastName = "TestLName",
+                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
+                Email = "test@test.com",
+                UserPassword = "password"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Delete(entity);
+
+            UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
+            Assert.AreEqual(null, RetrievedEntity);
+        }
+
+
+        [Test]
+        public void GetByID_TestWithTripList_ReturnsList()
+        {
+            Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"); 
+            UserEntityRepository Repository  = new UserEntityRepository(helper); 
+
+            UserEntity Entity = Repository.GetByID(ID);
+
+            Assert.AreEqual(1, Entity.Trips.Count); 
         }
     }
 }

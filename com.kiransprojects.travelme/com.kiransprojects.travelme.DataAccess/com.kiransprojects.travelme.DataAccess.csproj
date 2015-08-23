@@ -48,6 +48,7 @@
     <Compile Include="Interfaces\IDatabaseConfig.cs" />
     <Compile Include="Interfaces\INhibernateHelper.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Mappings\TripMap.cs" />
     <Compile Include="Mappings\UserEntityMap.cs" />
     <Compile Include="NhibernateConfiguration.cs" />
     <Compile Include="NhibernateHelper.cs" />
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReleaseScripts\SC_01.sql" />
+    <Content Include="ReleaseScripts\TestData.sql" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

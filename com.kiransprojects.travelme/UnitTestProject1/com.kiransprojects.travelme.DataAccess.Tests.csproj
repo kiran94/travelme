@@ -63,6 +63,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Mappings\TripMap.cs" />
     <Compile Include="Mappings\UserEntityMap.cs" />
     <Compile Include="NhibernateHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,23 +1,25 @@
 ﻿namespace com.kiransprojects.travelme.DataAccess.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using NUnit.Framework;
-    using Moq;
     using com.kiransprojects.travelme.DataAccess.Interfaces;
+    using Moq;
+    using NHibernate;
     using NHibernate.Cfg;
     using NHibernate.Dialect;
     using NHibernate.Driver;
-    using NHibernate; 
+    using NUnit.Framework;
+    using System; 
 
     [TestFixture]
     public class NhibernateHelperTests
     {
+        /// <summary>
+        /// Mock for IDatabaseConfig
+        /// </summary>
         private Mock<IDatabaseConfig> MockConfig = null; 
 
+        /// <summary>
+        /// SetUp function for each test
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -54,10 +56,5 @@
             NhibernateHelper helper = new NhibernateHelper(null);
             helper.GetSession(); 
         }
-
-
-
-
-
     }
 }

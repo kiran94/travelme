@@ -28,7 +28,15 @@
                 {
                     p.Type<BinaryBlobType>(); 
                     p.Length(Int32.MaxValue); 
-                }); 
+                });
+
+            this.ManyToOne(o => o.Trips,
+                p =>
+                {
+                    p.Cascade(NHibernate.Mapping.ByCode.Cascade.All);
+                    p.Class(typeof(Trip));
+                    p.Column("UserID");
+                });
         }
     }
 }
