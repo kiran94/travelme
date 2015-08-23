@@ -1,6 +1,7 @@
-﻿namespace com.kiransprojects.travelme.DataAccess.Mappings
+﻿namespace com.kiransprojects.travelme.DataAccess.Tests.Mappings
 {
     using com.kiransprojects.travelme.Framework.Entities;
+    using NHibernate.Mapping.ByCode; 
     using NHibernate.Mapping.ByCode.Conformist;
     using NHibernate.Type;
     using System;
@@ -30,14 +31,20 @@
                     p.Length(Int32.MaxValue);
                 });
 
-            this.ManyToOne(
+            this.Bag(
                 o => o.Trips,
                 p => 
                 {
-                    p.Class(typeof(Trip));
-                    p.Column("UserID");
-                    p.Cascade(NHibernate.Mapping.ByCode.Cascade.All);
-                });
+                    p.Table("Trip");
+                    p.Cascade(Cascade.None);
+                    p.Lazy(CollectionLazy.NoLazy);
+                    p.Key(
+                        k => 
+                        {
+                            k.Column("UserID");
+                        });
+                },
+                map => map.OneToMany(p => p.Class(typeof(Trip))));
         }
     }
 }

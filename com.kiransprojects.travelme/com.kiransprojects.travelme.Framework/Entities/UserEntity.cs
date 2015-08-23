@@ -58,6 +58,6 @@
         /// Gets or sets the users trips
         /// </summary>
         [Display(Name="Trips")]
-        public virtual List<Trip> Trips { get; set; }
+        public virtual IList<Trip> Trips { get; set; }
     }
 }

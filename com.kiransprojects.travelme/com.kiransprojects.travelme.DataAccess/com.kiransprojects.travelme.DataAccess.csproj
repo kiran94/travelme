@@ -48,6 +48,8 @@
     <Compile Include="Interfaces\IDatabaseConfig.cs" />
     <Compile Include="Interfaces\INhibernateHelper.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Mappings\MediaMap.cs" />
+    <Compile Include="Mappings\PostMap.cs" />
     <Compile Include="Mappings\TripMap.cs" />
     <Compile Include="Mappings\UserEntityMap.cs" />
     <Compile Include="NhibernateConfiguration.cs" />

@@ -63,6 +63,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Mappings\MediaMap.cs" />
+    <Compile Include="Mappings\PostMap.cs" />
     <Compile Include="Mappings\TripMap.cs" />
     <Compile Include="Mappings\UserEntityMap.cs" />
     <Compile Include="NhibernateHelperTests.cs" />

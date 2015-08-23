@@ -5,26 +5,26 @@
     using NHibernate.Mapping.ByCode.Conformist;
 
     /// <summary>
-    /// Mapping class for Trip Entity
+    /// Mapping for Post Entity
     /// </summary>
-    public class TripMap : ClassMapping<Trip>
+    public class PostMap : ClassMapping<Post>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TripMap"/> class.
+        /// Initializes a new instance of the <see cref="PostMap"/> class.
         /// </summary>
-        public TripMap()
+        public PostMap()
         {
-            this.Table("Trip");
+            this.Table("Post");
             this.Id(o => o.ID);
-            this.Property(o => o.TripName, p => { p.Length(20); p.NotNullable(true); });
-            this.Property(o => o.TripDescription, p => { p.Length(50); });
-            this.Property(o => o.TripLocation, p => { p.Length(75); });
+            this.Property(o => o.PostData, p => { p.Length(256); p.NotNullable(true); });
+            this.Property(o => o.PostLat, p => { p.Length(11); });
+            this.Property(o => o.PostLong, p => { p.Length(11); });
 
             this.Bag(
-              o => o.Posts,
+              o => o.Media,
               p =>
               {
-                  p.Table("Post");
+                  p.Table("Media");
                   p.Cascade(Cascade.None);
                   p.Lazy(CollectionLazy.Lazy);
                   p.Key(
@@ -33,7 +33,7 @@
                           k.Column("PostID");
                       });
               },
-              map => map.OneToMany(p => p.Class(typeof(Post))));
+              map => map.OneToMany(p => p.Class(typeof(Media))));
         }
     }
 }

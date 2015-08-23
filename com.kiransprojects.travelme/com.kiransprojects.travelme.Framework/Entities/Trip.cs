@@ -1,5 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.Framework.Entities
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations; 
 
     /// <summary>
@@ -30,5 +31,11 @@
         [Display(Name = "Trip Location")]
         [StringLength(75, ErrorMessage = "{0} has a maximum of {1} characters")]
         public virtual string TripLocation { get; set; }
+
+        /// <summary>
+        /// Gets or sets posts for a current trip
+        /// </summary>
+        [Display(Name="Posts")]
+        public virtual IList<Post> Posts { get; set; }
     }
 }

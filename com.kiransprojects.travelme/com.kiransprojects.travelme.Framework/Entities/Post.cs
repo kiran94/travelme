@@ -1,5 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.Framework.Entities
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     
     /// <summary>
@@ -21,7 +22,7 @@
         [Required]
         [Display(Name = "Latitude")]
         [StringLength(11, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public virtual string Latitude { get; set; }
+        public virtual string PostLat { get; set; }
 
         /// <summary>
         /// Gets or sets the post latitude
@@ -29,6 +30,12 @@
         [Required]
         [Display(Name = "Longitude")]
         [StringLength(11, ErrorMessage = "{0} has a maximum of {1} characters")]
-        public virtual string Longitude { get; set; }
+        public virtual string PostLong { get; set; }
+
+        /// <summary>
+        /// Gets or sets the media for the post
+        /// </summary>
+        [Display(Name="Media")]
+        public virtual IList<Media> Media { get; set; }
     }
 }

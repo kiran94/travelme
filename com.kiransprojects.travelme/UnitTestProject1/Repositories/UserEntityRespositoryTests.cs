@@ -238,5 +238,17 @@
 
             Assert.AreEqual(1, Entity.Trips.Count); 
         }
+
+        [Test]
+        public void GetByID_TestWithTripListAndPost_ReturnsList()
+        {
+            Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780");
+            UserEntityRepository Repository = new UserEntityRepository(helper); 
+            UserEntity Entity = Repository.GetByID(ID);
+
+            Assert.AreEqual(1, Entity.Trips.Count);
+            Assert.AreEqual(1, Entity.Trips[0].Posts.Count);
+
+        }
     }
 }
