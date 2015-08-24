@@ -19,9 +19,19 @@
     [TestFixture]
     public class UserEntityRespositoryTests
     {
+        /// <summary>
+        /// Mocking for database config
+        /// </summary>
         private Mock<IDatabaseConfig> MockConfig = null;
-        private NhibernateHelper helper = null; 
 
+        /// <summary>
+        ///Dependacy for Repository used to retrieve sessions
+        /// </summary>
+        private NhibernateHelper helper = null;
+
+        /// <summary>
+        /// SetUp function run before each test
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -36,8 +46,8 @@
             var mapper = new ModelMapper();
             mapper.AddMappings(Assembly.GetExecutingAssembly().GetExportedTypes());
             HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
-            config.AddMapping(mapping); 
-       
+            config.AddMapping(mapping);
+
             MockConfig = new Mock<IDatabaseConfig>();
             MockConfig.SetupSequence(o => o.GetConfig()).Returns(config);
 
@@ -62,7 +72,7 @@
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
             UserEntity Returned = Repository.GetByID(entity.ID);
-          
+
             Assert.AreEqual(entity.ID, Returned.ID);
             Assert.AreEqual(entity.FirstName, Returned.FirstName);
             Assert.AreEqual(entity.LastName, Returned.LastName);
@@ -90,13 +100,13 @@
             UserEntityRepository Repository = new UserEntityRepository(helper);
             UserEntity Returned = Repository.GetByID(entity.ID);
 
-            Assert.AreEqual(null, Returned); 
+            Assert.AreEqual(null, Returned);
         }
 
         /// <summary>
         /// Ensures that a record can be stored successfully
         /// </summary>
-        [Test] 
+        [Test]
         public void Insert_ValidEntity_StoredSuccessfully()
         {
             UserEntity Entity = new UserEntity()
@@ -106,16 +116,16 @@
                 LastName = "Test",
                 DateOfBirth = new DateTime(2012, 04, 01),
                 Email = "unit@test.com",
-                UserPassword = "password" 
+                UserPassword = "password"
             };
 
-            Guid StoredRecord = Entity.ID; 
+            Guid StoredRecord = Entity.ID;
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
             Repository.Insert(Entity);
 
             UserEntity RetrievedEntity = Repository.GetByID(StoredRecord);
-            Assert.AreEqual(Entity.ID, RetrievedEntity.ID); 
+            Assert.AreEqual(Entity.ID, RetrievedEntity.ID);
         }
 
         /// <summary>
@@ -125,7 +135,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void Insert_NullEntity_NullException()
         {
-            UserEntity Entity = null; 
+            UserEntity Entity = null;
             UserEntityRepository Repository = new UserEntityRepository(helper);
             Repository.Insert(Entity);
         }
@@ -137,7 +147,7 @@
         public void Update_ExistingEntity_SucessfullyUpdated()
         {
             Random rand = new Random();
-            int UpdatedData = rand.Next(1, 1000); 
+            int UpdatedData = rand.Next(1, 1000);
 
             UserEntity entity = new UserEntity()
             {
@@ -146,7 +156,7 @@
                 LastName = "TestLName",
                 DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
                 Email = "test@test.com",
-                UserPassword = UpdatedData.ToString() 
+                UserPassword = UpdatedData.ToString()
             };
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
@@ -154,7 +164,7 @@
 
             UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
 
-            Assert.AreEqual(entity.UserPassword, RetrievedEntity.UserPassword); 
+            Assert.AreEqual(entity.UserPassword, RetrievedEntity.UserPassword);
         }
 
         /// <summary>
@@ -205,7 +215,7 @@
 
 
         /// <summary>
-        /// Ensures the delete functionality works for non existing 
+        /// Ensures the delete functionality works for non existing
         /// </summary>
         [Test]
         public void Delete_NonExistingEntity_ReturnsNullNull()
@@ -227,28 +237,47 @@
             Assert.AreEqual(null, RetrievedEntity);
         }
 
-
+        /// <summary>
+        /// Ensures a trip is related to a user and can be accessed
+        /// </summary>
         [Test]
         public void GetByID_TestWithTripList_ReturnsList()
         {
-            Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"); 
-            UserEntityRepository Repository  = new UserEntityRepository(helper); 
+            Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780");
+            UserEntityRepository Repository  = new UserEntityRepository(helper);
 
             UserEntity Entity = Repository.GetByID(ID);
 
-            Assert.AreEqual(1, Entity.Trips.Count); 
+            Assert.AreEqual(1, Entity.Trips.Count);
         }
 
+        /// <summary>
+        /// Ensures a trip and transistively a post is related to a user and can be retrieved
+        /// </summary>
         [Test]
         public void GetByID_TestWithTripListAndPost_ReturnsList()
         {
             Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780");
-            UserEntityRepository Repository = new UserEntityRepository(helper); 
+            UserEntityRepository Repository = new UserEntityRepository(helper);
             UserEntity Entity = Repository.GetByID(ID);
 
             Assert.AreEqual(1, Entity.Trips.Count);
             Assert.AreEqual(1, Entity.Trips[0].Posts.Count);
 
+        }
+
+        /// <summary>
+        /// Ensures exception is thrown when a user does not have any trips
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetByID_NonExistingTrips_ThrowsError()
+        {
+          Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724781");
+          UserEntityRepository Repository = new UserEntityRepository(helper);
+          UserEntity Entity = Repository.GetByID(ID);
+
+          Assert.AreEqual(1, Entity.Trips[0].Count)
         }
     }
 }
