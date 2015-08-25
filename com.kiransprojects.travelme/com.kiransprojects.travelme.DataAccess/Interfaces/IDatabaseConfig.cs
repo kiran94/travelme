@@ -1,6 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.DataAccess.Interfaces
 {
-    using NHibernate.Cfg; 
+    using NHibernate.Cfg;
 
     /// <summary>
     /// Contract for Nhibernate configuration
@@ -10,8 +10,8 @@
         /// <summary>
         /// Gets the configuration for nhibernate
         /// </summary>
-        /// <returns></returns>
-        Configuration GetConfig(); 
+        /// <returns>Nhibernate Configuration object ready to go</returns>
+        Configuration GetConfig();
 
     }
 }

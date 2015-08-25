@@ -7,6 +7,10 @@
     /// </summary>
     public interface INhibernateHelper
     {
+        /// <summary>
+        /// Gets session for use in database transactions
+        /// </summary>
+        /// <returns>ISession implementation</returns>
         ISession GetSession();
     }
 }

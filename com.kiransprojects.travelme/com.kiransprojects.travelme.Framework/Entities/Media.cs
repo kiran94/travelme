@@ -1,4 +1,4 @@
-﻿namespace com.kiransprojects.travelme.Framework.Entities
+namespace com.kiransprojects.travelme.Framework.Entities
 {
     /// <summary>
     /// Represents a Media Entity

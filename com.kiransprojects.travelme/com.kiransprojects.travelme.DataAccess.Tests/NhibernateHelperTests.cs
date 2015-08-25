@@ -7,15 +7,18 @@
     using NHibernate.Dialect;
     using NHibernate.Driver;
     using NUnit.Framework;
-    using System; 
+    using System;
 
+    /// <summary>
+    /// Tests for NhibernateHelper class
+    /// </summary>
     [TestFixture]
     public class NhibernateHelperTests
     {
         /// <summary>
         /// Mock for IDatabaseConfig
         /// </summary>
-        private Mock<IDatabaseConfig> MockConfig = null; 
+        private Mock<IDatabaseConfig> MockConfig = null;
 
         /// <summary>
         /// SetUp function for each test
@@ -32,7 +35,7 @@
             });
 
             this.MockConfig = new Mock<IDatabaseConfig>();
-            this.MockConfig.SetupSequence(o => o.GetConfig()).Returns(config); 
+            this.MockConfig.SetupSequence(o => o.GetConfig()).Returns(config);
         }
 
         /// <summary>
@@ -54,7 +57,7 @@
         public void GetSession_NullConfig_ThrowsNullReferenceException()
         {
             NhibernateHelper helper = new NhibernateHelper(null);
-            helper.GetSession(); 
+            helper.GetSession();
         }
     }
 }

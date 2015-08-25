@@ -1,9 +1,9 @@
-﻿namespace com.kiransprojects.travelme.Framework.Entities
+namespace com.kiransprojects.travelme.Framework.Entities
 {
     using System;
 
     /// <summary>
-    /// Parent of all entities persisted in the database. 
+    /// Parent of all entities persisted in the database.
     /// </summary>
     public abstract class EntityBase
     {

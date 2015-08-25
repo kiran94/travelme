@@ -1,8 +1,8 @@
-﻿namespace com.kiransprojects.travelme.Framework.Entities
+namespace com.kiransprojects.travelme.Framework.Entities
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     /// <summary>
     /// Represents a Post
     /// </summary>
