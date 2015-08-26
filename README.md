@@ -1,2 +1,5 @@
 # travelme
-A blogging application allowing a backpacker to post blogs and photos on their travels
+
+Travelme is blogging application designed specifically for backpackers who are travelling the world. The application will provide the functionality to post blogs along with pictures about there current travels. Journeys will be organised into ‘Trips’ where each user may add as many trips as they wish. Within each trip there will be many posts. The web application will provide a way to store these posts and also view them for later viewing. Functionality to share with friends will also be considered. Travelme will use location data to track a person’s travels over a period of time, this will be later displayed through a mapping api such as Google Maps. 
+
+The application will be built using ASP.NET MVC C# within Microsoft Visual Studion 2012. The application will use SQL Server 2014 for the backend however the system is designed to be flexible in terms of DBMS. 
