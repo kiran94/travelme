@@ -213,7 +213,6 @@
             Assert.AreEqual(null, RetrievedEntity);
         }
 
-
         /// <summary>
         /// Ensures the delete functionality works for non existing
         /// </summary>
@@ -250,6 +249,8 @@
 
             Assert.AreEqual(1, Entity.Trips.Count);
         }
+        
+        //copied here TODO
 
         /// <summary>
         /// Ensures a trip and transistively a post is related to a user and can be retrieved
