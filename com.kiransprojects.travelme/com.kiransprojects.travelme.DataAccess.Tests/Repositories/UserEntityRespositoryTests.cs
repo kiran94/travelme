@@ -270,14 +270,14 @@
         /// Ensures exception is thrown when a user does not have any trips
         /// </summary>
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void GetByID_NonExistingTrips_ThrowsError()
         {
           Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724781");
           UserEntityRepository Repository = new UserEntityRepository(helper);
           UserEntity Entity = Repository.GetByID(ID);
 
-          Assert.AreEqual(1, Entity.Trips[0].Count)
+          Assert.AreEqual(1, Entity.Trips.Count);
         }
     }
 }
