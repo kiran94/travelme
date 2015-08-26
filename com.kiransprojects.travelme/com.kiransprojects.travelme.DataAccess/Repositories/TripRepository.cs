@@ -4,19 +4,20 @@
     using com.kiransprojects.travelme.Framework.Entities;
 
     /// <summary>
-    /// User Entity Repository for interacting with the user table
+    /// Trip Repository for interacting with the trip tabble
     /// </summary>
-    public class UserEntityRepository : RepositoryBase<UserEntity>
+    /// <typeparam name="T"></typeparam>
+    public class TripRepository : RepositoryBase<Trip>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UserEntityRepository"/> class.
         /// </summary>
-        public UserEntityRepository(INhibernateHelper helper)
+        public TripRepository(INhibernateHelper helper)
             : base(helper)
         {
+
         }
 
-        //User Entity specific CRUD goes here..
+        //Trip specific CRUD goes here..
     }
-
 }
