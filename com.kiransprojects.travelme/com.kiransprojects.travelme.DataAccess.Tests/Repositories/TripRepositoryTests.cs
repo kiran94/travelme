@@ -11,6 +11,7 @@
     using NHibernate.Mapping.ByCode;
     using NUnit.Framework;
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
 
     /// <summary>
@@ -50,24 +51,39 @@
 
             this.MockConfig = new Mock<IDatabaseConfig>();
             this.MockConfig.SetupSequence(o => o.GetConfig()).Returns(config);
+
+            this.helper = new NhibernateHelper(this.MockConfig.Object); 
         }
 
         /// <summary>
-        /// Ensures that an existing entity in the database can be retrieved TODO
+        /// Ensures that an existing entity in the database can be retrieved
         /// </summary>
         [Test]
         public void GetByID_ExistingEntity_RetrieveEntity()
         {
+            UserEntity user = new UserEntity()
+            {
+                ID= Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"),
+                FirstName = "Kiran",
+                LastName = "Patel",
+                DateOfBirth = new DateTime(1994,08,05),
+                Email = "Kiran@test.com",
+                UserPassword = "password",
+            };
+
             Trip trip = new Trip()
             {
-                ID = Guid.Parse(""),
+                ID = Guid.Parse("209F9526-3611-4F30-A79C-55557FFBECF5"),
                 TripName = "TestTrip",
                 TripDescription = "TestDesc",
                 TripLocation = "London"
             };
 
+            user.Trips = new System.Collections.Generic.List<Trip>(); 
+            user.Trips.Add(trip);
+
             TripRepository Repository = new TripRepository(helper);
-            Trip Returned = Repository.GetByID(trip.ID);
+            Trip Returned = Repository.GetByID(user.Trips[0].ID);
 
             Assert.AreEqual(trip.ID, Returned.ID);
             Assert.AreEqual(trip.TripName, Returned.TripName);
@@ -101,6 +117,16 @@
         [Test]
         public void Insert_ValidEntity_StoredSuccessfully()
         {
+            UserEntity user = new UserEntity()
+            {
+                ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"),
+                FirstName = "Kiran",
+                LastName = "Patel",
+                DateOfBirth = new DateTime(1994, 08, 05),
+                Email = "Kiran@test.com",
+                UserPassword = "password",
+            };
+
             Trip trip = new Trip()
             {
                 ID = Guid.NewGuid(),
@@ -109,10 +135,13 @@
                 TripLocation = "NonExisting"
             };
 
+            user.Trips = new System.Collections.Generic.List<Trip>();
+            user.Trips.Add(trip); 
+
             Guid StoredRecord = trip.ID;
 
             TripRepository Repository = new TripRepository(helper);
-            Repository.Insert(trip);
+            Repository.Insert(user.Trips[0]);
 
             Trip RetrievedEntity = Repository.GetByID(StoredRecord);
             Assert.AreEqual(trip.ID, RetrievedEntity.ID);
@@ -141,10 +170,10 @@
 
             Trip trip = new Trip()
             {
-                ID = Guid.Parse(""),
+                ID = Guid.Parse("209F9526-3611-4F30-A79C-55557FFBECF5"),
                 TripName = "TestTrip",
                 TripDescription = "TestDesc",
-                TripLocation = string.Format("{0}", UpdatedData) 
+                TripLocation = string.Format("Random - {0}", UpdatedData) 
             };
 
             TripRepository Repository = new TripRepository(helper);
@@ -163,7 +192,7 @@
         {
             Trip trip = new Trip()
             {
-                ID = Guid.Parse(""),
+                ID = Guid.Parse("D5FBC552-BECE-4D4B-8FBE-ED1F52A31361"),
                 TripName = "NonExisting",
                 TripDescription = "TestDesc",
                 TripLocation = "NonExisting"
@@ -223,9 +252,9 @@
         /// Ensures a post is related to a trip and can be accessed TODO
         /// </summary>
         [Test]
-        public void GetByID_TestWithTripList_ReturnsList()
+        public void GetByID_TestWithPostList_ReturnsList()
         {
-            Guid ID = Guid.Parse("");
+            Guid ID = Guid.Parse("209F9526-3611-4F30-A79C-55557FFBECF5");
             TripRepository Repository = new TripRepository(helper);
 
             Trip Entity = Repository.GetByID(ID);
