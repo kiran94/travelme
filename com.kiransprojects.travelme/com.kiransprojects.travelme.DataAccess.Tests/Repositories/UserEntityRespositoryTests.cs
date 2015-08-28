@@ -160,7 +160,7 @@
             };
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Update(entity);
+            Repository.Update(entity, false);
 
             UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
 
@@ -184,7 +184,7 @@
             };
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Update(entity);
+            Repository.Update(entity, false);
 
             Assert.AreEqual(entity.ID, Repository.GetByID(entity.ID).ID);
         }
@@ -247,11 +247,10 @@
 
             UserEntity Entity = Repository.GetByID(ID);
 
-            Assert.AreEqual(1, Entity.Trips.Count);
+            Assert.AreEqual(2, Entity.Trips.Count);
         }
         
-        //copied here TODO
-
+        
         /// <summary>
         /// Ensures a trip and transistively a post is related to a user and can be retrieved
         /// </summary>
@@ -262,7 +261,7 @@
             UserEntityRepository Repository = new UserEntityRepository(helper);
             UserEntity Entity = Repository.GetByID(ID);
 
-            Assert.AreEqual(1, Entity.Trips.Count);
+            Assert.AreEqual(2, Entity.Trips.Count);
             Assert.AreEqual(1, Entity.Trips[0].Posts.Count);
 
         }
@@ -279,6 +278,42 @@
           UserEntity Entity = Repository.GetByID(ID);
 
           Assert.AreEqual(1, Entity.Trips.Count);
+        }
+
+        /// <summary>
+        /// Ensures that a record can be stored successfully
+        /// </summary>
+        [Test]
+        public void Insert_ValidTripEntity_StoredSuccessfully()
+        {
+            UserEntity user = new UserEntity()
+            {
+                ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"),
+                FirstName = "Kiran",
+                LastName = "Patel",
+                DateOfBirth = new DateTime(1994, 08, 05),
+                Email = "Kiran@test.com",
+                UserPassword = "password",
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            UserEntity RetrievedEntity = Repository.GetByID(user.ID);
+
+            Trip trip = new Trip()
+            {
+                ID = Guid.NewGuid(),
+                TripName = "NonExisting",
+                TripDescription = "NonExisting",
+                TripLocation = "NonExisting"
+            };
+
+            user.Trips = new System.Collections.Generic.List<Trip>();
+            user.Trips.Add(trip);
+
+            Repository.Update(user, true);
+
+            RetrievedEntity = Repository.GetByID(user.ID);
+            Assert.AreEqual(trip.ID, RetrievedEntity.Trips[RetrievedEntity.Trips.Count - 1].ID);
         }
     }
 }

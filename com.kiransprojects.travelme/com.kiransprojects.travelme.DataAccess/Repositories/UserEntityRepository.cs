@@ -2,6 +2,7 @@
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
+    using NHibernate;
 
     /// <summary>
     /// User Entity Repository for interacting with the user table
@@ -18,5 +19,4 @@
 
         //User Entity specific CRUD goes here..
     }
-
 }

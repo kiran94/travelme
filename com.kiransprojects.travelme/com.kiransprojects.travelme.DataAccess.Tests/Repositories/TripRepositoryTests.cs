@@ -112,42 +112,6 @@
         }
 
         /// <summary>
-        /// Ensures that a record can be stored successfully
-        /// </summary>
-        [Test]
-        public void Insert_ValidEntity_StoredSuccessfully()
-        {
-            UserEntity user = new UserEntity()
-            {
-                ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"),
-                FirstName = "Kiran",
-                LastName = "Patel",
-                DateOfBirth = new DateTime(1994, 08, 05),
-                Email = "Kiran@test.com",
-                UserPassword = "password",
-            };
-
-            Trip trip = new Trip()
-            {
-                ID = Guid.NewGuid(),
-                TripName = "NonExisting",
-                TripDescription = "NonExisting",
-                TripLocation = "NonExisting"
-            };
-
-            user.Trips = new System.Collections.Generic.List<Trip>();
-            user.Trips.Add(trip); 
-
-            Guid StoredRecord = trip.ID;
-
-            TripRepository Repository = new TripRepository(helper);
-            Repository.Insert(user.Trips[0]);
-
-            Trip RetrievedEntity = Repository.GetByID(StoredRecord);
-            Assert.AreEqual(trip.ID, RetrievedEntity.ID);
-        }
-
-        /// <summary>
         /// Ensures that a null record is handled
         /// </summary>
         [Test]
@@ -177,7 +141,7 @@
             };
 
             TripRepository Repository = new TripRepository(helper);
-            Repository.Update(trip);
+            Repository.Update(trip, true);
 
             Trip RetrievedEntity = Repository.GetByID(trip.ID);
 
@@ -185,9 +149,10 @@
         }
 
         /// <summary>
-        /// Ensures a non existing entity will still be inserted in to the database TODO
+        /// Ensures a non existing trip can not be inserted directly without a userid
         /// </summary>
         [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
         public void Update_NonExisting_InsertInto()
         {
             Trip trip = new Trip()
@@ -199,9 +164,7 @@
             };
 
             TripRepository Repository = new TripRepository(helper);
-            Repository.Update(trip);
-
-            Assert.AreEqual(trip.ID, Repository.GetByID(trip.ID).ID);
+            Repository.Update(trip, false);
         }
 
         /// <summary>
@@ -210,6 +173,9 @@
         [Test]
         public void Delete_ExistingEntity_SuccessfullyDeleted()
         {
+            UserEntityRepository UserRepository = new UserEntityRepository(helper);
+            UserEntity entity = UserRepository.GetByID(Guid.Parse("9fc0b724-d56f-441d-a1ae-ec726d7737f7")); 
+ 
             Trip trip = new Trip()
             {
                 ID = Guid.NewGuid(),
@@ -218,9 +184,10 @@
                 TripLocation = "Deleted"
             };
 
+            entity.Trips.Add(trip);
+            UserRepository.Update(entity, true); 
 
             TripRepository Repository = new TripRepository(helper);
-            Repository.Insert(trip);
             Repository.Delete(trip);
 
             Trip RetrievedEntity = Repository.GetByID(trip.ID);
@@ -259,7 +226,7 @@
 
             Trip Entity = Repository.GetByID(ID);
 
-            Assert.AreEqual(1, Entity.Posts);
+            Assert.AreEqual(1, Entity.Posts.Count);
         }
 
     }

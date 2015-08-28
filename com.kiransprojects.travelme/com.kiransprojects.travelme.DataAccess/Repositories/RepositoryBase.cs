@@ -14,7 +14,7 @@
         /// <summary>
         /// Nhibernate Helper
         /// </summary>
-        private readonly INhibernateHelper helper = null; 
+        protected readonly INhibernateHelper helper = null; 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryBase"/> class.
@@ -57,12 +57,17 @@
         }
 
         /// <inheritdoc />
-        public void Update(T Entity)
+        public void Update(T Entity, bool load)
         {
             using(ISession session = this.helper.GetSession())
             {
                 using(ITransaction transaction = session.BeginTransaction())
                 {
+                    if(load)
+                    {
+                        session.Load(Entity, Entity.ID); 
+                    }
+
                     session.SaveOrUpdate(Entity);
                     transaction.Commit(); 
                 }
