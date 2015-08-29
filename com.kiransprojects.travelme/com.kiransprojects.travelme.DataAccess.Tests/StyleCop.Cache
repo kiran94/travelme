@@ -3,11 +3,14 @@
   <project key="1292080055">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <project key="-798872455">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="UserEntityRespositoryTests.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014/04/01 10:18:24.000</styleCop>
       <settingsFile>2012/09/27 21:03:32.000</settingsFile>
-      <sourceFile>2015/08/23 21:24:17.054</sourceFile>
+      <sourceFile>2015/08/29 21:45:14.594</sourceFile>
       <parser>2014/04/01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014/04/01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-1945363787</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -50,328 +53,515 @@
         <line>13</line>
         <warning>False</warning>
       </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>14</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>15</line>
+        <warning>False</warning>
+      </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
         <context>The documentation text within the summary tag contains incorrectly spelled words: Respository</context>
-        <line>20</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
-        <context>The code must not contain multiple blank lines in a row.</context>
-        <line>206</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
-        <context>The code must not contain multiple blank lines in a row.</context>
-        <line>230</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The field must have a documentation header.</context>
         <line>22</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
+        <context>The code must not contain multiple blank lines in a row.</context>
+        <line>255</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: MockConfig.</context>
-        <line>22</line>
+        <line>27</line>
         <warning>False</warning>
       </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The field must have a documentation header.</context>
-        <line>23</line>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
+        <context>The documentation text within the summary tag contains incorrectly spelled words: Dependacy</context>
+        <line>32</line>
         <warning>False</warning>
       </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The method must have a documentation header.</context>
-        <line>26</line>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="DocumentationLinesMustBeginWithSingleSpace" ruleCheckId="SA1004">
+        <context>The documentation header line must start with a single space.</context>
+        <line>30</line>
+        <index>876</index>
+        <endIndex>928</endIndex>
+        <startLine>30</startLine>
+        <startColumn>9</startColumn>
+        <endLine>30</endLine>
+        <endColumn>61</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to MockConfig must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>41</line>
-        <index>1481</index>
-        <endIndex>1490</endIndex>
-        <startLine>41</startLine>
+        <line>53</line>
+        <index>1774</index>
+        <endIndex>1783</endIndex>
+        <startLine>53</startLine>
         <startColumn>13</startColumn>
-        <endLine>41</endLine>
+        <endLine>53</endLine>
         <endColumn>22</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to MockConfig must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>42</line>
-        <index>1536</index>
-        <endIndex>1545</endIndex>
-        <startLine>42</startLine>
+        <line>54</line>
+        <index>1828</index>
+        <endIndex>1837</endIndex>
+        <startLine>54</startLine>
         <startColumn>13</startColumn>
-        <endLine>42</endLine>
+        <endLine>54</endLine>
         <endColumn>22</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>44</line>
-        <index>1613</index>
-        <endIndex>1618</endIndex>
-        <startLine>44</startLine>
+        <line>56</line>
+        <index>1903</index>
+        <endIndex>1908</endIndex>
+        <startLine>56</startLine>
         <startColumn>13</startColumn>
-        <endLine>44</endLine>
+        <endLine>56</endLine>
         <endColumn>18</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to MockConfig must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>44</line>
-        <index>1643</index>
-        <endIndex>1652</endIndex>
-        <startLine>44</startLine>
+        <line>56</line>
+        <index>1933</index>
+        <endIndex>1942</endIndex>
+        <startLine>56</startLine>
         <startColumn>43</startColumn>
-        <endLine>44</endLine>
+        <endLine>56</endLine>
         <endColumn>52</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>63</line>
+        <line>75</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Returned.</context>
-        <line>64</line>
+        <line>76</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>63</line>
-        <index>2357</index>
-        <endIndex>2362</endIndex>
-        <startLine>63</startLine>
+        <line>75</line>
+        <index>2628</index>
+        <endIndex>2633</endIndex>
+        <startLine>75</startLine>
         <startColumn>72</startColumn>
-        <endLine>63</endLine>
+        <endLine>75</endLine>
         <endColumn>77</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>90</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: Returned.</context>
-        <line>91</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
-        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>90</line>
-        <index>3524</index>
-        <endIndex>3529</endIndex>
-        <startLine>90</startLine>
-        <startColumn>72</startColumn>
-        <endLine>90</endLine>
-        <endColumn>77</endColumn>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: Entity.</context>
         <line>102</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: StoredRecord.</context>
-        <line>112</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>114</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: RetrievedEntity.</context>
-        <line>117</line>
+        <context>Variable names and private field names must start with a lower-case letter: Returned.</context>
+        <line>103</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>114</line>
-        <index>4317</index>
-        <endIndex>4322</endIndex>
-        <startLine>114</startLine>
+        <line>102</line>
+        <index>3758</index>
+        <endIndex>3763</endIndex>
+        <startLine>102</startLine>
         <startColumn>72</startColumn>
-        <endLine>114</endLine>
+        <endLine>102</endLine>
         <endColumn>77</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Entity.</context>
-        <line>128</line>
+        <line>114</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: StoredRecord.</context>
+        <line>124</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
+        <line>126</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: RetrievedEntity.</context>
         <line>129</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>129</line>
-        <index>4871</index>
-        <endIndex>4876</endIndex>
-        <startLine>129</startLine>
+        <line>126</line>
+        <index>4523</index>
+        <endIndex>4528</endIndex>
+        <startLine>126</startLine>
         <startColumn>72</startColumn>
-        <endLine>129</endLine>
+        <endLine>126</endLine>
         <endColumn>77</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: UpdatedData.</context>
+        <context>Variable names and private field names must start with a lower-case letter: Entity.</context>
         <line>140</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
+        <line>141</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>141</line>
+        <index>5060</index>
+        <endIndex>5065</endIndex>
+        <startLine>141</startLine>
+        <startColumn>72</startColumn>
+        <endLine>141</endLine>
+        <endColumn>77</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: UpdatedData.</context>
         <line>152</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
+        <line>164</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: RetrievedEntity.</context>
-        <line>155</line>
+        <line>167</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>152</line>
-        <index>5695</index>
-        <endIndex>5700</endIndex>
-        <startLine>152</startLine>
+        <line>164</line>
+        <index>5859</index>
+        <endIndex>5864</endIndex>
+        <startLine>164</startLine>
         <startColumn>72</startColumn>
-        <endLine>152</endLine>
+        <endLine>164</endLine>
         <endColumn>77</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>176</line>
+        <line>188</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>176</line>
-        <index>6560</index>
-        <endIndex>6565</endIndex>
-        <startLine>176</startLine>
+        <line>188</line>
+        <index>6706</index>
+        <endIndex>6711</endIndex>
+        <startLine>188</startLine>
         <startColumn>72</startColumn>
-        <endLine>176</endLine>
+        <endLine>188</endLine>
         <endColumn>77</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>198</line>
+        <line>210</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: RetrievedEntity.</context>
-        <line>202</line>
+        <line>214</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>198</line>
-        <index>7322</index>
-        <endIndex>7327</endIndex>
-        <startLine>198</startLine>
+        <line>210</line>
+        <index>7453</index>
+        <endIndex>7458</endIndex>
+        <startLine>210</startLine>
         <startColumn>72</startColumn>
-        <endLine>198</endLine>
+        <endLine>210</endLine>
         <endColumn>77</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>223</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: RetrievedEntity.</context>
-        <line>226</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
-        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>223</line>
-        <index>8194</index>
-        <endIndex>8199</endIndex>
-        <startLine>223</startLine>
-        <startColumn>72</startColumn>
-        <endLine>223</endLine>
-        <endColumn>77</endColumn>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The method must have a documentation header.</context>
-        <line>232</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: ID.</context>
         <line>234</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>235</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
-        <context>Variable names and private field names must start with a lower-case letter: Entity.</context>
+        <context>Variable names and private field names must start with a lower-case letter: RetrievedEntity.</context>
         <line>237</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>235</line>
-        <index>8622</index>
-        <endIndex>8627</endIndex>
-        <startLine>235</startLine>
-        <startColumn>73</startColumn>
-        <endLine>235</endLine>
-        <endColumn>78</endColumn>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The method must have a documentation header.</context>
-        <line>243</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
-        <context>A closing curly bracket must not be preceded by a blank line.</context>
-        <line>252</line>
+        <line>234</line>
+        <index>8298</index>
+        <endIndex>8303</endIndex>
+        <startLine>234</startLine>
+        <startColumn>72</startColumn>
+        <endLine>234</endLine>
+        <endColumn>77</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: ID.</context>
-        <line>245</line>
+        <line>247</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
-        <line>246</line>
+        <line>248</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
         <context>Variable names and private field names must start with a lower-case letter: Entity.</context>
-        <line>247</line>
+        <line>250</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>246</line>
-        <index>9001</index>
-        <endIndex>9006</endIndex>
-        <startLine>246</startLine>
+        <line>248</line>
+        <index>8825</index>
+        <endIndex>8830</endIndex>
+        <startLine>248</startLine>
+        <startColumn>73</startColumn>
+        <endLine>248</endLine>
+        <endColumn>78</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
+        <context>The documentation text within the summary tag contains incorrectly spelled words: transistively</context>
+        <line>260</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
+        <context>A closing curly bracket must not be preceded by a blank line.</context>
+        <line>269</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: ID.</context>
+        <line>262</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
+        <line>263</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: Entity.</context>
+        <line>264</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>263</line>
+        <index>9347</index>
+        <endIndex>9352</endIndex>
+        <startLine>263</startLine>
         <startColumn>72</startColumn>
-        <endLine>246</endLine>
+        <endLine>263</endLine>
         <endColumn>77</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: ID.</context>
+        <line>278</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
+        <line>279</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: Entity.</context>
+        <line>280</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>279</line>
+        <index>9944</index>
+        <endIndex>9949</endIndex>
+        <startLine>279</startLine>
+        <startColumn>70</startColumn>
+        <endLine>279</endLine>
+        <endColumn>75</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: RetrievedEntity.</context>
+        <line>303</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: Result.</context>
+        <line>305</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>300</line>
+        <index>10649</index>
+        <endIndex>10654</endIndex>
+        <startLine>300</startLine>
+        <startColumn>64</startColumn>
+        <endLine>300</endLine>
+        <endColumn>69</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>303</line>
+        <index>10782</index>
+        <endIndex>10787</endIndex>
+        <startLine>303</startLine>
+        <startColumn>67</startColumn>
+        <endLine>303</endLine>
+        <endColumn>72</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
+        <context>The documentation text within the summary tag contains incorrectly spelled words: sucessfully</context>
+        <line>316</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
+        <context>A closing curly bracket must not be preceded by a blank line.</context>
+        <line>367</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: TripID.</context>
+        <line>345</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: PostID.</context>
+        <line>346</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: Repository.</context>
+        <line>355</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: RetrievedUser.</context>
+        <line>359</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: RetrievedTrip.</context>
+        <line>360</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustBeginWithLowerCaseLetter" ruleCheckId="SA1306">
+        <context>Variable names and private field names must start with a lower-case letter: RetrievedPost.</context>
+        <line>361</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>355</line>
+        <index>12434</index>
+        <endIndex>12439</endIndex>
+        <startLine>355</startLine>
+        <startColumn>72</startColumn>
+        <endLine>355</endLine>
+        <endColumn>77</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>360</line>
+        <index>12623</index>
+        <endIndex>12628</endIndex>
+        <startLine>360</startLine>
+        <startColumn>53</startColumn>
+        <endLine>360</endLine>
+        <endColumn>58</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to helper must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>361</line>
+        <index>12700</index>
+        <endIndex>12705</endIndex>
+        <startLine>361</startLine>
+        <startColumn>53</startColumn>
+        <endLine>361</endLine>
+        <endColumn>58</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="SingleLineCommentsMustBeginWithSingleSpace" ruleCheckId="SA1005">
+        <context>The comment must start with a single space. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
+        <line>318</line>
+        <index>11240</index>
+        <endIndex>11248</endIndex>
+        <startLine>318</startLine>
+        <startColumn>13</startColumn>
+        <endLine>318</endLine>
+        <endColumn>21</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="CommasMustBeSpacedCorrectly" ruleCheckId="SA1001">
+        <context>Invalid spacing around the comma.</context>
+        <line>324</line>
+        <index>11477</index>
+        <endIndex>11477</endIndex>
+        <startLine>324</startLine>
+        <startColumn>48</startColumn>
+        <endLine>324</endLine>
+        <endColumn>48</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="CommasMustBeSpacedCorrectly" ruleCheckId="SA1001">
+        <context>Invalid spacing around the comma.</context>
+        <line>324</line>
+        <index>11480</index>
+        <endIndex>11480</endIndex>
+        <startLine>324</startLine>
+        <startColumn>51</startColumn>
+        <endLine>324</endLine>
+        <endColumn>51</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="SingleLineCommentsMustBeginWithSingleSpace" ruleCheckId="SA1005">
+        <context>The comment must start with a single space. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
+        <line>354</line>
+        <index>12357</index>
+        <endIndex>12361</endIndex>
+        <startLine>354</startLine>
+        <startColumn>13</startColumn>
+        <endLine>354</endLine>
+        <endColumn>17</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.SpacingRules" rule="SingleLineCommentsMustBeginWithSingleSpace" ruleCheckId="SA1005">
+        <context>The comment must start with a single space. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.</context>
+        <line>358</line>
+        <index>12494</index>
+        <endIndex>12501</endIndex>
+        <startLine>358</startLine>
+        <startColumn>13</startColumn>
+        <endLine>358</endLine>
+        <endColumn>20</endColumn>
         <warning>False</warning>
       </violation>
     </violations>

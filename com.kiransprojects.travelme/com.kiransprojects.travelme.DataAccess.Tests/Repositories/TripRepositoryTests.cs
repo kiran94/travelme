@@ -137,7 +137,8 @@
                 ID = Guid.Parse("209F9526-3611-4F30-A79C-55557FFBECF5"),
                 TripName = "TestTrip",
                 TripDescription = "TestDesc",
-                TripLocation = string.Format("Random - {0}", UpdatedData) 
+                TripLocation = string.Format("Random - {0}", UpdatedData),
+                RelationID = Guid.Parse("705CFB06-1E4E-4A31-BDA6-095EB15F3A0C")
             };
 
             TripRepository Repository = new TripRepository(helper);
@@ -160,7 +161,8 @@
                 ID = Guid.Parse("D5FBC552-BECE-4D4B-8FBE-ED1F52A31361"),
                 TripName = "NonExisting",
                 TripDescription = "TestDesc",
-                TripLocation = "NonExisting"
+                TripLocation = "NonExisting",
+                RelationID = Guid.NewGuid()
             };
 
             TripRepository Repository = new TripRepository(helper);
@@ -181,7 +183,8 @@
                 ID = Guid.NewGuid(),
                 TripName = "Deleted",
                 TripDescription = "Deleted",
-                TripLocation = "Deleted"
+                TripLocation = "Deleted",
+                RelationID = entity.ID
             };
 
             entity.Trips.Add(trip);

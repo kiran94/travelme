@@ -11,5 +11,10 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// Gets or sets the unique identifier
         /// </summary>
         public virtual Guid ID { get; set; }
+
+        /// <summary>
+        /// Gets or sets a relational identifier
+        /// </summary>
+        public virtual Guid? RelationID { get; set; }
     }
 }

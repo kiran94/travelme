@@ -25,7 +25,7 @@
               p =>
               {
                   p.Table("Media");
-                  p.Cascade(Cascade.None);
+                  p.Cascade(Cascade.All);
                   p.Lazy(CollectionLazy.NoLazy);
                   p.Key(
                       k =>

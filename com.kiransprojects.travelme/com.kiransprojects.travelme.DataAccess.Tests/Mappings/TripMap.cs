@@ -20,12 +20,20 @@
             this.Property(o => o.TripDescription, p => { p.Length(50); });
             this.Property(o => o.TripLocation, p => { p.Length(75); });
 
+            this.Property(o => o.RelationID,
+                p =>
+                {
+                    p.Column("UserID");
+                    p.NotNullable(true);
+                }); 
+
             this.Bag(
               o => o.Posts,
               p =>
               {
                   p.Table("Post");
                   p.Cascade(Cascade.All);
+                  p.Inverse(true);
                   p.Lazy(CollectionLazy.NoLazy);
                   p.Inverse(false); 
                   p.Key(

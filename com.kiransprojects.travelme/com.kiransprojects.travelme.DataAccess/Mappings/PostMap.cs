@@ -20,12 +20,19 @@
             this.Property(o => o.PostLat, p => { p.Length(11); });
             this.Property(o => o.PostLong, p => { p.Length(11); });
 
+            this.Property(o => o.RelationID,
+                p =>
+                {
+                    p.Column("TripID");
+                    p.NotNullable(true);
+                });
+
             this.Bag(
               o => o.Media,
               p =>
               {
                   p.Table("Media");
-                  p.Cascade(Cascade.None);
+                  p.Cascade(Cascade.All);
                   p.Lazy(CollectionLazy.NoLazy);
                   p.Key(
                       k =>

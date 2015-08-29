@@ -83,7 +83,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositoryBaseTests.cs" />
     <Compile Include="Repositories\TripRepositoryTests.cs" />
-    <Compile Include="Repositories\UserEntityRespositoryTests.cs" />
+    <Compile Include="Repositories\UserEntityRespositoryTests.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
