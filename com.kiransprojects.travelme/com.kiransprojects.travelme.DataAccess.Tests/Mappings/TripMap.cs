@@ -26,11 +26,12 @@
               {
                   p.Table("Post");
                   p.Cascade(Cascade.All);
-                  p.Lazy(CollectionLazy.Lazy);
+                  p.Lazy(CollectionLazy.NoLazy);
+                  p.Inverse(false); 
                   p.Key(
                       k =>
                       {
-                          k.Column("PostID");
+                          k.Column("TripID");
                       });
               },
               map => map.OneToMany(p => p.Class(typeof(Post))));

@@ -9,6 +9,14 @@ namespace com.kiransprojects.travelme.Framework.Entities
     public class Trip : EntityBase
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Trip"/> class.
+        /// </summary>
+        public Trip()
+        {
+            this.Posts = new List<Post>();
+        }
+
+        /// <summary>
         /// Gets or sets the trip name
         /// </summary>
         [Required]
@@ -35,7 +43,7 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets posts for a current trip
         /// </summary>
-        [Display(Name="Posts")]
+        [Display(Name = "Posts")]
         public virtual IList<Post> Posts { get; set; }
     }
 }

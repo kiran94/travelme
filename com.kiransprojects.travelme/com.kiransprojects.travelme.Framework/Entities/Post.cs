@@ -8,6 +8,14 @@ namespace com.kiransprojects.travelme.Framework.Entities
     /// </summary>
     public class Post : EntityBase
     {
+          /// <summary>
+        /// Initializes a new instance of the <see cref="Media"/> class.
+        /// </summary>
+        public Post()
+        {
+            this.Media = new List<Media>(); 
+        }
+
         /// <summary>
         /// Gets or sets the post description
         /// </summary>

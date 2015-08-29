@@ -37,7 +37,8 @@
                 {
                     p.Table("Trip");
                     p.Cascade(Cascade.All);
-                    p.Lazy(CollectionLazy.Lazy);
+                    p.Lazy(CollectionLazy.NoLazy);
+                    p.Inverse(false); 
                     p.Key(
                         k =>
                         {

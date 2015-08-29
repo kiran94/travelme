@@ -54,5 +54,3 @@ C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.
 C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelmeWebsite.Tests.csprojResolveAssemblyReference.cache
 C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelme.Tests.dll
 C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelme.Tests.pdb
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\com.kiransprojects.travelme.Tests.dll.CodeAnalysisLog.xml
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\com.kiransprojects.travelme.Tests.dll.lastcodeanalysissucceeded

@@ -61,15 +61,15 @@
         [Test]
         public void GetByID_ExistingEntity_RetrieveEntity()
         {
-            UserEntity user = new UserEntity()
-            {
-                ID= Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"),
-                FirstName = "Kiran",
-                LastName = "Patel",
-                DateOfBirth = new DateTime(1994,08,05),
-                Email = "Kiran@test.com",
-                UserPassword = "password",
-            };
+            //UserEntity user = new UserEntity()
+            //{
+            //    ID= Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"),
+            //    FirstName = "Kiran",
+            //    LastName = "Patel",
+            //    DateOfBirth = new DateTime(1994,08,05),
+            //    Email = "Kiran@test.com",
+            //    UserPassword = "password",
+            //};
 
             Trip trip = new Trip()
             {
@@ -79,11 +79,11 @@
                 TripLocation = "London"
             };
 
-            user.Trips = new System.Collections.Generic.List<Trip>(); 
-            user.Trips.Add(trip);
+            //user.Trips = new System.Collections.Generic.List<Trip>(); 
+            //user.Trips.Add(trip);
 
             TripRepository Repository = new TripRepository(helper);
-            Trip Returned = Repository.GetByID(user.Trips[0].ID);
+            Trip Returned = Repository.GetByID(trip.ID);
 
             Assert.AreEqual(trip.ID, Returned.ID);
             Assert.AreEqual(trip.TripName, Returned.TripName);

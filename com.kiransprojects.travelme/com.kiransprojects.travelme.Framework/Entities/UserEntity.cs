@@ -10,6 +10,14 @@ namespace com.kiransprojects.travelme.Framework.Entities
     public class UserEntity : EntityBase
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="UserEntity"/> class.
+        /// </summary>
+        public UserEntity()
+        {
+            this.Trips = new List<Trip>(); 
+        }
+
+        /// <summary>
         /// Gets or sets the first name
         /// </summary>
         [Display(Name="First Name")]
