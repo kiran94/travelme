@@ -1,7 +1,7 @@
-﻿namespace com.kiransprojects.travelme.DataAccess.Tests.Mappings
+﻿namespace com.kiransprojects.travelme.DataAccess.Mappings
 {
     using com.kiransprojects.travelme.Framework.Entities;
-    using NHibernate.Mapping.ByCode;
+    using NHibernate.Mapping.ByCode; 
     using NHibernate.Mapping.ByCode.Conformist;
 
     /// <summary>
@@ -21,19 +21,19 @@
             this.Property(o => o.PostLong, p => { p.Length(11); });
 
             this.Bag(
-                o => o.Media,
-                p =>
-                {
-                    p.Table("Media");
-                    p.Cascade(Cascade.None);
-                    p.Lazy(CollectionLazy.NoLazy);
-                    p.Key(
-                        k =>
-                        {
-                            k.Column("PostID");
-                        });
-                }, 
-                map => map.OneToMany(p => p.Class(typeof(Media))));
+              o => o.Media,
+              p =>
+              {
+                  p.Table("Media");
+                  p.Cascade(Cascade.All);
+                  p.Lazy(CollectionLazy.Lazy);
+                  p.Key(
+                      k =>
+                      {
+                          k.Column("PostID");
+                      });
+              },
+              map => map.OneToMany(p => p.Class(typeof(Media))));
         }
     }
 }

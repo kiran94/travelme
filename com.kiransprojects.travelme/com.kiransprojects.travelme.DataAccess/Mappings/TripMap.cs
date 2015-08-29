@@ -25,7 +25,7 @@
               p =>
               {
                   p.Table("Post");
-                  p.Cascade(Cascade.None);
+                  p.Cascade(Cascade.All);
                   p.Lazy(CollectionLazy.Lazy);
                   p.Key(
                       k =>

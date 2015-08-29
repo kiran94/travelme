@@ -315,5 +315,62 @@
             RetrievedEntity = Repository.GetByID(user.ID);
             Assert.AreEqual(trip.ID, RetrievedEntity.Trips[RetrievedEntity.Trips.Count - 1].ID);
         }
+
+        /// <summary>
+        /// Ensures all relations are stored sucessfully when linked
+        /// </summary>
+        [Test]
+        public void Insert_ValidAllLists_StoredSuccessfully()
+        {
+            //Arrange
+            UserEntity user = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "First Name",
+                LastName = "Last Name",
+                DateOfBirth = new DateTime(2002,05,08),
+                Email = "test@kiran.com",
+                UserPassword = "test"
+            };
+
+            Trip trip = new Trip()
+            {
+                ID = Guid.NewGuid(),
+                TripName = "Test Name",
+                TripDescription = "Test Desc",
+                TripLocation = "Test Location"
+            };
+
+            Post post = new Post()
+            {
+                ID = Guid.NewGuid(),
+                PostData = "Post Test Data",
+                PostLat = "123",
+                PostLong = "456"
+            };
+
+            Guid TripID = trip.ID; 
+            Guid PostID = post.ID;
+           
+            user.Trips = new System.Collections.Generic.List<Trip>(); 
+            user.Trips.Add(trip);
+
+            user.Trips[0].Posts = new System.Collections.Generic.List<Post>(); 
+            user.Trips[0].Posts.Add(post); 
+
+            //Act
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(user); 
+
+            //Assert
+            UserEntity RetrievedUser = Repository.GetByID(user.ID);
+            Trip RetrievedTrip = new TripRepository(helper).GetByID(TripID);
+            Post RetrievedPost = new PostRepository(helper).GetByID(PostID); 
+
+            Assert.AreEqual(user.ID, RetrievedUser.ID);
+            Assert.AreEqual(TripID, RetrievedTrip.ID);
+            Assert.AreEqual(PostID, RetrievedPost.ID);
+
+        }
     }
 }

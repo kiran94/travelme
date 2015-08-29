@@ -36,7 +36,8 @@
                 using(ITransaction transactions = session.BeginTransaction())
                 {
                     session.Save(Entity);
-                    transactions.Commit(); 
+                    transactions.Commit();
+                    session.Flush(); 
                 }
             }
         }
@@ -50,7 +51,8 @@
                 using(ITransaction transaction = session.BeginTransaction())
                 {
                     Entity = session.Get<T>(ID);
-                    transaction.Commit(); 
+                    transaction.Commit();
+                    session.Flush(); 
                 }
             }
             return Entity;
@@ -69,7 +71,8 @@
                     }
 
                     session.SaveOrUpdate(Entity);
-                    transaction.Commit(); 
+                    transaction.Commit();
+                    session.Flush(); 
                 }
             }
         }
@@ -82,7 +85,8 @@
                 using (ITransaction transaction = session.BeginTransaction())
                 {
                     session.Delete(Entity);
-                    transaction.Commit(); 
+                    transaction.Commit();
+                    session.Flush(); 
                 }
             }
         }

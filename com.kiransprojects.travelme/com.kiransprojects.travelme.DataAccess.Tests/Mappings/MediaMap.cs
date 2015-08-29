@@ -1,4 +1,4 @@
-﻿namespace com.kiransprojects.travelme.DataAccess.Tests.Mappings
+﻿namespace com.kiransprojects.travelme.DataAccess.Mappings
 {
     using com.kiransprojects.travelme.Framework.Entities;
     using NHibernate.Mapping.ByCode.Conformist;

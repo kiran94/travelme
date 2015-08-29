@@ -36,12 +36,13 @@
                 p =>
                 {
                     p.Table("Trip");
-                    p.Cascade(Cascade.None);
+                    p.Cascade(Cascade.All);
                     p.Lazy(CollectionLazy.Lazy);
                     p.Key(
                         k =>
                         {
                             k.Column("UserID");
+                            k.NotNullable(true);
                         });
                 },
                 map => map.OneToMany(p => p.Class(typeof(Trip))));
