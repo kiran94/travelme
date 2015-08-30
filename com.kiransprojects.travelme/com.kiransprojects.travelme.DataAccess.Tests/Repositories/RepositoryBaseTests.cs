@@ -8,7 +8,5 @@
     [TestFixture]
     public class RepositoryBaseTests
     {
-
-
     }
 }

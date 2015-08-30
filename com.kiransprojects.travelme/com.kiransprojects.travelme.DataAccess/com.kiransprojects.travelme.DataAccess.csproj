@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReleaseScripts\SC_01.sql" />
-    <Content Include="ReleaseScripts\TestData.sql" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

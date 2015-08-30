@@ -33,6 +33,31 @@
         private NhibernateHelper helper = null;
 
         /// <summary>
+        /// Test Existing User
+        /// </summary>
+        private UserEntity TestUser;
+
+        /// <summary>
+        /// Test Existing Trips
+        /// </summary>
+        private Trip TestTrip;
+
+        /// <summary>
+        /// Test Existing Trips 2
+        /// </summary>
+        private Trip TestTrip2;
+
+        /// <summary>
+        /// Test Existing Post
+        /// </summary>
+        private Post TestPost;
+
+        /// <summary>
+        /// Existng user to delete
+        /// </summary>
+        private UserEntity toDeleteUser;
+
+        /// <summary>
         /// SetUp function run before each test
         /// </summary>
         [SetUp]
@@ -55,273 +80,309 @@
             MockConfig.SetupSequence(o => o.GetConfig()).Returns(config);
 
             helper = new NhibernateHelper(MockConfig.Object);
-        }
 
-        /// <summary>
-        /// Ensures that an existing entity in the database can be retrieved
-        /// </summary>
-        [Test]
-        public void GetByID_ExistingEntity_RetrieveEntity()
-        {
-            UserEntity entity = new UserEntity()
+            TestUser = new UserEntity()
             {
                 ID = Guid.Parse("9fc0b724-d55f-441d-a1ae-ec726d7737f7"),
-                FirstName = "TestFname",
-                LastName = "TestLName",
-                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
-                Email = "test@test.com",
+                FirstName = "Kiran",
+                LastName = "Patel",
+                DateOfBirth = new DateTime(1994, 08, 05, 10, 0, 0),
+                Email = "Kiran@test.com",
                 UserPassword = "password"
             };
 
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            UserEntity Returned = Repository.GetByID(entity.ID);
-
-            Assert.AreEqual(entity.ID, Returned.ID);
-            Assert.AreEqual(entity.FirstName, Returned.FirstName);
-            Assert.AreEqual(entity.LastName, Returned.LastName);
-            Assert.AreEqual(entity.DateOfBirth, Returned.DateOfBirth);
-            Assert.AreEqual(entity.Email, Returned.Email);
-            Assert.AreEqual(entity.UserPassword, Returned.UserPassword);
-        }
-
-        /// <summary>
-        /// Ensures null is returned when an non existing entity is passed
-        /// </summary>
-        [Test]
-        public void GetByID_NonExistingEntity_Null()
-        {
-            UserEntity entity = new UserEntity()
+            TestTrip = new Trip()
             {
-                ID = Guid.Parse("9fc0b724-d55f-441d-a1be-ec726d7737f7"),
-                FirstName = "fdsf",
-                LastName = "TestsdfdsfLName",
-                DateOfBirth = new DateTime(1934, 08, 05, 10, 00, 00),
-                Email = "test@test.com",
-                UserPassword = "password"
+                ID = Guid.Parse("209F9526-3611-4F30-A79C-55557FFBECF5"),
+                TripName = "Australia",
+                TripDescription = "Aussies",
+                TripLocation = "Backpacking",
+                RelationID = Guid.Parse("9fc0b724-d55f-441d-a1ae-ec726d7737f7")
             };
 
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            UserEntity Returned = Repository.GetByID(entity.ID);
+            TestTrip2 = new Trip()
+            {
+                ID = Guid.Parse("6D8BCE5C-5681-472E-A1DC-97C5EA0C23FA"),
+                TripName = "Thailand",
+                TripDescription = "Thai!",
+                TripLocation = "Backpacking",
+                RelationID = Guid.Parse("9fc0b724-d55f-441d-a1ae-ec726d7737f7")
+            };
 
-            Assert.AreEqual(null, Returned);
+            TestPost = new Post()
+            {
+                ID = Guid.Parse("832B97D6-F958-497A-952D-0224F27C4E1A"),
+                PostData = "PostName",
+                PostLat = "Lat",
+                PostLong = "Long",
+                RelationID = Guid.Parse("209F9526-3611-4F30-A79C-55557FFBECF5")
+            };
+
+            TestTrip.Posts.Add(TestPost);
+            TestUser.Trips.Add(TestTrip);
+            TestUser.Trips.Add(TestTrip2);
+
+            toDeleteUser = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "Deleted",
+                LastName = "Deleted",
+                DateOfBirth = new DateTime(1994, 08, 05, 10, 0, 0),
+                Email = "Deleted@Deleted.com",
+                UserPassword = "Deleted"
+            };
+
+            UserEntityRepository ForDelete = new UserEntityRepository(helper);
+            ForDelete.Insert(toDeleteUser);
+            ForDelete = null;
         }
 
         /// <summary>
-        /// Ensures that a record can be stored successfully
+        /// Ensures existing entity in the database can be retrieved
         /// </summary>
         [Test]
-        public void Insert_ValidEntity_StoredSuccessfully()
+        public void GetByID_ExistingEntity_RetrievedRecord()
+        {
+            UserEntityRepository RepositoryBase = new UserEntityRepository(helper);
+            UserEntity Entity = RepositoryBase.GetByID(this.TestUser.ID);
+            Assert.IsNotNull(Entity);
+        }
+
+        /// <summary>
+        /// Ensures none existing entity in the database returns null
+        /// </summary>
+        [Test]
+        public void GetByID_NonExistingEntity_ReturnsNull()
+        {
+            UserEntityRepository RepositoryBase = new UserEntityRepository(helper);
+            UserEntity Entity = RepositoryBase.GetByID(Guid.NewGuid());
+            Assert.IsNull(Entity);
+        }
+
+        /// <summary>
+        /// Ensures a record can be updated
+        /// </summary>
+        [Test]
+        public void Update_ExistingEntity_SuccessfullyUpdate()
+        {
+            Random rand = new Random();
+            string UpdateData = string.Format("Password: {0}", rand.NextDouble().ToString());
+
+            this.TestUser.UserPassword = UpdateData;
+
+            UserEntityRepository RepositoryBase = new UserEntityRepository(helper);
+            RepositoryBase.Update(this.TestUser, true);
+
+            UserEntity Entity = RepositoryBase.GetByID(this.TestUser.ID);
+            Assert.AreEqual(UpdateData, Entity.UserPassword);
+        }
+
+        /// <summary>
+        /// Ensures non existing entities are saved
+        /// </summary>
+        [Test]
+        public void Update_NonExistingEntity_Successfull()
+        {
+            UserEntity user = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "NonExisting",
+                LastName = "NonExisting",
+                DateOfBirth = DateTime.Now,
+                Email = "NonExisting",
+                UserPassword = "NonExisting"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Update(user, true);
+
+            Assert.AreEqual(user.ID, Repository.GetByID(user.ID).ID);
+        }
+
+        /// <summary>
+        /// Ensures null entities throw exception
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Update_NullEntity_NotSuccessfull()
+        {
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Update(null, true);
+        }
+
+        /// <summary>
+        /// Ensures larger data then maximum cannot be stored
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
+        public void Update_InvalidEntity_ExceptionThrown()
+        {
+            UserEntity user = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "NonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExisting",
+                LastName = "NonExisting",
+                DateOfBirth = DateTime.Now,
+                Email = "NonExisting",
+                UserPassword = "NonExisting"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Update(user, true);
+        }
+
+        /// <summary>
+        /// Ensures an existing entity cannot be inserted (duiplicates)
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
+        public void Insert_ExistingEntities_ExceptionThrown()
+        {
+            UserEntity NewUser = this.TestUser;
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(NewUser);
+        }
+
+        /// <summary>
+        /// Ensures new entities are inserted
+        /// </summary>
+        [Test]
+        public void Insert_NonExistingEntities_Successfull()
+        {
+            UserEntity user = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "NonExisting",
+                LastName = "NonExisting",
+                DateOfBirth = DateTime.Now,
+                Email = "NonExisting",
+                UserPassword = "NonExisting"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(user);
+
+            UserEntity Retrieved = Repository.GetByID(user.ID);
+            Assert.AreEqual(user.ID, Retrieved.ID);
+        }
+
+        /// <summary>
+        /// Ensures null entities cannot be inserted
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Insert_NullEntity_ExceptionThrown()
+        {
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(null);
+        }
+
+        /// <summary>
+        /// Ensures invalid object are not inserted into the database
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
+        public void Insert_InvalidEntity_ExceptionThrown()
+        {
+            UserEntity user = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "NonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExistingNonExisting",
+                LastName = "NonExisting",
+                DateOfBirth = DateTime.Now,
+                Email = "NonExisting",
+                UserPassword = "NonExisting"
+            };
+
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Insert(user);
+        }
+
+        /// <summary>
+        /// Ensures existing entites can be deleted
+        /// </summary>
+        [Test]
+        public void Delete_ExistingEntity_Successfull()
+        {
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Repository.Delete(toDeleteUser);
+
+            UserEntity Retrieved = Repository.GetByID(toDeleteUser.ID);
+            Assert.IsNull(Retrieved);
+        }
+
+        /// <summary>
+        /// Ensures nothing is deleted when the entity does not exist
+        /// </summary>
+        [Test]
+        public void Delete_NonExistingEntity_NothingDeleted()
         {
             UserEntity Entity = new UserEntity()
             {
                 ID = Guid.NewGuid(),
-                FirstName = "Unit",
-                LastName = "Test",
-                DateOfBirth = new DateTime(2012, 04, 01),
-                Email = "unit@test.com",
-                UserPassword = "password"
+                FirstName = "NonExisting",
+                LastName = "NonExisting",
+                Email = "NonExisting",
+                UserPassword = "NonExisting"
             };
 
-            Guid StoredRecord = Entity.ID;
-
             UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Insert(Entity);
-
-            UserEntity RetrievedEntity = Repository.GetByID(StoredRecord);
-            Assert.AreEqual(Entity.ID, RetrievedEntity.ID);
+            Repository.Delete(Entity);
         }
 
         /// <summary>
-        /// Ensures that a null record is handled
+        /// Ensures null entities throw exception
         /// </summary>
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Insert_NullEntity_NullException()
+        public void Delete_NullEntity_ExceptionThrown()
         {
-            UserEntity Entity = null;
             UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Insert(Entity);
+            Repository.Delete(null);
         }
 
         /// <summary>
-        /// Ensures update functionality works
+        /// Ensures a trip is stored when added to an existing user
         /// </summary>
         [Test]
-        public void Update_ExistingEntity_SucessfullyUpdated()
+        public void InsertSubList_ExistingEntity_Successfull()
         {
-            Random rand = new Random();
-            int UpdatedData = rand.Next(1, 1000);
-
-            UserEntity entity = new UserEntity()
+            UserEntity Entity = new UserEntity()
             {
-                ID = Guid.Parse("9fc0b724-d56f-441d-a1ae-ec726d7737f7"),
-                FirstName = "TestFname",
-                LastName = "TestLName",
-                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
-                Email = "test@test.com",
-                UserPassword = UpdatedData.ToString()
+                ID = Guid.Parse("B42B1A1E-9DD5-4904-B7CE-9D55FD9A547A"),
+                FirstName = "SecondEntity",
+                LastName = "SecondEntity",
+                DateOfBirth = new DateTime(1994, 08, 05, 10, 0, 0),
+                Email = "SecondEntity",
+                UserPassword = "SecondEntity"
             };
 
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Update(entity, false);
-
-            UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
-
-            Assert.AreEqual(entity.UserPassword, RetrievedEntity.UserPassword);
-        }
-
-        /// <summary>
-        /// Ensures a non existing entity will still be inserted in to the database
-        /// </summary>
-        [Test]
-        public void Update_NonExisting_InsertInto()
-        {
-            UserEntity entity = new UserEntity()
-            {
-                ID = Guid.NewGuid(),
-                FirstName = "TestFname",
-                LastName = "TestLName",
-                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
-                Email = "test@test.com",
-                UserPassword = "password"
-            };
-
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Update(entity, false);
-
-            Assert.AreEqual(entity.ID, Repository.GetByID(entity.ID).ID);
-        }
-
-        /// <summary>
-        /// Ensures the delete functionality works
-        /// </summary>
-        [Test]
-        public void Delete_ExistingEntity_SuccessfullyDeleted()
-        {
-            UserEntity entity = new UserEntity()
-            {
-                ID = Guid.NewGuid(),
-                FirstName = "TestFname",
-                LastName = "TestLName",
-                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
-                Email = "test@test.com",
-                UserPassword = "password"
-            };
-
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Insert(entity);
-            Repository.Delete(entity);
-
-            UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
-            Assert.AreEqual(null, RetrievedEntity);
-        }
-
-        /// <summary>
-        /// Ensures the delete functionality works for non existing
-        /// </summary>
-        [Test]
-        public void Delete_NonExistingEntity_ReturnsNullNull()
-        {
-            UserEntity entity = new UserEntity()
-            {
-                ID = Guid.NewGuid(),
-                FirstName = "TestFname",
-                LastName = "TestLName",
-                DateOfBirth = new DateTime(1994, 08, 05, 10, 00, 00),
-                Email = "test@test.com",
-                UserPassword = "password"
-            };
-
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            Repository.Delete(entity);
-
-            UserEntity RetrievedEntity = Repository.GetByID(entity.ID);
-            Assert.AreEqual(null, RetrievedEntity);
-        }
-
-        /// <summary>
-        /// Ensures a trip is related to a user and can be accessed
-        /// </summary>
-        [Test]
-        public void GetByID_TestWithTripList_ReturnsList()
-        {
-            Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780");
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-
-            UserEntity Entity = Repository.GetByID(ID);
-
-            bool isThere = (Entity.Trips.Count >= 0);
-
-            Assert.IsTrue(isThere);
-        }
-
-
-        /// <summary>
-        /// Ensures a trip and transistively a post is related to a user and can be retrieved
-        /// </summary>
-        [Test]
-        public void GetByID_TestWithTripListAndPost_ReturnsList()
-        {
-            Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780");
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            UserEntity Entity = Repository.GetByID(ID);
-
-            bool isTrips = (Entity.Trips.Count >= 0);
-            bool isPosts = (Entity.Trips[0].Posts.Count >= 0);
-
-            Assert.IsTrue(isTrips);
-            Assert.IsTrue(isPosts);
-        }
-
-        /// <summary>
-        /// Ensures exception is thrown when a user does not have any trips
-        /// </summary>
-        [Test]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void GetByID_NonExistingTrips_ThrowsError()
-        {
-            Guid ID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724781");
-            UserEntityRepository Repository = new UserEntityRepository(helper);
-            UserEntity Entity = Repository.GetByID(ID);
-
-            Assert.AreEqual(1, Entity.Trips.Count);
-        }
-
-        /// <summary>
-        /// Ensures that a record can be stored successfully
-        /// </summary>
-        [Test]
-        public void Insert_ValidTripEntity_StoredSuccessfully()
-        {
             Trip trip = new Trip()
             {
-                ID = Guid.NewGuid(),
-                TripName = "NonExisting",
-                TripDescription = "NonExisting",
-                TripLocation = "NonExisting",
-                RelationID = Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780")
+                ID = Guid.Parse("053340CE-EE99-48B2-9687-693879933AFE"),
+                TripName = "Trip",
+                TripDescription = "Desc",
+                TripLocation = "Location",
+                RelationID = this.TestUser.ID
             };
 
-            TripRepository tripRepository = new TripRepository(helper);
-            tripRepository.Insert(trip);
+            UserEntityRepository Repository = new UserEntityRepository(helper);
+            Entity.Trips.Add(trip);
+            Repository.Update(Entity, true);
 
-            UserEntity RetrievedEntity = new UserEntityRepository(helper).GetByID(Guid.Parse("51832A09-E6C9-4F01-8635-3A33FB724780"));
+            IList<Trip> trips = Repository.GetByID(this.TestUser.ID).Trips
+                .Where(o => o.ID == trip.ID)
+                .ToList();
 
-            IList<Trip> Result = RetrievedEntity.Trips
-                            .Where(o => o.RelationID.Equals(trip.RelationID) && o.ID.Equals(trip.ID))
-                            .ToList();
-
-            Guid? ResultID = null;
-
-            if (Result != null
-                && Result.Count > 0
-                && Result[0].ID != null)
-            {
-                ResultID = Result[0].ID;
-            }
-
-            Assert.AreEqual(trip.ID, Result[0].ID);
-
+            Assert.That(Entity.Trips.Any(o => o.ID == trip.ID));
+            TripRepository RepositoryTrip = new TripRepository(helper);
+            RepositoryTrip.Delete(trip);
         }
+
+
+
+    
+
+
     }
 }

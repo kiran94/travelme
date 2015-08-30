@@ -18,17 +18,18 @@
         {
             this.Table("UserEntity");
             this.Id(o => o.ID);
-            this.Property(o => o.FirstName, p => { p.Length(100); });
+            this.Property(o => o.FirstName, p => { p.Length(100); p.NotNullable(true); });
             this.Property(o => o.LastName, p => { p.Length(100); });
             this.Property(o => o.DateOfBirth, p => { p.Type<DateTimeType>(); });
-            this.Property(o => o.Email, p => { p.Length(500); });
-            this.Property(o => o.UserPassword, p => { p.Length(128); });
+            this.Property(o => o.Email, p => { p.Length(500); p.NotNullable(true); });
+            this.Property(o => o.UserPassword, p => { p.Length(128); p.NotNullable(true); });
             this.Property(
                 o => o.ProfilePicture,
                 p =>
                 {
                     p.Type<BinaryBlobType>();
                     p.Length(Int32.MaxValue);
+                    
                 });
 
             this.Bag(
@@ -37,6 +38,8 @@
                 {
                     p.Table("Trip");
                     p.Cascade(Cascade.All);
+                    p.Inverse(true);
+                    p.Fetch(CollectionFetchMode.Select);
                     p.Lazy(CollectionLazy.NoLazy);
                     p.Inverse(false); 
                     p.Key(

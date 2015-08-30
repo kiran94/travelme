@@ -34,6 +34,7 @@
                   p.Table("Post");
                   p.Cascade(Cascade.All);
                   p.Inverse(true);
+                  p.Fetch(CollectionFetchMode.Select);
                   p.Lazy(CollectionLazy.NoLazy);
                   p.Inverse(false); 
                   p.Key(
