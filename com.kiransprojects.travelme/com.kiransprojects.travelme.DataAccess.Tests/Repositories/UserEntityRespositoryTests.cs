@@ -378,11 +378,5 @@
             TripRepository RepositoryTrip = new TripRepository(helper);
             RepositoryTrip.Delete(trip);
         }
-
-
-
-    
-
-
     }
 }
