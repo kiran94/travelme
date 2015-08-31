@@ -58,3 +58,23 @@ VALUES
 	'SecondEntity',
 	null
 )
+GO
+INSERT INTO UserEntity VALUES
+(
+	'4CB1882A-4285-4D05-972C-0E2A9B97FACB',
+	'TripTests',
+	'Tests',
+	'19940805 10:00:00 AM',
+	'email',
+	'password',
+	null
+)
+
+INSERT INTO Trip VALUES
+(
+	'AD495462-5CB7-4861-8A37-5A0836AA1344',
+	'TripTests',
+	'UpdatingTests',
+	'Tests',
+	'4CB1882A-4285-4D05-972C-0E2A9B97FACB'
+)
