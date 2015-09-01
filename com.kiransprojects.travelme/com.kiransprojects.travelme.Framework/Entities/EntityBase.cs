@@ -1,6 +1,7 @@
 namespace com.kiransprojects.travelme.Framework.Entities
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// Parent of all entities persisted in the database.
@@ -10,6 +11,7 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets the unique identifier
         /// </summary>
+        [Required]
         public virtual Guid ID { get; set; }
 
         /// <summary>

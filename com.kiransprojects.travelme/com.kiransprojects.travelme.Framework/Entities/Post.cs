@@ -1,5 +1,6 @@
 namespace com.kiransprojects.travelme.Framework.Entities
 {
+    using System; 
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -39,6 +40,12 @@ namespace com.kiransprojects.travelme.Framework.Entities
         [Display(Name = "Longitude")]
         [StringLength(11, ErrorMessage = "{0} has a maximum of {1} characters")]
         public virtual string PostLong { get; set; }
+
+        /// <summary>
+        /// Gets or sets post date
+        /// </summary>
+        [Display(Name = "Date")]
+        public virtual DateTime PostDate { get; set; }
 
         /// <summary>
         /// Gets or sets the media for the post
