@@ -22,6 +22,13 @@
             this.Property(o => o.PostLong, p => { p.Length(11); });
             this.Property(o => o.PostDate, p => { p.Type<DateTimeType>(); });
 
+            this.Property(o => o.RelationID,
+                p =>
+                {
+                    p.Column("TripID");
+                    p.NotNullable(true);
+                });
+
             this.Bag(
               o => o.Media,
               p =>
@@ -36,12 +43,6 @@
                       });
               },
               map => map.OneToMany(p => p.Class(typeof(Media))));
-
-            this.Property(o => o.RelationID, p =>
-                {
-                    p.Column("TripID");
-                    p.NotNullable(true);
-                });
         }
     }
 }

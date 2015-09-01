@@ -14,7 +14,8 @@ VALUES
 	'Patel',
 	'19940805 10:00:00 AM',
 	'Kiran@test.com',
-	'password'
+	'password',
+	null
 )
 GO
 INSERT INTO Trip
@@ -44,7 +45,8 @@ VALUES
 	'PostName',
 	'Lat',
 	'Long',
-	'209F9526-3611-4F30-A79C-55557FFBECF5'
+	'209F9526-3611-4F30-A79C-55557FFBECF5',
+	'20120809 10:00:00 AM'
 )
 GO
 INSERT INTO UserEntity
@@ -77,4 +79,38 @@ INSERT INTO Trip VALUES
 	'UpdatingTests',
 	'Tests',
 	'4CB1882A-4285-4D05-972C-0E2A9B97FACB'
+)
+GO
+INSERT INTO UserEntity(ID, FirstName, Email, UserPassword) VALUES
+(
+	'5CAC3D38-E27F-4BF4-9231-2E6E8DC98E8B',
+	'IsolatedTrip',
+	'Email',
+	'Password'
+)
+GO
+INSERT INTO Trip VALUES
+(
+	'E6339A89-4705-4986-A799-45EB42914FB6',
+	'IsolatedTrip',
+	'Trip',
+	'Isolated',
+	'5CAC3D38-E27F-4BF4-9231-2E6E8DC98E8B'
+)
+GO
+INSERT INTO UserEntity(ID, FirstName, Email, UserPassword) VALUES
+(
+	'2CAF93D9-8548-41E0-916E-098B54308C82',
+	'IsolatedTrip',
+	'Email',
+	'Password'
+)
+GO
+INSERT INTO Trip VALUES
+(
+	'5D753572-3BC0-46DD-A8B1-B70EBD2FBD6C',
+	'IsolatedTrip',
+	'Trip',
+	'Isolated',
+	'2CAF93D9-8548-41E0-916E-098B54308C82'
 )

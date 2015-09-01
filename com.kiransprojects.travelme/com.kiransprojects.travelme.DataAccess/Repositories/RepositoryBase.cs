@@ -3,7 +3,7 @@
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
     using NHibernate;
-    using System; 
+    using System;
 
     /// <summary>
     /// Repository Base 
@@ -14,7 +14,7 @@
         /// <summary>
         /// Nhibernate Helper
         /// </summary>
-        protected readonly INhibernateHelper helper = null; 
+        protected readonly INhibernateHelper helper = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryBase"/> class.
@@ -23,21 +23,21 @@
         {
             if (helper == null)
             {
-                throw new NullReferenceException("INhibernateHelper"); 
+                throw new NullReferenceException("INhibernateHelper");
             }
-            this.helper = helper; 
+            this.helper = helper;
         }
 
         /// <inheritdoc />
         public void Insert(T Entity)
         {
-            using(ISession session = this.helper.GetSession())
+            using (ISession session = this.helper.GetSession())
             {
-                using(ITransaction transactions = session.BeginTransaction())
+                using (ITransaction transactions = session.BeginTransaction())
                 {
                     session.Save(Entity);
                     transactions.Commit();
-                    session.Flush(); 
+                    session.Flush();
                 }
             }
         }
@@ -45,15 +45,15 @@
         /// <inheritdoc />
         public T GetByID(Guid ID)
         {
-            T Entity = null; 
-            using(ISession session = this.helper.GetSession())
+            T Entity = null;
+            using (ISession session = this.helper.GetSession())
             {
-                using(ITransaction transaction = session.BeginTransaction())
+                using (ITransaction transaction = session.BeginTransaction())
                 {
                     Entity = session.Get<T>(ID);
                     transaction.Commit();
-                    session.Flush(); 
-                    
+                    session.Flush();
+
                 }
             }
             return Entity;
@@ -62,16 +62,15 @@
         /// <inheritdoc />
         public void Update(T Entity, bool load)
         {
-            using(ISession session = this.helper.GetSession())
+            using (ISession session = this.helper.GetSession())
             {
-                using(ITransaction transaction = session.BeginTransaction())
+                using (ITransaction transaction = session.BeginTransaction())
                 {
-                    if(load)
-                    {
-                        session.Load<T>(Entity.ID);
-                    }
 
-                    session.Merge(Entity);
+                    T DatabaseVersion = session.Load<T>(Entity.ID);
+                    DatabaseVersion = Entity;
+
+                    session.SaveOrUpdate(DatabaseVersion);
                     transaction.Commit();
                     session.Flush();
                 }
@@ -81,13 +80,13 @@
         /// <inheritdoc />
         public void Delete(T Entity)
         {
-            using(ISession session = this.helper.GetSession())
+            using (ISession session = this.helper.GetSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
                     session.Delete(Entity);
                     transaction.Commit();
-                    session.Flush(); 
+                    session.Flush();
                 }
             }
         }

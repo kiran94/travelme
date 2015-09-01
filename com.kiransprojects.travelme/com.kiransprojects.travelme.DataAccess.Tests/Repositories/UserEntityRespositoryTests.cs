@@ -171,7 +171,7 @@
             this.TestUser.UserPassword = UpdateData;
 
             UserEntityRepository RepositoryBase = new UserEntityRepository(helper);
-            RepositoryBase.Update(this.TestUser, true);
+            RepositoryBase.Update(this.TestUser,false);
 
             UserEntity Entity = RepositoryBase.GetByID(this.TestUser.ID);
             Assert.AreEqual(UpdateData, Entity.UserPassword);
