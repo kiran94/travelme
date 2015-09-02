@@ -70,7 +70,7 @@
                     T DatabaseVersion = session.Load<T>(Entity.ID);
                     DatabaseVersion = Entity;
 
-                    session.SaveOrUpdate(DatabaseVersion);
+                    session.Merge(DatabaseVersion);
                     transaction.Commit();
                     session.Flush();
                 }
