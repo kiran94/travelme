@@ -115,6 +115,7 @@
                 PostData = "PostName",
                 PostLat = "Lat",
                 PostLong = "Long",
+                PostDate = new DateTime(2012,08,09,10,0,0),
                 RelationID = Guid.Parse("209F9526-3611-4F30-A79C-55557FFBECF5")
             };
 

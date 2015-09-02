@@ -38,7 +38,8 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// </summary>
         [Display(Name="Date Of Birth")]
         [DataType(DataType.DateTime, ErrorMessage="Please enter a valid date")]
-        public virtual DateTime DateOfBirth { get; set; }
+        [DisplayFormat(NullDisplayText="-")]
+        public virtual DateTime? DateOfBirth { get; set; }
 
         /// <summary>
         /// Gets or sets the email
