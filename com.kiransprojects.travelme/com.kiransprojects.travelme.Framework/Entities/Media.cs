@@ -1,5 +1,7 @@
 namespace com.kiransprojects.travelme.Framework.Entities
 {
+    using System.ComponentModel.DataAnnotations;
+
     /// <summary>
     /// Represents a Media Entity
     /// </summary>
@@ -8,6 +10,8 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets the media
         /// </summary>
-        public virtual byte[] MediaData { get; set; }
+        [Display(Name="Media")]
+        [StringLength(1000, ErrorMessage="{0} has a maximum of {1} characters")]
+        public virtual string MediaData { get; set; }
     }
 }

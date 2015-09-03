@@ -2,12 +2,6 @@
 {
     using com.kiransprojects.travelme.Framework.Entities;
     using NHibernate.Mapping.ByCode.Conformist;
-    using NHibernate.Type; 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Mapping for media entity
@@ -21,13 +15,7 @@
         {
             this.Table("Media");
             this.Id(o => o.ID);
-            this.Property(
-                o => o.MediaData,
-                p => 
-                {
-                    p.Type<BinaryBlobType>();
-                    p.Length(Int32.MaxValue); 
-                });
+            this.Property(o => o.MediaData, p => { p.Length(1000); p.NotNullable(true); });
         }
     }
 }
