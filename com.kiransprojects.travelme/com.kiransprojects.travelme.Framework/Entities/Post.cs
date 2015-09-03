@@ -9,11 +9,12 @@ namespace com.kiransprojects.travelme.Framework.Entities
     /// </summary>
     public class Post : EntityBase
     {
-          /// <summary>
+         /// <summary>
         /// Initializes a new instance of the <see cref="Media"/> class.
         /// </summary>
         public Post()
         {
+            this.PostDate = null; 
             this.Media = new List<Media>(); 
         }
 
@@ -45,7 +46,8 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// Gets or sets post date
         /// </summary>
         [Display(Name = "Date")]
-        public virtual DateTime PostDate { get; set; }
+        [DisplayFormat(NullDisplayText = "-")]
+        public virtual DateTime? PostDate { get; set; }
 
         /// <summary>
         /// Gets or sets the media for the post

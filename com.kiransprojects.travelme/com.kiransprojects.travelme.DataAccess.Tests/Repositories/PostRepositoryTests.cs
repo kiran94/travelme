@@ -142,5 +142,158 @@
 
             Assert.AreEqual(post.ID, Repository.GetByID(post.ID).ID);
         }
+
+        /// <summary>
+        /// Ensures Exception is thrown when null entity is passed
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Update_NullEntity_ExceptionThrown()
+        {
+            PostRepository Repository = new PostRepository(helper);
+            Repository.Update(null, false); 
+        }
+
+        /// <summary>
+        /// Ensures an exception is thrown when an invalid entity is attempted to be persisted
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
+        public void Update_InvalidEntity_ExceptionThrown()
+        {
+            PostRepository Repository = new PostRepository(helper);
+
+            Post post = new Post()
+            {
+                ID = Guid.NewGuid(),
+                PostData = "InvalidData",
+                PostLat = "123456789123456",
+                PostDate = DateTime.Now,
+                RelationID = Guid.Parse("E50E7C95-36D3-470C-905E-564321267F20")
+            };
+
+            Repository.Update(post, false); 
+        }
+
+        /// <summary>
+        /// Ensures an existing entity cannot be inserted as a new record
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
+        public void Insert_ExistingEntity_ExceptiontThrown()
+        {
+            PostRepository Repository = new PostRepository(helper); 
+            Post Existing = Repository.GetByID(this.TestPost2.ID);
+            Repository.Insert(Existing);
+        }
+
+        /// <summary>
+        /// Ensures an non existing entity is inserted
+        /// </summary>
+        [Test]
+        public void Insert_NonExistingEntity_Inserted()
+        {
+            Post post = new Post()
+            {
+                ID = Guid.NewGuid(),
+                PostData = "Data",
+                PostDate = DateTime.Now,
+                RelationID = this.TestPost2.RelationID
+            };
+
+            PostRepository Repository = new PostRepository(helper);
+            Repository.Insert(post);
+
+            Assert.AreEqual(post.ID, Repository.GetByID(post.ID).ID);
+        }
+
+        /// <summary>
+        /// Ensures a null entity cannot be be inserted
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Insert_NullEntity_ExceptionThrown()
+        {
+            PostRepository Repository = new PostRepository(helper);
+            Repository.Insert(null);
+        }
+
+        /// <summary>
+        /// Ensures a invalid entity cannot be be inserted
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
+        public void Insert_InvalidEntity_ExceptionThrown()
+        {
+            PostRepository Repository = new PostRepository(helper);
+
+            Post post = new Post()
+            {
+                ID = Guid.NewGuid(),
+                PostData = "InvalidData",
+                PostLat = "123456789123456",
+                PostDate = DateTime.Now,
+                RelationID = Guid.Parse("E50E7C95-36D3-470C-905E-564321267F20")
+            };
+
+            Repository.Insert(post);
+        }
+
+        /// <summary>
+        /// Ensures record is deleted
+        /// </summary>
+        [Test]
+        public void Delete_Existing_RecordDeleted()
+        {
+            Post post = new Post()
+            {
+                ID = Guid.NewGuid(),
+                PostData = "Data",
+                PostDate = DateTime.Now,
+                RelationID = this.TestPost2.RelationID
+            };
+
+            PostRepository Repository = new PostRepository(helper);
+            Repository.Insert(post);
+            Repository.Delete(post);
+            
+            Assert.AreEqual(null, Repository.GetByID(post.ID)); 
+        }
+
+        /// <summary>
+        /// Ensures record exception is thrown
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Delete_NonExisting_ExceptionThrown()
+        {
+            Post post = new Post()
+            {
+                ID = Guid.NewGuid(),
+                PostData = "Data",
+                PostDate = DateTime.Now,
+                RelationID = this.TestPost2.RelationID
+            };
+
+            PostRepository Repository = new PostRepository(helper);
+            Repository.Delete(post);
+
+            Assert.IsNull(Repository.GetByID(post.ID).ID);
+        }
+
+        /// <summary>
+        /// Ensures exception is thrown
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Delete_NullEntity_ExceptionThrown()
+        {
+            PostRepository Repository = new PostRepository(helper);
+            Repository.Delete(null);
+
+        }
+
+
+
     }
 }
