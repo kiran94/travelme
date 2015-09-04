@@ -290,10 +290,46 @@
         {
             PostRepository Repository = new PostRepository(helper);
             Repository.Delete(null);
-
         }
 
+        /// <summary>
+        /// Ensures a media entity can be related to a post entity
+        /// </summary>
+        [Test]
+        public void InsertSubList_NonExistingEntity_Sucessfull()
+        {
+            PostRepository Repository = new PostRepository(helper); 
+            Media media = new Media()
+            {
+                ID = Guid.NewGuid(),
+                MediaData = "test/test/test",
+                RelationID = this.TestPost2.ID
+            };
+
+            this.TestPost2.Media.Add(media);
+            Repository.Update(this.TestPost2, true);
 
 
+            new MediaRepository(helper).Delete(media); 
+        }
+
+        /// <summary>
+        /// Ensures a media entity can be related to a post entity
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
+        public void InsertSubList_InvalidEntity_Sucessfull()
+        {
+            PostRepository Repository = new PostRepository(helper);
+            Media media = new Media()
+            {
+                ID = Guid.NewGuid(),
+                MediaData = "test/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/tes/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/testtest/test/test",
+                RelationID = this.TestPost2.ID
+            };
+
+            this.TestPost2.Media.Add(media);
+            Repository.Update(this.TestPost2, true);
+        }
     }
 }

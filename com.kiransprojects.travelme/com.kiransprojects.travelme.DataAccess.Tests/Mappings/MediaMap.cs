@@ -15,7 +15,15 @@
         {
             this.Table("Media");
             this.Id(o => o.ID);
-            this.Property(o => o.MediaData, p => { p.Length(1000); });
+            this.Property(o => o.MediaData, p => { p.Length(1000); p.NotNullable(true); });
+
+            this.Property(
+                o => o.RelationID,
+                p =>
+                {
+                    p.Column("PostID");
+                    p.NotNullable(true);
+                });
         }
     }
 }

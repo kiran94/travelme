@@ -55,6 +55,7 @@
     <Compile Include="NhibernateConfiguration.cs" />
     <Compile Include="NhibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MediaRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\TripRepository.cs" />
