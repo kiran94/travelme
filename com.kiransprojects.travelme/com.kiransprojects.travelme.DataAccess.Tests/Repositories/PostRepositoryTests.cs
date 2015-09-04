@@ -82,8 +82,6 @@
                 PostLong = "456",
                 RelationID = Guid.Parse("E50E7C95-36D3-470C-905E-564321267F20")
             };
-
-
         }
 
         /// <summary>
