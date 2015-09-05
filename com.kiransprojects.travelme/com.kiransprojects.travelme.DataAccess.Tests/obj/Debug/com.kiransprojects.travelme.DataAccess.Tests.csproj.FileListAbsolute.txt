@@ -49,5 +49,3 @@ C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.k
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess.Tests\obj\Debug\com.kiransprojects.travelme.DataAccess.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess.Tests\obj\Debug\com.kiransprojects.travelme.DataAccess.Tests.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess.Tests\obj\Debug\com.kiransprojects.travelme.DataAccess.Tests.pdb
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess.Tests\bin\Debug\com.kiransprojects.travelme.DataAccess.Tests.dll.CodeAnalysisLog.xml
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.DataAccess.Tests\bin\Debug\com.kiransprojects.travelme.DataAccess.Tests.dll.lastcodeanalysissucceeded
