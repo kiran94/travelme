@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="NhibernateHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MediaRepositoryTests.cs" />
     <Compile Include="Repositories\PostRepositoryTests.cs" />
     <Compile Include="Repositories\RepositoryBaseTests.cs" />
     <Compile Include="Repositories\TripRepositoryTests.cs" />
