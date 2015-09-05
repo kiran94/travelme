@@ -23,14 +23,7 @@
             this.Property(o => o.DateOfBirth, p => { p.Type<DateTimeType>(); });
             this.Property(o => o.Email, p => { p.Length(500); p.NotNullable(true); });
             this.Property(o => o.UserPassword, p => { p.Length(128); p.NotNullable(true); });
-            this.Property(
-                o => o.ProfilePicture,
-                p =>
-                {
-                    p.Type<BinaryBlobType>();
-                    p.Length(Int32.MaxValue);
-                    
-                });
+            this.Property(o => o.ProfilePicture, p => { p.Length(1000); });           
 
             this.Bag(
                 o => o.Trips,
