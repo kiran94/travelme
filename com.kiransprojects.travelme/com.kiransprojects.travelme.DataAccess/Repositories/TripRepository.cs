@@ -4,7 +4,7 @@
     using com.kiransprojects.travelme.Framework.Entities;
 
     /// <summary>
-    /// Trip Repository for interacting with the trip tabble
+    /// Trip Repository for interacting with the trip table
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class TripRepository : RepositoryBase<Trip>

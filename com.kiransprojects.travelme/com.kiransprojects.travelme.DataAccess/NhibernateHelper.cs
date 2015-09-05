@@ -1,8 +1,8 @@
 namespace com.kiransprojects.travelme.DataAccess
 {
+    using System;
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using NHibernate;
-    using System;
 
     /// <summary>
     /// Nhibernate Helper
@@ -10,14 +10,14 @@ namespace com.kiransprojects.travelme.DataAccess
     public class NhibernateHelper : INhibernateHelper
     {
         /// <summary>
-        /// Session Factory
-        /// </summary>
-        private ISessionFactory _sessionFactory = null;
-
-        /// <summary>
         /// Database Configuration
         /// </summary>
         private readonly IDatabaseConfig config = null;
+
+        /// <summary>
+        /// Session Factory
+        /// </summary>
+        private ISessionFactory _sessionFactory = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NhibernateHelper"/> class.
@@ -34,7 +34,7 @@ namespace com.kiransprojects.travelme.DataAccess
         }
 
         /// <summary>
-        /// Gets the session factory for the application, initialises if null
+        /// Gets the session factory for the application, initialize if null
         /// </summary>
         /// <returns>Returns the ISessionFactory</returns>
         private ISessionFactory SessionFactory
@@ -43,8 +43,9 @@ namespace com.kiransprojects.travelme.DataAccess
             {
                 if (this._sessionFactory == null)
                 {
-                    _sessionFactory = config.GetConfig().BuildSessionFactory();
+                    this._sessionFactory = this.config.GetConfig().BuildSessionFactory();
                 }
+
                 return this._sessionFactory;
             }
         }

@@ -12,6 +12,5 @@
         /// </summary>
         /// <returns>Nhibernate Configuration object ready to go</returns>
         Configuration GetConfig();
-
     }
 }

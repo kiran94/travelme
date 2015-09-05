@@ -53,3 +53,6 @@ ADD PostDate DATETIME
 GO
 ALTER TABLE Media
 ALTER COLUMN MediaData nvarchar(1000) NOT NULL
+GO
+ALTER TABLE UserEntity
+ALTER COLUMN ProfilePicture nvarchar(100
