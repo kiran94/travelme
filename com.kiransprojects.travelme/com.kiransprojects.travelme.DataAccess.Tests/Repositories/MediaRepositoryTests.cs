@@ -32,7 +32,12 @@
         /// <summary>
         /// Test Media
         /// </summary>
-        private Media TestMedia; 
+        private Media TestMedia;
+
+        /// <summary>
+        /// Test Media 2
+        /// </summary>
+        private Media TestMedia2;
 
         /// <summary>
         /// Setup called before each test
@@ -63,8 +68,14 @@
                 ID = Guid.Parse("E66E84F1-F9AD-4F29-BA1C-6B38578EE2D8"),
                 MediaData = "/Path/Content/Media.jpg",
                 RelationID = Guid.Parse("522E9121-3F54-4127-B8A2-530B66E1C42C")
-            }; 
+            };
 
+            this.TestMedia2 = new Media()
+          {
+              ID = Guid.Parse("173EDD9C-DA41-4FA7-9DDA-07664E7DE271"),
+              MediaData = "Path",
+              RelationID = Guid.Parse("522E9121-3F54-4127-B8A2-530B66E1C42C")
+          };
         }
 
         /// <summary>
@@ -74,7 +85,7 @@
         public void GetByID_ExistingEntity_Retrieved()
         {
             MediaRepository Repository = new MediaRepository(helper);
-            Assert.AreEqual(this.TestMedia.ID, Repository.GetByID(this.TestMedia.ID).ID); 
+            Assert.AreEqual(this.TestMedia.ID, Repository.GetByID(this.TestMedia.ID).ID);
         }
 
         /// <summary>
@@ -91,13 +102,16 @@
         /// Ensures an non existing entity returns null
         /// </summary>
         [Test]
-        public void UpdateExistingEntity()
+        public void Update_ExistingEntity_Updated()
         {
             MediaRepository Repository = new MediaRepository(helper);
-            Assert.AreEqual(null, Repository.GetByID(Guid.NewGuid()));
-        }
 
-        //TODO
+            Random rand = new Random();
+            this.TestMedia2.MediaData = rand.NextDouble().ToString();
+            Repository.Update(this.TestMedia2, false);
+
+            Assert.AreEqual(this.TestMedia2.MediaData, Repository.GetByID(this.TestMedia2.ID).MediaData);
+        }
 
         /// <summary>
         /// Ensures non existing entities passed are saved
@@ -105,7 +119,18 @@
         [Test]
         public void Update_NonExistingEntity_Saved()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+
+            Media media = new Media()
+            {
+                ID = Guid.NewGuid(),
+                MediaData = "Update",
+                RelationID = this.TestMedia2.RelationID
+            };
+
+            Repository.Update(media, false);
+
+            Assert.AreEqual(media.ID, Repository.GetByID(media.ID).ID);
         }
 
         /// <summary>
@@ -115,7 +140,8 @@
         [ExpectedException(typeof(NullReferenceException))]
         public void Update_NullEntity_ExceptionThrown()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            Repository.Update(null, false);
         }
 
         /// <summary>
@@ -125,7 +151,9 @@
         [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
         public void Update_InvalidEntity_ExceptionThrown()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            this.TestMedia2.MediaData = "InvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidData";
+            Repository.Update(TestMedia2, false);
         }
 
         /// <summary>
@@ -135,7 +163,8 @@
         [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
         public void Insert_ExistingEntity_ExceptiontThrown()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            Repository.Insert(this.TestMedia2);
         }
 
         /// <summary>
@@ -144,7 +173,17 @@
         [Test]
         public void Insert_NonExistingEntity_Inserted()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+
+            Media media = new Media()
+            {
+                ID = Guid.NewGuid(),
+                MediaData = "Update",
+                RelationID = this.TestMedia2.RelationID
+            };
+
+            Repository.Insert(media);
+            Assert.AreEqual(media.ID, Repository.GetByID(media.ID).ID); 
         }
 
         /// <summary>
@@ -154,7 +193,8 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void Insert_NullEntity_ExceptionThrown()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            Repository.Insert(null);
         }
 
         /// <summary>
@@ -164,7 +204,9 @@
         [ExpectedException(typeof(NHibernate.Exceptions.GenericADOException))]
         public void Insert_InvalidEntity_ExceptionThrown()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            this.TestMedia2.MediaData = "InvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidDataInvalidData";
+            Repository.Insert(TestMedia2);
         }
 
         /// <summary>
@@ -173,17 +215,35 @@
         [Test]
         public void Delete_Existing_RecordDeleted()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            Media media = new Media()
+            {
+                ID = Guid.NewGuid(),
+                MediaData = "Update",
+                RelationID = this.TestMedia2.RelationID
+            };
+
+            Repository.Insert(media);
+            Repository.Delete(media);
+            Assert.IsNull(Repository.GetByID(media.ID));
         }
 
         /// <summary>
         /// Ensures record exception is thrown
         /// </summary>
         [Test]
-        [ExpectedException(typeof(NullReferenceException))]
         public void Delete_NonExisting_ExceptionThrown()
         {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            Media media = new Media()
+            {
+                ID = Guid.NewGuid(),
+                MediaData = "Update",
+                RelationID = this.TestMedia2.RelationID
+            };
+
+            Repository.Delete(media);
+            Assert.IsNull(Repository.GetByID(media.ID));
         }
 
         /// <summary>
@@ -193,16 +253,8 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void Delete_NullEntity_ExceptionThrown()
         {
-            throw new NotImplementedException(); 
-        }
-
-        /// <summary>
-        /// Ensures a media entity can be related to a post entity
-        /// </summary>
-        [Test]
-        public void InsertSubList_NonExistingEntity_Sucessfull()
-        {
-            throw new NotImplementedException(); 
+            MediaRepository Repository = new MediaRepository(helper);
+            Repository.Delete(null);
         }
     }
 }
