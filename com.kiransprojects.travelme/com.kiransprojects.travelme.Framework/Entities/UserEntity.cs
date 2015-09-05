@@ -12,6 +12,7 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Initializes a new instance of the <see cref="UserEntity"/> class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Properties required to be virtual for Nhibernate")]
         public UserEntity()
         {
             this.Trips = new List<Trip>(); 

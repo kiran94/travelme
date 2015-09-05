@@ -55,4 +55,12 @@ ALTER TABLE Media
 ALTER COLUMN MediaData nvarchar(1000) NOT NULL
 GO
 ALTER TABLE UserEntity
-ALTER COLUMN ProfilePicture nvarchar(100
+ALTER COLUMN ProfilePicture nvarchar(100)
+GO
+CREATE TABLE Logs
+(
+	ID uniqueidentifier PRIMARY KEY NOT NULL,
+	LogMessage nvarchar(255),
+	LogDateTime datetime,
+	Error bit 
+);

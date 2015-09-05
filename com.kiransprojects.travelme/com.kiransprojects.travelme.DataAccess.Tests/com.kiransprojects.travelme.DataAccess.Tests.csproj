@@ -63,6 +63,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Mappings\LogMap.cs" />
     <Compile Include="Mappings\MediaMap.cs">
       <SubType>
       </SubType>
