@@ -3,6 +3,7 @@
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Service.Interfaces;
+    using com.kiransprojects.travelme.Services.Interfaces;
     using System;
     using System.Diagnostics;
 
@@ -15,18 +16,31 @@
         /// Repository for User Entity
         /// </summary>
         private readonly IRepository<UserEntity> _repository = null;
+
+        /// <summary>
+        /// File Service
+        /// </summary>
+        private readonly IFileService _fileservice = null; 
         
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryBaseUserService"/> class.
         /// </summary>
-        public UserService(IRepository<UserEntity> Repository)
+        public UserService(
+            IRepository<UserEntity> Repository, 
+            IFileService FileService)
         {
             if(Repository == null)
             {
                 throw new NullReferenceException("User Service Repository Null"); 
             }
 
-            this._repository = Repository; 
+            if(FileService == null)
+            {
+                throw new NullReferenceException("File Service Null"); 
+            }
+
+            this._repository = Repository;
+            this._fileservice = FileService; 
         }
 
         /// <summary>
@@ -55,10 +69,28 @@
         /// </summary>
         /// <param name="ID">ID of the user to add</param>
         /// <param name="picture">Actual picture to save</param>
-        /// <returns></returns>
-        public Media AddProfilePicture(Guid ID, byte[] picture)
+        /// <returns>path of profile picture</returns>
+        public string AddProfilePicture(Guid ID, byte[] picture)
         {
-            throw new NotImplementedException();
+            if(ID == null || picture == null)
+            {
+                return string.Empty; 
+            }
+
+            UserEntity Entity = this._repository.GetByID(ID); 
+            
+            if(Entity == null)
+            {
+                return string.Empty; 
+            }
+
+            string path = string.Format("Profile{0}.jpg", ID.ToString());
+            if(this._fileservice.SaveMedia(path, picture))
+            {
+                return path; 
+            }
+
+            return string.Empty; 
         }
 
         /// <summary>
@@ -67,7 +99,7 @@
         /// <param name="ID">ID of the user</param>
         /// <param name="picture">Actual picture to save</param>
         /// <returns></returns>
-        public Media EditProfilePicture(Guid ID, byte[] picture)
+        public bool EditProfilePicture(Guid ID, byte[] picture)
         {
             throw new NotImplementedException();
         }

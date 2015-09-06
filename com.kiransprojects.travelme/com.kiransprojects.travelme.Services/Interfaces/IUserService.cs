@@ -21,7 +21,7 @@
         /// <param name="ID">User ID</param>
         /// <param name="picture">Picture to save</param>
         /// <returns></returns>
-        Media AddProfilePicture(Guid ID, byte[] picture);
+        string AddProfilePicture(Guid ID, byte[] picture);
 
         /// <summary>
         /// Edits a profile picture to a user
@@ -29,7 +29,7 @@
         /// <param name="ID">User ID</param>
         /// <param name="picture">Picture to update with</param>
         /// <returns></returns>
-        Media EditProfilePicture(Guid ID, byte[] picture);
+        bool EditProfilePicture(Guid ID, byte[] picture);
 
         /// <summary>
         /// Removes a profile picture for a user

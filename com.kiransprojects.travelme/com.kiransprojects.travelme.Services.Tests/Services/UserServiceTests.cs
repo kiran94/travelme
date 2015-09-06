@@ -9,7 +9,8 @@
     using System.Threading.Tasks;
     using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.DataAccess.Interfaces;
-    using com.kiransprojects.travelme.Service; 
+    using com.kiransprojects.travelme.Service;
+    using com.kiransprojects.travelme.Services.Interfaces; 
     
     [TestFixture]
     public class UserServiceTests
@@ -21,8 +22,9 @@
         public void Constructor_RepositoryInjected_PropertySet()
         {
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
-            UserService Service = new UserService(Repository.Object);
+            Mock<IFileService> FileService = new Mock<IFileService>();
 
+            UserService Service = new UserService(Repository.Object, FileService.Object);
             Assert.IsTrue(Service.isRepositorySet()); 
         }
 
@@ -33,14 +35,25 @@
         [ExpectedException(typeof(NullReferenceException))]
         public void Constructor_RepositoryNull_ExceptionThrown()
         {
-            UserService Service = new UserService(null);
-            
+            Mock<IFileService> FileService = new Mock<IFileService>(); 
+            UserService Service = new UserService(null, FileService.Object);
+        }
+
+        /// <summary>
+        /// Ensures exception is thrown when file service is null
+        /// </summary>
+        [Test]
+        public void Constructor_FileServiceNull_ExceptionThrown()
+        {
+            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            UserService Service = new UserService(Repository.Object, null);
         }
 
         /// <summary>
         /// Ensures user is retrieved when user exists
         /// </summary>
         [Test]
+        [ExpectedException(typeof(NullReferenceException))]
         public void GetUser_ExistingUser_Retrieved()
         {
             UserEntity User = new UserEntity()
@@ -53,7 +66,9 @@
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
             Repository.SetupSequence(o => o.GetByID(User.ID)).Returns(User);
 
-            UserService Service = new UserService(Repository.Object);
+            Mock<IFileService> FileService = new Mock<IFileService>(); 
+
+            UserService Service = new UserService(Repository.Object, FileService.Object);
             UserEntity Retrieved = Service.GetUser(User.ID);
             Assert.AreEqual(User, Retrieved);
         }
@@ -66,11 +81,41 @@
         {
             Guid ID = Guid.NewGuid();
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
-            Repository.SetupSequence(o => o.GetByID(ID)).Returns(null); 
+            Repository.SetupSequence(o => o.GetByID(ID)).Returns(null);
 
-            UserService Service = new UserService(Repository.Object);
+            Mock<IFileService> FileService = new Mock<IFileService>(); 
+
+            UserService Service = new UserService(Repository.Object, FileService.Object);
             UserEntity Retrieved = Service.GetUser(ID); 
             Assert.IsNull(Retrieved);
         }
+
+        /// <summary>
+        /// Ensures a profile picture can be added to a user
+        /// </summary>
+        [Test]
+        public void AddProfilePicture_ExistingUser_PathAdded()
+        {
+            UserEntity Entity = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "Kiran"
+            }; 
+
+            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Repository.Setup(o => o.Update(Entity, false));
+            Repository.Setup(o => o.GetByID(Entity.ID)).Returns(Entity);
+
+            Mock<IFileService> FileService = new Mock<IFileService>();
+            FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true); 
+
+            UserService Service = new UserService(Repository.Object, FileService.Object);
+            string path = Service.AddProfilePicture(Entity.ID, new byte[1]);
+
+            string expected = string.Format("Profile{0}.jpg", Entity.ID.ToString());
+            Assert.AreEqual(expected, path); 
+        }
+
+        
     }
 }
