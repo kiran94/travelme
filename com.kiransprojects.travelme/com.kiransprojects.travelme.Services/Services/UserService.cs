@@ -71,7 +71,7 @@
         /// <param name="ID">ID of the user to add</param>
         /// <param name="picture">Actual picture to save</param>
         /// <returns>path of profile picture</returns>
-        public string AddProfilePicture(Guid ID, byte[] picture)
+        public string AddProfilePicture(Guid ID, string path, byte[] picture)
         {
             UserEntity Entity = this._repository.GetByID(ID); 
             
@@ -80,12 +80,12 @@
                 return string.Empty; 
             }
 
-            string path = string.Format("Profile{0}.jpg", ID.ToString());
+            string fullpath = string.Format("{0}/Profile{1}.jpg", path ,ID.ToString());
             if(this._fileservice.SaveMedia(path, picture))
             {
                 Entity.ProfilePicture = path;
                 this._repository.Update(Entity, false);
-                return path; 
+                return fullpath; 
             }
 
             return string.Empty; 
@@ -99,7 +99,22 @@
         /// <returns></returns>
         public bool EditProfilePicture(Guid ID, byte[] picture)
         {
-            throw new NotImplementedException();
+            UserEntity Entity = this._repository.GetByID(ID); 
+
+            if(Entity == null)
+            {
+                return false;
+            }
+
+            string fullpath = Entity.ProfilePicture; 
+
+            if(!string.IsNullOrEmpty(fullpath))
+            {
+                this._fileservice.SaveMedia(fullpath, picture);
+                return true; 
+            }
+
+            return false; 
         }
 
         /// <summary>

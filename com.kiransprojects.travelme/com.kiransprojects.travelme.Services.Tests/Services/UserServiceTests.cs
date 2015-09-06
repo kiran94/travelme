@@ -110,9 +110,9 @@
             FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
             UserService Service = new UserService(Repository.Object, FileService.Object);
-            string path = Service.AddProfilePicture(Entity.ID, new byte[1]);
+            string path = Service.AddProfilePicture(Entity.ID, Environment.CurrentDirectory, new byte[1]);
 
-            string expected = string.Format("Profile{0}.jpg", Entity.ID.ToString());
+            string expected = string.Format("{0}/Profile{1}.jpg", Environment.CurrentDirectory, Entity.ID.ToString());
             Assert.AreEqual(expected, path);
         }
 
@@ -136,7 +136,7 @@
             FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
             UserService Service = new UserService(Repository.Object, FileService.Object);
-            string path = Service.AddProfilePicture(Entity.ID, new byte[1]);
+            string path = Service.AddProfilePicture(Entity.ID, Environment.CurrentDirectory, new byte[1]);
 
             Assert.AreEqual(string.Empty, path); 
         }
