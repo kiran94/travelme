@@ -55,5 +55,27 @@
                 return null; 
             }
         }
+
+        /// <summary>
+        /// Deletes a file from the file system
+        /// </summary>
+        /// <param name="path">Path of the file to delete</param>
+        /// <returns>Flag to indicate if operation was successful</returns>
+        public bool DeleteMedia(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                    return true; 
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return false; 
+        }
     }
 }

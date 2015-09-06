@@ -1,4 +1,5 @@
-﻿namespace com.kiransprojects.travelme.Services.Interfaces
+﻿using System.IO;
+namespace com.kiransprojects.travelme.Services.Interfaces
 {
     /// <summary>
     /// Contract for file service operations
@@ -19,5 +20,12 @@
         /// <param name="path">Path to return media from</param>
         /// <returns>Media</returns>
         byte[] GetMedia(string path); 
+
+        /// <summary>
+        /// Deletes a file from the file system
+        /// </summary>
+        /// <param name="path">Path of the file to delete</param>
+        /// <returns>Flag to indicate if operation was successful</returns>
+        bool DeleteMedia(string path);
     }
 }
