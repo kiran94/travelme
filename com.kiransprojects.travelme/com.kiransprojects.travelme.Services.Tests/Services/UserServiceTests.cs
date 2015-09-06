@@ -43,6 +43,7 @@
         /// Ensures exception is thrown when file service is null
         /// </summary>
         [Test]
+        [ExpectedException(typeof(NullReferenceException))]
         public void Constructor_FileServiceNull_ExceptionThrown()
         {
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
@@ -53,7 +54,6 @@
         /// Ensures user is retrieved when user exists
         /// </summary>
         [Test]
-        [ExpectedException(typeof(NullReferenceException))]
         public void GetUser_ExistingUser_Retrieved()
         {
             UserEntity User = new UserEntity()
