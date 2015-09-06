@@ -23,7 +23,7 @@
         private readonly IFileService _fileservice = null; 
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepositoryBaseUserService"/> class.
+        /// Initializes a new instance of the <see cref="UserService"/> class.
         /// </summary>
         public UserService(
             IRepository<UserEntity> Repository, 
@@ -66,17 +66,13 @@
 
         /// <summary>
         /// Adds a profile picture of the user to the system. 
+        /// Guid and Byte are not nullable data types so no checks needed
         /// </summary>
         /// <param name="ID">ID of the user to add</param>
         /// <param name="picture">Actual picture to save</param>
         /// <returns>path of profile picture</returns>
         public string AddProfilePicture(Guid ID, byte[] picture)
         {
-            if(ID == null || picture == null)
-            {
-                return string.Empty; 
-            }
-
             UserEntity Entity = this._repository.GetByID(ID); 
             
             if(Entity == null)
@@ -87,6 +83,8 @@
             string path = string.Format("Profile{0}.jpg", ID.ToString());
             if(this._fileservice.SaveMedia(path, picture))
             {
+                Entity.ProfilePicture = path;
+                this._repository.Update(Entity, false);
                 return path; 
             }
 

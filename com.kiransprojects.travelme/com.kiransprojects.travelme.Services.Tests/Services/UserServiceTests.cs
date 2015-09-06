@@ -1,7 +1,7 @@
 ﻿namespace com.kiransprojects.travelme.Services.Tests.Services
 {
     using NUnit.Framework;
-    using Moq; 
+    using Moq;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -10,8 +10,8 @@
     using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Service;
-    using com.kiransprojects.travelme.Services.Interfaces; 
-    
+    using com.kiransprojects.travelme.Services.Interfaces;
+
     [TestFixture]
     public class UserServiceTests
     {
@@ -25,7 +25,7 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
 
             UserService Service = new UserService(Repository.Object, FileService.Object);
-            Assert.IsTrue(Service.isRepositorySet()); 
+            Assert.IsTrue(Service.isRepositorySet());
         }
 
         /// <summary>
@@ -35,7 +35,7 @@
         [ExpectedException(typeof(NullReferenceException))]
         public void Constructor_RepositoryNull_ExceptionThrown()
         {
-            Mock<IFileService> FileService = new Mock<IFileService>(); 
+            Mock<IFileService> FileService = new Mock<IFileService>();
             UserService Service = new UserService(null, FileService.Object);
         }
 
@@ -58,15 +58,15 @@
         {
             UserEntity User = new UserEntity()
             {
-                 ID = Guid.NewGuid(), 
+                ID = Guid.NewGuid(),
                 FirstName = "Kiran",
                 LastName = "Patel"
-            }; 
+            };
 
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
             Repository.SetupSequence(o => o.GetByID(User.ID)).Returns(User);
 
-            Mock<IFileService> FileService = new Mock<IFileService>(); 
+            Mock<IFileService> FileService = new Mock<IFileService>();
 
             UserService Service = new UserService(Repository.Object, FileService.Object);
             UserEntity Retrieved = Service.GetUser(User.ID);
@@ -83,10 +83,10 @@
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
             Repository.SetupSequence(o => o.GetByID(ID)).Returns(null);
 
-            Mock<IFileService> FileService = new Mock<IFileService>(); 
+            Mock<IFileService> FileService = new Mock<IFileService>();
 
             UserService Service = new UserService(Repository.Object, FileService.Object);
-            UserEntity Retrieved = Service.GetUser(ID); 
+            UserEntity Retrieved = Service.GetUser(ID);
             Assert.IsNull(Retrieved);
         }
 
@@ -100,22 +100,46 @@
             {
                 ID = Guid.NewGuid(),
                 FirstName = "Kiran"
-            }; 
+            };
 
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
             Repository.Setup(o => o.Update(Entity, false));
             Repository.Setup(o => o.GetByID(Entity.ID)).Returns(Entity);
 
             Mock<IFileService> FileService = new Mock<IFileService>();
-            FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true); 
+            FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
             UserService Service = new UserService(Repository.Object, FileService.Object);
             string path = Service.AddProfilePicture(Entity.ID, new byte[1]);
 
             string expected = string.Format("Profile{0}.jpg", Entity.ID.ToString());
-            Assert.AreEqual(expected, path); 
+            Assert.AreEqual(expected, path);
         }
 
-        
+        /// <summary>
+        /// Ensures a profile picture can be added to a user
+        /// </summary>
+        [Test]
+        public void AddProfilePicture_NonExisting_EmptyPath()
+        {
+            UserEntity Entity = new UserEntity()
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "Kiran"
+            };
+
+            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Repository.Setup(o => o.Update(Entity, false));
+            Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(null);
+
+            Mock<IFileService> FileService = new Mock<IFileService>();
+            FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
+
+            UserService Service = new UserService(Repository.Object, FileService.Object);
+            string path = Service.AddProfilePicture(Entity.ID, new byte[1]);
+
+            Assert.AreEqual(string.Empty, path); 
+        }
+
     }
 }
