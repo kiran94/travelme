@@ -9,9 +9,27 @@
     public class Log : EntityBase
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Log"/> class.
+        /// </summary>
+        public Log()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Log"/> class.
+        /// </summary>
+        public Log(string Message="Error", bool Error = true)
+        {
+            this.LogMessage = Message; 
+            this.Error = Error;
+            this.LogDateTime = DateTime.Now;
+        }
+
+        /// <summary>
         /// Gets or sets the Log message
         /// </summary>
-        [StringLength(255, ErrorMessage="{0} has a maximum length of {1}")]
+        [StringLength(255, ErrorMessage = "{0} has a maximum length of {1}")]
         public virtual string LogMessage { get; set; }
 
         /// <summary>

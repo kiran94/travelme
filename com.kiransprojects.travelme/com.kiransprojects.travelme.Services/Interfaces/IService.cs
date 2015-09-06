@@ -1,4 +1,4 @@
-﻿namespace com.kiransprojects.travelme.Framework.Interfaces
+﻿namespace com.kiransprojects.travelme.Service.Interfaces
 {
     using System;
     using System.Collections.Generic;

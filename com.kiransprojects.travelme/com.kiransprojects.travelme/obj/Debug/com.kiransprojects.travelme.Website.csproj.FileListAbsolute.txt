@@ -52,7 +52,6 @@ C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.k
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\bin\System.Web.WebPages.xml
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\bin\System.Web.WebPages.Razor.xml
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\obj\Debug\com.kiransprojects.travelme.Website.csprojResolveAssemblyReference.cache
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\obj\Debug\com.kiransprojects.travelme.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\obj\Debug\com.kiransprojects.travelme.pdb
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\bin\com.kiransprojects.travelme.dll.CodeAnalysisLog.xml
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme\bin\com.kiransprojects.travelme.dll.lastcodeanalysissucceeded
