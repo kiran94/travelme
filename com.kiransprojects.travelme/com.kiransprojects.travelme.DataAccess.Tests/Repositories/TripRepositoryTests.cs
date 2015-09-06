@@ -328,5 +328,28 @@
             PostRepository PostRepo = new PostRepository(helper);
             PostRepo.Delete(newPost);
         }
+
+        /// <summary>
+        /// Ensures List of locations are recieved when they exist 
+        /// </summary>
+        [Test]
+        public void GetLocations_EntityWithLocations_Recieved()
+        {
+            TripRepository Repository = new TripRepository(helper);
+            IList<Location> Locations = Repository.GetLocations(Guid.Parse("E50E7C95-36D3-470C-905E-564321267F20"));
+            Assert.IsNotEmpty(Locations);  
+        }
+
+        /// <summary>
+        /// Ensures List of locations are recieved when they exist 
+        /// </summary>
+        [Test]
+        public void GetLocations_NonExisting_Empty()
+        {
+            TripRepository Repository = new TripRepository(helper);
+            IList<Location> Locations = new List<Location>(); 
+            Locations = Repository.GetLocations(Guid.NewGuid());
+            Assert.IsNull(Locations);
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace com.kiransprojects.travelme.DataAccess.Interfaces
 {
-    using com.kiransprojects.travelme.Framework.Entities;
     using System;
+    using com.kiransprojects.travelme.Framework.Entities;
 
     /// <summary>
     /// Repository interface to be used for RepositoryBase

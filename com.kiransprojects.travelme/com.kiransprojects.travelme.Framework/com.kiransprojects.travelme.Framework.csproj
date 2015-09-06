@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Media.cs" />
     <Compile Include="Entities\Post.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
@@ -49,10 +51,7 @@
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

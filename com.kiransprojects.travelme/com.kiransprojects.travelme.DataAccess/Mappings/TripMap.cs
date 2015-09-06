@@ -20,7 +20,8 @@
             this.Property(o => o.TripDescription, p => { p.Length(50); });
             this.Property(o => o.TripLocation, p => { p.Length(75); });
 
-            this.Property(o => o.RelationID,
+            this.Property(
+                o => o.RelationID,
                 p =>
                 {
                     p.Column("UserID");

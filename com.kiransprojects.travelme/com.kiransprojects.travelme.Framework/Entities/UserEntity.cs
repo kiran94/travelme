@@ -12,6 +12,7 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Initializes a new instance of the <see cref="UserEntity"/> class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Properties required to be virtual for Nhibernate")]
         public UserEntity()
         {
             this.Trips = new List<Trip>(); 
@@ -61,7 +62,8 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// Gets or sets the profile picture
         /// </summary>
         [Display(Name="Profile Picture")]
-        public virtual byte[] ProfilePicture { get; set; }
+        [StringLength(1000, ErrorMessage="{0} has a maximum length of {1} characters")]
+        public virtual string ProfilePicture { get; set; }
 
         /// <summary>
         /// Gets or sets the users trips
