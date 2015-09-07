@@ -99,32 +99,34 @@
         /// <returns></returns>
         public bool EditProfilePicture(Guid ID, byte[] picture)
         {
-            UserEntity Entity = this._repository.GetByID(ID); 
+            UserEntity Entity = this._repository.GetByID(ID);
 
-            if(Entity == null)
+            if (Entity == null || string.IsNullOrEmpty(Entity.ProfilePicture))
             {
                 return false;
             }
 
-            string fullpath = Entity.ProfilePicture; 
-
-            if(!string.IsNullOrEmpty(fullpath))
-            {
-                this._fileservice.SaveMedia(fullpath, picture);
-                return true; 
-            }
-
-            return false; 
+            this._fileservice.SaveMedia(Entity.ProfilePicture, picture);
+            return true; 
         }
 
         /// <summary>
         /// Removed a profile picture
         /// </summary>
         /// <param name="ID">User to remove picture from</param>
-        /// <returns></returns>
+        /// <returns>Flag indicating if operation was successfull</returns>
         public bool RemoveProfilePicture(Guid ID)
         {
-            throw new NotImplementedException();
+            UserEntity Entity = this._repository.GetByID(ID);
+
+            if(Entity == null || string.IsNullOrEmpty(Entity.ProfilePicture))
+            {
+                return false; 
+            }
+
+            bool flag = this._fileservice.DeleteMedia(Entity.ProfilePicture);
+
+            return flag; 
         }
 
         /// <summary>
