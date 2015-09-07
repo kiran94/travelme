@@ -21,7 +21,7 @@
         /// <param name="ID">User ID</param>
         /// <param name="picture">Picture to save</param>
         /// <returns></returns>
-        string AddProfilePicture(Guid ID, byte[] picture);
+        string AddProfilePicture(Guid ID, string path, byte[] picture);
 
         /// <summary>
         /// Edits a profile picture to a user
