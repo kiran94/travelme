@@ -14,6 +14,13 @@
         /// </summary>
         /// <param name="ID">ID of trip to query</param>
         /// <returns>Collection of locations</returns>
-        IList<Location> GetLocations(Guid ID); 
+        IList<Location> GetLocations(Guid ID);
+
+        /// <summary>
+        /// Gets all the trips for a user
+        /// </summary>
+        /// <param name="ID">User ID</param>
+        /// <returns>List of trips</returns>
+        IList<Trip> GetTrips(Guid ID); 
     }
 }

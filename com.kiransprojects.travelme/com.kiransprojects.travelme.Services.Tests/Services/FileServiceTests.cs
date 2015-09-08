@@ -10,11 +10,21 @@
     [TestFixture]
     public class FileServiceTests
     {
+        /// <summary>
+        /// Test Media
+        /// </summary>
         private string StoredMedia = Environment.CurrentDirectory +  "/test.txt";
+
+        /// <summary>
+        /// Byte Array
+        /// </summary>
         private byte[] data = new byte[1];
 
+        /// <summary>
+        /// Setup method
+        /// </summary>
         [SetUp]
-        public void setup()
+        public void Setup()
         {
             FileService Service = new FileService();
             Service.SaveMedia(StoredMedia, data); 
