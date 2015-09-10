@@ -1,17 +1,22 @@
 ﻿namespace com.kiransprojects.travelme.Services.Tests.Services
 {
-    using NUnit.Framework;
-    using Moq;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
+    using NUnit.Framework;
+    using Moq;    
+
     using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Service;
     using com.kiransprojects.travelme.Services.Interfaces;
 
+    /// <summary>
+    /// User Service Tests
+    /// </summary>
     [TestFixture]
     public class UserServiceTests
     {

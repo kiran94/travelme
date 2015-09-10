@@ -351,5 +351,27 @@
             Locations = Repository.GetLocations(Guid.NewGuid());
             Assert.IsNull(Locations);
         }
+
+        /// <summary>
+        /// Ensures a list of trips is returned 
+        /// </summary>
+        [Test]
+        public void GetTrips_Existing_ReturnedList()
+        {
+            TripRepository Repository = new TripRepository(helper);
+            IList<Trip> Trips = Repository.GetTrips(Guid.Parse("9fc0b724-d55f-441d-a1ae-ec726d7737f7"));
+            Assert.IsNotEmpty(Trips); 
+        }
+
+        /// <summary>
+        /// Ensures an empty list is returned with non existing 
+        /// </summary>
+        [Test]
+        public void GetTrips_NonExisting_EmptyList()
+        {
+            TripRepository Repository = new TripRepository(helper);
+            IList<Trip> Trips = Repository.GetTrips(Guid.NewGuid());
+            Assert.IsEmpty(Trips);
+        }
     }
 }

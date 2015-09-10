@@ -4,7 +4,9 @@
     using com.kiransprojects.travelme.Framework.Entities;
     using System;
     using System.Linq; 
-    using System.Collections.Generic; 
+    using System.Collections.Generic;
+    using NHibernate;
+    using System.Collections; 
 
     /// <summary>
     /// Trip Repository for interacting with the trip table
@@ -50,5 +52,28 @@
             }
             return null; 
         }
+
+        /// <summary>
+        /// Gets all the trips for a user
+        /// </summary>
+        /// <param name="ID">User ID</param>
+        /// <returns>List of trips</returns>
+        public IList<Trip> GetTrips(Guid ID)
+        {
+            using (ISession session = this.helper.GetSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    UserEntity Entity = session.Get<UserEntity>(ID);
+                    transaction.Commit();
+                    session.Flush();
+
+                    return (Entity != null && Entity.Trips != null) ? Entity.Trips : new List<Trip>(); 
+                }
+            }
+        }
+
+     
+      
     }
 }
