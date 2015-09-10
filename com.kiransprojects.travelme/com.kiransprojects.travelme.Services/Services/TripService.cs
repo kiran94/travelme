@@ -20,24 +20,24 @@
         /// <summary>
         /// Trip Repository Methods
         /// </summary>
-        private readonly ITripRepository _tripRepository = null; 
+        private readonly ITripRepository _tripRepository = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TripService"/> class.
         /// </summary>
         public TripService(IRepository<Trip> Repository, ITripRepository TripRepository)
         {
-            if(Repository == null)
+            if (Repository == null)
             {
-                throw new NullReferenceException("Trip Repository, Null Repository"); 
+                throw new NullReferenceException("Trip Repository, Null Repository");
             }
-            if(TripRepository == null)
+            if (TripRepository == null)
             {
                 throw new NullReferenceException("Trip Repository, Null Trip Repository");
             }
 
             this._repository = Repository;
-            this._tripRepository = TripRepository; 
+            this._tripRepository = TripRepository;
         }
 
         /// <summary>
@@ -47,9 +47,9 @@
         /// <returns>List of all Trips</returns>
         public IList<Trip> GetTrips(Guid ID)
         {
-            IList<Trip> list = new List<Trip>();  
+            IList<Trip> list = new List<Trip>();
             list = this._tripRepository.GetTrips(ID);
-            return list; 
+            return list;
         }
 
         /// <summary>
@@ -59,20 +59,20 @@
         /// <returns>flag indicating if operation was successful</returns>
         public bool AddTrip(Trip trip)
         {
-            if(trip == null)
+            if (trip == null)
             {
-                return false; 
+                return false;
             }
 
             try
             {
                 this._repository.Insert(trip);
-                return true; 
+                return true;
             }
             catch (Exception e)
             {
                 Console.Write(e.Message);
-                return false; 
+                return false;
             }
         }
 
@@ -80,7 +80,7 @@
         /// Passes an existing trip to update
         /// </summary>
         /// <param name="trip"></param>
-        /// <returns>updated trip</returns>
+        /// <returns>Updated trip, when does not exist returns null</returns>
         public Trip EditTrip(Trip trip)
         {
             if (trip == null)
@@ -90,14 +90,18 @@
 
             try
             {
-                this._repository.Update(trip, true);
-                return trip; 
+                if (this._repository.GetByID(trip.ID) != null)
+                {
+                    this._repository.Update(trip, true);
+                    return trip;
+                }
             }
             catch (Exception e)
             {
                 Console.Write(e.Message);
-                return null;
             }
+
+            return null;
         }
 
         /// <summary>
@@ -107,7 +111,7 @@
         /// <returns>flag indicating if trip was successfull</returns>
         public bool DeleteTrip(Trip trip)
         {
-            if (trip == null)
+            if (trip == null || this._repository.GetByID(trip.ID) == null)
             {
                 return false;
             }
@@ -115,18 +119,45 @@
             try
             {
                 this._repository.Delete(trip);
-                return true; 
+                return true;
             }
             catch (Exception e)
             {
                 Console.Write(e.Message);
-                return false; 
+                return false;
             }
         }
 
+        /// <summary>
+        /// Gets Locations for a specific trip
+        /// </summary>
+        /// <param name="ID">Trip ID</param>
+        /// <returns>List of Locations</returns>
         public IList<Location> GetLocations(Guid ID)
         {
-            throw new NotImplementedException();
+            if (ID != null && this._repository.GetByID(ID) != null)
+            {
+                Trip trip = this._repository.GetByID(ID);
+
+                if (trip != null)
+                {
+                    IList<Location> Locations = null;
+
+                    for (int i = 0; i < trip.Posts.Count; i++)
+                    {
+                        Location CurrentLocation = new Location();
+                        CurrentLocation.Latittude = trip.Posts[i].PostLat;
+                        CurrentLocation.Longitude = trip.Posts[i].PostLong;
+                        CurrentLocation.Date = trip.Posts[i].PostDate;
+
+                        Locations.Add(CurrentLocation);
+                    }
+
+                    return Locations;
+                }
+            }
+
+            return null;
         }
     }
 }
