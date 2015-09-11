@@ -20,14 +20,20 @@
         /// <summary>
         /// File Service
         /// </summary>
-        private readonly IFileService _fileservice = null; 
+        private readonly IFileService _fileservice = null;
+
+        /// <summary>
+        /// Logger Service
+        /// </summary>
+        private readonly ILoggerService _loggerservice = null; 
         
         /// <summary>
         /// Initializes a new instance of the <see cref="UserService"/> class.
         /// </summary>
         public UserService(
             IRepository<UserEntity> Repository, 
-            IFileService FileService)
+            IFileService FileService, 
+            ILoggerService LoggerService)
         {
             if(Repository == null)
             {
@@ -39,8 +45,14 @@
                 throw new NullReferenceException("File Service Null"); 
             }
 
+            if(LoggerService == null)
+            {
+                throw new NullReferenceException("Logger Service Null"); 
+            }
+
             this._repository = Repository;
-            this._fileservice = FileService; 
+            this._fileservice = FileService;
+            this._loggerservice = LoggerService; 
         }
 
         /// <summary>
@@ -54,13 +66,13 @@
             try
             {
                 ToReturn = this._repository.GetByID(ID);
-                
             }
             catch(Exception e)
             {
-                //Log log = new Log(e, true); 
-                Debugger.Log(0, "Error", e.Message);
+                Log log = new Log(e.Message, true);
+                _loggerservice.Log(log);
             }
+
             return ToReturn; 
         }
 

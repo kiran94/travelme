@@ -2,6 +2,7 @@
 {
     using System;
     using com.kiransprojects.travelme.Framework.Entities;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Repository interface to be used for RepositoryBase
@@ -9,6 +10,12 @@
     /// <typeparam name="T">Data type</typeparam>
     public interface IRepository<T> where T : EntityBase
     {
+        /// <summary>
+        /// Gets a list of all objects of type T in database
+        /// </summary>
+        /// <returns>List of objects</returns>
+        IList<T> GetAll(); 
+
         /// <summary>
         /// Inserts a record into the database of type T
         /// </summary>

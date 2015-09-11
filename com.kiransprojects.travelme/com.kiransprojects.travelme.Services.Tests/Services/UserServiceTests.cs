@@ -1,18 +1,12 @@
 ﻿namespace com.kiransprojects.travelme.Services.Tests.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
-    using NUnit.Framework;
-    using Moq;    
-
-    using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.DataAccess.Interfaces;
+    using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Service;
     using com.kiransprojects.travelme.Services.Interfaces;
+    using Moq;
+    using NUnit.Framework;
+    using System;
 
     /// <summary>
     /// User Service Tests
@@ -28,8 +22,9 @@
         {
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
             Mock<IFileService> FileService = new Mock<IFileService>();
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>(); 
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             Assert.IsTrue(Service.isRepositorySet());
         }
 
@@ -41,7 +36,9 @@
         public void Constructor_RepositoryNull_ExceptionThrown()
         {
             Mock<IFileService> FileService = new Mock<IFileService>();
-            UserService Service = new UserService(null, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(null, FileService.Object, LoggerService.Object);
         }
 
         /// <summary>
@@ -52,7 +49,22 @@
         public void Constructor_FileServiceNull_ExceptionThrown()
         {
             Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
-            UserService Service = new UserService(Repository.Object, null);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, null, LoggerService.Object);
+        }
+
+        /// <summary>
+        /// Ensures property exception is thrown when null is injected
+        /// </summary>
+        [Test]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Constructor_LoggerNull_ExceptionThrown()
+        {
+            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IFileService> FileService = new Mock<IFileService>();
+
+            UserService Service = new UserService(null, FileService.Object, null);
         }
 
         /// <summary>
@@ -72,8 +84,9 @@
             Repository.SetupSequence(o => o.GetByID(User.ID)).Returns(User);
 
             Mock<IFileService> FileService = new Mock<IFileService>();
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             UserEntity Retrieved = Service.GetUser(User.ID);
             Assert.AreEqual(User, Retrieved);
         }
@@ -89,8 +102,9 @@
             Repository.SetupSequence(o => o.GetByID(ID)).Returns(null);
 
             Mock<IFileService> FileService = new Mock<IFileService>();
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             UserEntity Retrieved = Service.GetUser(ID);
             Assert.IsNull(Retrieved);
         }
@@ -114,7 +128,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             string path = Service.AddProfilePicture(Entity.ID, Environment.CurrentDirectory, new byte[1]);
 
             string expected = string.Format("{0}/Profile{1}.jpg", Environment.CurrentDirectory, Entity.ID.ToString());
@@ -140,7 +156,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.Setup(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             string path = Service.AddProfilePicture(Entity.ID, Environment.CurrentDirectory, new byte[1]);
 
             Assert.AreEqual(string.Empty, path);
@@ -166,7 +184,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.SetupSequence(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             bool flag = Service.EditProfilePicture(Entity.ID, new byte[2]);
 
             Assert.IsTrue(flag);
@@ -192,7 +212,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.SetupSequence(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             bool flag = Service.EditProfilePicture(Entity.ID, new byte[2]);
 
             Assert.IsFalse(flag);
@@ -218,7 +240,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.SetupSequence(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             bool flag = Service.EditProfilePicture(Entity.ID, new byte[2]);
 
             Assert.IsFalse(flag);
@@ -244,7 +268,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.SetupSequence(o => o.SaveMedia(It.IsAny<string>(), It.IsAny<byte[]>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             bool flag = Service.EditProfilePicture(Entity.ID, new byte[2]);
 
             Assert.IsFalse(flag);
@@ -270,7 +296,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.Setup(o => o.DeleteMedia(It.IsAny<string>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             bool flag = Service.RemoveProfilePicture(Entity.ID);
 
             Assert.IsTrue(flag);
@@ -296,7 +324,9 @@
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.Setup(o => o.DeleteMedia(It.IsAny<string>())).Returns(true);
 
-            UserService Service = new UserService(Repository.Object, FileService.Object);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
+
+            UserService Service = new UserService(Repository.Object, FileService.Object, LoggerService.Object);
             bool flag = Service.RemoveProfilePicture(Entity.ID);
 
             Assert.IsFalse(flag);
@@ -321,8 +351,9 @@
 
             Mock<IFileService> FileService = new Mock<IFileService>();
             FileService.Setup(o => o.DeleteMedia(It.IsAny<string>())).Returns(true);
+            Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
 
-            bool flag = new UserService(Repository.Object, FileService.Object).RemoveProfilePicture(Entity.ID);
+            bool flag = new UserService(Repository.Object, FileService.Object, LoggerService.Object).RemoveProfilePicture(Entity.ID);
 
             Assert.IsFalse(flag); 
         }

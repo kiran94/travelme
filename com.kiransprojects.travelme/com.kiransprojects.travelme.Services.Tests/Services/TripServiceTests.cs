@@ -231,13 +231,53 @@
             Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
 
-            Repository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(trip); 
+            Repository.Setup(o => o.GetByID(It.IsAny<Guid>())).Returns(trip); 
 
             TripService Service = new TripService(Repository.Object, TripRepository.Object);
 
             IList<Location> Locations = Service.GetLocations(Guid.NewGuid());
 
-            Assert.IsNotEmpty(Locations);
+            CollectionAssert.IsNotEmpty(Locations);
+        }
+
+        /// <summary>
+        /// Ensures null is returned when a trip does not exist
+        /// </summary>
+        [Test]
+        public void GetLocations_NonExistingTrip_NullReturn()
+        {
+            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
+            Mock<ITripRepository> TripRepository = new Mock<ITripRepository>(); 
+            Repository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(null); 
+
+            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            IList<Location> Locations = Service.GetLocations(Guid.NewGuid());
+
+            Assert.IsNull(Locations); 
+        }
+
+        /// <summary>
+        /// Ensures an empty list is returned with when an existing trip has no locations
+        /// </summary>
+        [Test]
+        public void GetLocations_TripWithNoLocations_EmptyList()
+        {
+            Guid tripID = Guid.NewGuid();
+            Trip trip = new Trip()
+            {
+                ID = tripID,
+                Posts = new List<Post>(),
+            };
+
+            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
+            Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+
+            Repository.Setup(o => o.GetByID(It.IsAny<Guid>())).Returns(trip);
+
+            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+
+            IList<Location> Locations = Service.GetLocations(tripID);
+            Assert.IsEmpty(Locations); 
         }
     }
 }

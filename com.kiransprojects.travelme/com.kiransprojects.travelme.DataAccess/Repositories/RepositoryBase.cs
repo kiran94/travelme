@@ -4,6 +4,7 @@
     using com.kiransprojects.travelme.Framework.Entities;
     using NHibernate;
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Repository Base 
@@ -89,6 +90,23 @@
                     session.Flush();
                 }
             }
+        }
+
+        /// <inheritdoc />
+        public IList<T> GetAll()
+        {
+            IList<T> List = null; 
+            using(ISession session = this.helper.GetSession())
+            {
+                using(ITransaction transaction = session.BeginTransaction())
+                {
+                    List = session.CreateCriteria<T>().List<T>(); 
+                    transaction.Commit();
+                    session.Flush(); 
+                }
+            }
+
+            return List; 
         }
     }
 }
