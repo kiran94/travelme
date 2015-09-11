@@ -135,26 +135,23 @@
         /// <returns>List of Locations</returns>
         public IList<Location> GetLocations(Guid ID)
         {
-            if (ID != null && this._repository.GetByID(ID) != null)
+            Trip trip = this._repository.GetByID(ID);
+            if (trip != null)
             {
-                Trip trip = this._repository.GetByID(ID);
+                IList<Location> Locations = new List<Location>();
 
-                if (trip != null)
+                for (int i = 0; i < trip.Posts.Count; i++)
                 {
-                    IList<Location> Locations = null;
+                    Location CurrentLocation = new Location();
+                    CurrentLocation.Latittude = trip.Posts[i].PostLat;
+                    CurrentLocation.Longitude = trip.Posts[i].PostLong;
+                    CurrentLocation.Date = trip.Posts[i].PostDate;
 
-                    for (int i = 0; i < trip.Posts.Count; i++)
-                    {
-                        Location CurrentLocation = new Location();
-                        CurrentLocation.Latittude = trip.Posts[i].PostLat;
-                        CurrentLocation.Longitude = trip.Posts[i].PostLong;
-                        CurrentLocation.Date = trip.Posts[i].PostDate;
-
-                        Locations.Add(CurrentLocation);
-                    }
-
-                    return Locations;
+                    Locations.Add(CurrentLocation);
                 }
+
+                return Locations;
+
             }
 
             return null;
