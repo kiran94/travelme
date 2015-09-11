@@ -13,14 +13,15 @@
         /// </summary>
         public Log()
         {
-
+            this.ID = Guid.NewGuid(); 
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Log"/> class.
         /// </summary>
-        public Log(string Message="Error", bool Error = true)
+        public Log(string Message="Error", bool Error = false)
         {
+            this.ID = Guid.NewGuid(); 
             this.LogMessage = Message; 
             this.Error = Error;
             this.LogDateTime = DateTime.Now;
