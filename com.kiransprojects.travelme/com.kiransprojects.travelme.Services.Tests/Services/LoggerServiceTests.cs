@@ -69,10 +69,36 @@
             CollectionAssert.AreEqual(logs, RetrievedLogs); 
         }
 
+        /// <summary>
+        /// Ensures when logs dont exist, null list is returned
+        /// </summary>
         [Test]
-        public void GetLogs_LogsNotExist_ReturnsEmptyList()
+        public void GetLogs_LogsNotExist_ReturnsNullList()
         {
+            Mock<IRepository<Log>> repository = new Mock<IRepository<Log>>();
+            repository.SetupSequence(o => o.GetAll()).Returns(null);
 
+            LoggerService service = new LoggerService(repository.Object);
+            IList<Log> logs = service.GetLogs();
+            Assert.IsNull(logs);
+        }
+        
+        /// <summary>
+        /// Ensures when a single log exist it is retrieved
+        /// </summary>
+        [Test]
+        public void GetLog_LogExist_LogReturned()
+        {
+            Log log = new Log()
+            {
+                ID = Guid.NewGuid()
+            };
+            Mock<IRepository<Log>> repository = new Mock<IRepository<Log>>();
+            repository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(log);
+
+            LoggerService service = new LoggerService(repository.Object);
+
+            Assert.AreEqual(log, service.GetLog(Guid.NewGuid()));
         }
 
 

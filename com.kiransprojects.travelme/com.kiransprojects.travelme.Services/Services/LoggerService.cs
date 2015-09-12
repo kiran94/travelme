@@ -5,9 +5,6 @@
     using com.kiransprojects.travelme.Services.Interfaces;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Logger Service
@@ -56,15 +53,20 @@
         /// <summary>
         /// Gets all Logs
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of all logs in the repository</returns>
         public IList<Log> GetLogs()
         {
             return this._repository.GetAll(); 
         }
 
+        /// <summary>
+        /// Gets a log by its ID
+        /// </summary>
+        /// <param name="ID">Log ID</param>
+        /// <returns>Log Object</returns>
         public Log GetLog(Guid ID)
         {
-            throw new NotImplementedException();
+            return this._repository.GetByID(ID); 
         }
     }
 }
