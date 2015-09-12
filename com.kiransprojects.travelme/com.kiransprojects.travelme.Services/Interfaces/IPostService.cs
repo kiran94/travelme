@@ -14,7 +14,14 @@
         /// </summary>
         /// <param name="ID">Trip ID</param>
         /// <returns>List of Posts</returns>
-        IList<Post> GetPosts(Guid ID);
+        IList<Post> GetPosts();
+
+        /// <summary>
+        /// Gets a post
+        /// </summary>
+        /// <param name="ID">Post ID</param>
+        /// <returns>Post Object</returns>
+        Post GetPost(Guid ID); 
 
         /// <summary>
         /// Adds a post to the database
@@ -42,6 +49,6 @@
         /// </summary>
         /// <param name="photo">Photo to add</param>
         /// <returns></returns>
-        Media AddPhoto(byte[] photo);
+        Media AddPhoto(Guid postID, byte[] photo);
     }
 }

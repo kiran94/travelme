@@ -5,7 +5,7 @@
     /// <summary>
     /// Contract for Login Services
     /// </summary>
-    public interface ILoginService
+    public interface ILoggerServiceILoginService
     {
         /// <summary>
         /// Registers the passed user
@@ -21,5 +21,12 @@
         /// <param name="Password">Password the user is registered with</param>
         /// <returns></returns>
         bool SignIn(string Email, string Password);
+
+        /// <summary>
+        /// Allows the user to reset thier password
+        /// </summary>
+        /// <param name="Email">Email account to reset</param>
+        /// <returns>Flag indicates if email was sent correctly</returns>
+        bool ForgotPassword(string Email);
     }
 }
