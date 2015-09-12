@@ -11,6 +11,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Log"/> class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Properties virtual for Nhibernate")]
         public Log()
         {
             this.ID = Guid.NewGuid(); 
@@ -19,6 +20,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Log"/> class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Properties virtual for Nhibernate")]
         public Log(string Message="Error", bool Error = false)
         {
             this.ID = Guid.NewGuid(); 
