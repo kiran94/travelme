@@ -49,6 +49,6 @@
         /// </summary>
         /// <param name="photo">Photo to add</param>
         /// <returns></returns>
-        Media AddPhoto(Guid postID, byte[] photo);
+        Media AddPhoto(Guid postID, string path, byte[] photo);
     }
 }
