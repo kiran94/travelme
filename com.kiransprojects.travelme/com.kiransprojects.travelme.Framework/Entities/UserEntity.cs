@@ -70,5 +70,10 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// </summary>
         [Display(Name="Trips")]
         public virtual IList<Trip> Trips { get; set; }
+
+        /// <summary>
+        /// Gets or sets User Role
+        /// </summary>
+        public virtual string Role { get; set; }
     }
 }

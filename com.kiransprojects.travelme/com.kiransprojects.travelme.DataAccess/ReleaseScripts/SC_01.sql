@@ -64,3 +64,6 @@ CREATE TABLE Logs
 	LogDateTime datetime,
 	Error bit 
 );
+GO
+ALTER TABLE UserEntity
+ADD Role nvarchar(20)

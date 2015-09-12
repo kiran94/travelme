@@ -5,7 +5,7 @@
     /// <summary>
     /// Contract for Login Services
     /// </summary>
-    public interface ILoggerServiceILoginService
+    public interface ILoginService
     {
         /// <summary>
         /// Registers the passed user

@@ -20,7 +20,7 @@
         /// Stored Media
         /// </summary>
         /// <param name="media">Media to store</param>
-        void StoreMedia(Media media);
+        bool StoreMedia(Media media);
 
         /// <summary>
         /// Gets Filtered Media

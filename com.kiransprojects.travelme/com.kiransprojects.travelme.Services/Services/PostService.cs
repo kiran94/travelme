@@ -34,6 +34,7 @@
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PostService"/> class.
+        /// </summary>
         public PostService(
             IRepository<Post> postRepository, 
             ILoggerService loggerService,
