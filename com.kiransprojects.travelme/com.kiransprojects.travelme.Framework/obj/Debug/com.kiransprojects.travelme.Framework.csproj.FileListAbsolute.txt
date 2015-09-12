@@ -7,5 +7,3 @@ C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.k
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Framework\bin\Debug\com.kiransprojects.travelme.Framework.pdb
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Framework\obj\Debug\com.kiransprojects.travelme.Framework.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Framework\obj\Debug\com.kiransprojects.travelme.Framework.pdb
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Framework\bin\Debug\com.kiransprojects.travelme.Framework.dll.CodeAnalysisLog.xml
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Framework\bin\Debug\com.kiransprojects.travelme.Framework.dll.lastcodeanalysissucceeded

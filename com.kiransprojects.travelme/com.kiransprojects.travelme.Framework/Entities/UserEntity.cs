@@ -75,5 +75,22 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// Gets or sets User Role
         /// </summary>
         public virtual string Role { get; set; }
+
+        /// <summary>
+        /// Gets or sets Registered datetime
+        /// </summary>
+        [Display(Name="Registered On")]
+        public virtual DateTime Registered { get; set; }
+
+        /// <summary>
+        /// Gets or sets last login datetime
+        /// </summary>
+        [Display(Name = "Last Active")]
+        public virtual DateTime LastLogin { get; set; }
+
+        /// <summary>
+        /// Gets or sets Invalid Password Date datetime
+        /// </summary>
+        public virtual int InvalidPasswordDate { get; set; }
     }
 }

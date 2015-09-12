@@ -67,3 +67,18 @@ CREATE TABLE Logs
 GO
 ALTER TABLE UserEntity
 ADD Role nvarchar(20)
+GO
+ALTER TABLE UserEntity 
+ADD Registered datetime
+GO
+ALTER TABLE UserEntity 
+ADD LastLogin datetime
+GO
+ALTER TABLE UserEntity 
+ADD InvalidPasswordCount tinyint
+GO
+ALTER TABLE UserEntity 
+ADD InvalidPasswordDate datetime
+GO
+ALTER TABLE UserEntity
+ADD Salt nvarchar(128)

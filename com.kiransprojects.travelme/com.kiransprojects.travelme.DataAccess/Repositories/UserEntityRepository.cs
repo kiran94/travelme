@@ -8,7 +8,7 @@
     /// <summary>
     /// User Entity Repository for interacting with the user table
     /// </summary>
-    public class UserEntityRepository : RepositoryBase<UserEntity>
+    public class UserEntityRepository : RepositoryBase<UserEntity>, IUserEntityRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UserEntityRepository"/> class.
@@ -19,30 +19,31 @@
         }
 
         /// <summary>
-        /// Authenticates a user credentials
+        /// Authenticates if a user's credentials are correct
         /// </summary>
-        /// <param name="Username">Username</param>
-        /// <param name="password">Password</param>
-        /// <returns>User Role</returns>
-        public string Authenticate(string Username, string password, out bool isAuthenticated)
+        /// <param name="Email">User's Email</param>
+        /// <param name="password">User's Password</param>
+        /// <param name="Role">User's Role to be set</param>
+        /// <returns>Flag indicating if the user has been authenticated</returns>
+        public bool Authenticate(string Email, string password, out string Role)
         {
             using(ISession session = helper.GetSession())
             {
                 using(ITransaction transaction = session.BeginTransaction())
                 {
                     IList<UserEntity> users = session.QueryOver<UserEntity>()
-                                                .Where(o => o.Email.Equals(Username))
+                                                .Where(o => o.Email.Equals(Email))
                                                 .Where(o => o.UserPassword.Equals(password))
                                                 .List();
 
                     if(users == null && users[0] != null)
                     {
-                        isAuthenticated = false; 
-                        return string.Empty;  
+                        Role =  string.Empty;
+                        return false; 
                     }
 
-                    isAuthenticated = true; 
-                    return users[0].Role; 
+                    Role =  users[0].Role;
+                    return true; 
                 }
             }
         }

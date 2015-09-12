@@ -19,8 +19,9 @@
         /// </summary>
         /// <param name="Email">Email the user is registered under</param>
         /// <param name="Password">Password the user is registered with</param>
-        /// <returns></returns>
-        bool SignIn(string Email, string Password);
+        /// <param name="Role">User's role to be set</param>
+        /// <returns>Flag indicating if user is authenticated</returns>
+        bool SignIn(string Email, string Password, out string Role);
 
         /// <summary>
         /// Allows the user to reset thier password

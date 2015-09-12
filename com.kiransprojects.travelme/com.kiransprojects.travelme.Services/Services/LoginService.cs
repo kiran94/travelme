@@ -1,13 +1,9 @@
 ﻿namespace com.kiransprojects.travelme.Services.Services
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
-using com.kiransprojects.travelme.Framework.Entities;
-using com.kiransprojects.travelme.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+    using com.kiransprojects.travelme.Framework.Entities;
+    using com.kiransprojects.travelme.Service.Interfaces;
+    using System;
 
     /// <summary>
     /// Login Service
@@ -17,37 +13,54 @@ using System.Threading.Tasks;
         /// <summary>
         /// User Entity Repository
         /// </summary>
-        private readonly IRepository<UserEntity> _repository = null; 
+        private readonly IUserEntityRepository _repository = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginService"/> class.
         /// </summary>
-        public LoginService(IRepository<UserEntity> repository)
+        public LoginService(IUserEntityRepository repository)
         {
-            if(repository == null)
+            if (repository == null)
             {
-                throw new NotImplementedException("Login Repository"); 
+                throw new NotImplementedException("Login Repository");
             }
 
-            this._repository = repository; 
+            this._repository = repository;
         }
 
+        /// <summary>
+        /// Registeres the user
+        /// </summary>
+        /// <param name="User"></param>
+        /// <returns></returns>
         public bool RegisterUser(out UserEntity User)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Indicates if a user has provided the correct details for authentication
+        /// Authenticates if a user's credentials are correct
         /// </summary>
-        /// <param name="Email">User input Email</param>
-        /// <param name="Password">User input Password</param>
-        /// <returns>Flag indicating if user is authenticated</returns>
-        public bool SignIn(string Email, string Password)
+        /// <param name="Email">User's Email</param>
+        /// <param name="password">User's Password</param>
+        /// <param name="Role">User's Role to be set</param>
+        /// <returns>Flag indicating if the user has been authenticated</returns>
+        public bool SignIn(string Email, string Password, out string Role)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
+            {
+                Role =  string.Empty;
+                return false;
+            }
+
+            return this._repository.Authenticate(Email, Password, out Role);
         }
 
+        /// <summary>
+        /// Allows the user to reset thier password
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <returns></returns>
         public bool ForgotPassword(string Email)
         {
             throw new NotImplementedException();

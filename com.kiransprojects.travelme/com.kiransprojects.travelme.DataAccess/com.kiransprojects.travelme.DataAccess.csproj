@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\INhibernateHelper.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\ITripRepository.cs" />
+    <Compile Include="Interfaces\IUserEntityRepository.cs" />
     <Compile Include="Mappings\LogMap.cs" />
     <Compile Include="Repositories\LogRepository.cs" />
     <Compile Include="Mappings\MediaMap.cs" />

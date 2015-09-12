@@ -42,6 +42,7 @@
     <Compile Include="Interfaces\IFileService.cs" />
     <Compile Include="Interfaces\ILoggerService.cs" />
     <Compile Include="Interfaces\ILoginService.cs" />
+    <Compile Include="Interfaces\IMailService.cs" />
     <Compile Include="Interfaces\IMediaService.cs" />
     <Compile Include="Interfaces\IPostService.cs" />
     <Compile Include="Interfaces\IService.cs" />
