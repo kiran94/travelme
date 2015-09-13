@@ -7,7 +7,7 @@
     /// <summary>
     /// Contract for Trip Repository
     /// </summary>
-    public interface ITripRepository
+    public interface ITripRepository : IRepository<Trip>
     {
         /// <summary>
         /// Gets all the locations from all posts within a trip

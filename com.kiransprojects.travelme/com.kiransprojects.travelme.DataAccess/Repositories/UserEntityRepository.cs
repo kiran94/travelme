@@ -47,5 +47,29 @@
                 }
             }
         }
+
+        /// <summary>
+        /// Checks if the email already exists in the database
+        /// </summary>
+        /// <param name="Email">Email to check</param>
+        /// <returns>Flag indicating if email exists</returns>
+        public bool isEmailInUse(string Email)
+        {
+            using(ISession session = this.helper.GetSession())
+            {
+                using(ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<UserEntity> users = session.QueryOver<UserEntity>()
+                                            .Where(p => p.Email.Equals(Email))
+                                            .List(); 
+                    if(users != null && users[0] != null)
+                    {
+                        return true; 
+                    }
+
+                    return false; 
+                }
+            }
+        }
     }
 }

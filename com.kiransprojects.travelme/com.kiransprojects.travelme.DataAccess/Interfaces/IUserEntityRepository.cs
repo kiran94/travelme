@@ -1,6 +1,7 @@
-﻿using com.kiransprojects.travelme.Framework.Entities;
-namespace com.kiransprojects.travelme.DataAccess.Interfaces
+﻿namespace com.kiransprojects.travelme.DataAccess.Interfaces
 {
+    using com.kiransprojects.travelme.Framework.Entities;
+
     /// <summary>
     /// Contract for the UserEntity Repository
     /// </summary>
@@ -14,5 +15,12 @@ namespace com.kiransprojects.travelme.DataAccess.Interfaces
         /// <param name="Role">User's Role to be set</param>
         /// <returns>Flag indicating if the user has been authenticated</returns>
         bool Authenticate(string Email, string password, out string Role);
+
+        /// <summary>
+        /// Checks if the email already exists in the database
+        /// </summary>
+        /// <param name="Email">Email to check</param>
+        /// <returns>Flag indicating if email exists</returns>
+        bool isEmailInUse(string Email);
     }
 }

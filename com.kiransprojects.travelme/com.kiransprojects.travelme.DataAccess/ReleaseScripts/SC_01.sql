@@ -82,3 +82,9 @@ ADD InvalidPasswordDate datetime
 GO
 ALTER TABLE UserEntity
 ADD Salt nvarchar(128)
+GO
+ALTER TABLE UserEntity
+ALTER COLUMN UserPassword nvarchar(256)
+GO
+ALTER TABLE UserEntity
+ALTER COLUMN Salt nvarchar(256)

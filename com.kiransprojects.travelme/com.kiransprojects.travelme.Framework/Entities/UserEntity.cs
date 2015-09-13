@@ -21,9 +21,9 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets the first name
         /// </summary>
+        [Required]
         [Display(Name="First Name")]
         [StringLength(100, ErrorMessage="{0} has a maximum length of {1} characters")]
-        [Required]
         public virtual string FirstName { get; set; }
 
         /// <summary>
@@ -45,17 +45,17 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets the email
         /// </summary>
+        [Required]
         [Display(Name="Email")]
         [StringLength(500, ErrorMessage = "{0} has a maximum length of {1} characters")]
-        [Required]
         public virtual string Email { get; set; }
 
         /// <summary>
         /// Gets or sets the user passwords
         /// </summary>
-        [Display(Name="Password")]
-        [StringLength(128, ErrorMessage = "{0} has a maximum length of {1} characters")]
         [Required]
+        [Display(Name="Password")]
+        [StringLength(256, ErrorMessage = "{0} has a maximum length of {1} characters")]
         public virtual string UserPassword { get; set; }
 
         /// <summary>
@@ -91,6 +91,17 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets Invalid Password Date datetime
         /// </summary>
-        public virtual int InvalidPasswordDate { get; set; }
+        public virtual DateTime InvalidPasswordDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets Invalid Password Count
+        /// </summary>
+        public virtual int InvalidPassswordCount {get; set;}
+
+        /// <summary>
+        /// Gets or sets Salt
+        /// </summary>
+        [StringLength(256, ErrorMessage="Bad Authentication")]
+        public virtual string Salt { get; set; }
     }
 }
