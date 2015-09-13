@@ -50,6 +50,7 @@
     <Compile Include="Services\LoggerServiceTests.cs" />
     <Compile Include="Services\LoginServiceTests.cs" />
     <Compile Include="Services\MediaServiceTests.cs" />
+    <Compile Include="Services\PasswordServiceTests.cs" />
     <Compile Include="Services\PostServiceTests.cs" />
     <Compile Include="Services\TripServiceTests.cs" />
     <Compile Include="Services\UserServiceTests.cs" />

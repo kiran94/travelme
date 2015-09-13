@@ -33,9 +33,16 @@
         /// </summary>
         /// <param name="User"></param>
         /// <returns></returns>
-        public bool RegisterUser(out UserEntity User)
+        public UserEntity RegisterUser(UserEntity User)
         {
-            throw new NotImplementedException();
+            //verify email not already in use
+            this._repository.isEmailInUse(User.Email);
+
+            //generate password
+
+            //save to database
+            return null;
+            //send confirmation email
         }
 
         /// <summary>

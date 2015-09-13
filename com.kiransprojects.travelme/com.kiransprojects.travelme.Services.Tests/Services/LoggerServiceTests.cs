@@ -100,7 +100,5 @@
 
             Assert.AreEqual(log, service.GetLog(Guid.NewGuid()));
         }
-
-
     }
 }

@@ -44,6 +44,7 @@
     <Compile Include="Interfaces\ILoginService.cs" />
     <Compile Include="Interfaces\IMailService.cs" />
     <Compile Include="Interfaces\IMediaService.cs" />
+    <Compile Include="Interfaces\IPasswordService.cs" />
     <Compile Include="Interfaces\IPostService.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\ITripService.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\MediaService.cs" />
+    <Compile Include="Services\PasswordService.cs" />
     <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\TripService.cs" />
     <Compile Include="Services\UserService.cs" />

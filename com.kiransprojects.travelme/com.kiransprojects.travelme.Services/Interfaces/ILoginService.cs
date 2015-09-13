@@ -10,9 +10,9 @@
         /// <summary>
         /// Registers the passed user
         /// </summary>
-        /// <param name="User">User to register, pass by reference so that profile picture path can be added</param>
-        /// <returns>Flag indicates whether user was registered or not</returns>
-        bool RegisterUser(out UserEntity User);
+        /// <param name="User">User to registe</param>
+        /// <returns>Registered UserEntity</returns>
+        UserEntity RegisterUser(UserEntity User);
 
         /// <summary>
         /// Signs a User in
