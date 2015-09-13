@@ -6,10 +6,6 @@
     using Moq;
     using NUnit.Framework;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// LoginService Tests
@@ -32,17 +28,20 @@
 
             entity = service.RegisterUser(entity);
 
-            //Assert.IsTrue(flag);
+            throw new NotImplementedException(); 
         }
 
+        [Test]
+        public void RegisterUser_NotValidUser_NotRegistered()
+        {
+            throw new NotImplementedException(); 
+        }
 
- 
-
-
-
-
-
-
+        [Test]
+        public void RegisterUser_NullUser_NotRegistered()
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Ensures true is returned when non empty strings are passed 
