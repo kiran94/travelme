@@ -5,6 +5,7 @@
     using System;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Password Service
@@ -26,13 +27,13 @@
         /// <returns>User Entity with all credentials and fields</returns>
         public UserEntity GenerateCredentials(UserEntity User)
         {
-            string plaintext = User.UserPassword; 
-            string salt = string.Empty; 
-
-            if(string.IsNullOrEmpty(plaintext))
+            if(User == null || string.IsNullOrEmpty(User.UserPassword))
             {
                 return null; 
             }
+
+            string plaintext = User.UserPassword; 
+            string salt = string.Empty; 
 
             salt = this.GenerateSalt(); 
 
@@ -51,6 +52,11 @@
         /// <returns>Hashed password</returns>
         public string GeneratePassword(string plaintext, string salt)
         {
+            if(string.IsNullOrEmpty(plaintext) || string.IsNullOrEmpty(salt))
+            {
+                return string.Empty; 
+            }
+
             SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
 
             StringBuilder builder = new StringBuilder();
@@ -79,12 +85,16 @@
 
         /// <summary>
         /// Verifies a user's password strength
+        /// Password must have atleast 1 lower case character
+        /// Password must have atleast 1 upper case character
+        /// Password must have atleast 1 numerical character
+        /// Password must be length 8 - 100
         /// </summary>
         /// <param name="password">password to check</param>
-        /// <returns></returns>
+        /// <returns>flag indicating if password follows above rules</returns>
         public bool VerifyPassword(string password)
         {
-            throw new NotImplementedException();
+            return Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,100}$");
         }        
     }
 }

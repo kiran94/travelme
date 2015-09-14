@@ -2,6 +2,7 @@
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
+    using com.kiransprojects.travelme.Services.Interfaces;
     using com.kiransprojects.travelme.Services.Services;
     using Moq;
     using NUnit.Framework;
@@ -19,28 +20,101 @@
         [Test]
         public void RegisterUser_ValidUser_Registered()
         {
-            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
-            repository.Setup(o => o.Insert(It.IsAny<UserEntity>())); 
-
-            LoginService service = new LoginService(repository.Object);
-
             UserEntity entity = new UserEntity();
+            entity.ID = Guid.NewGuid();
+            entity.FirstName = "Test";
+            entity.UserPassword = "123sadojasdDDIAD";
+            entity.Email = "test@test.com";
+
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>(); 
+
+            repository.Setup(o => o.Insert(It.IsAny<UserEntity>()));
+            repository.Setup(o => o.isEmailInUse(It.IsAny<string>())).Returns(false);
+            passwordService.SetupSequence(o => o.GenerateCredentials(entity)).Returns(entity);
+            mailService.SetupSequence(o => o.SendMessage(
+                It.IsAny<System.Collections.Generic.List<string>>(), 
+                It.IsAny<string>(), 
+                It.IsAny<string>(), 
+                It.IsAny<string>(), 
+                It.IsAny<bool>()))
+                .Returns(true);
+
+            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
 
             entity = service.RegisterUser(entity);
 
-            throw new NotImplementedException(); 
+            Assert.IsNotNull(entity); 
         }
 
+        /// <summary>
+        /// Ensures null is returned when email is in use
+        /// </summary>
         [Test]
-        public void RegisterUser_NotValidUser_NotRegistered()
+        public void RegisterUser_EmailInUse_NotRegistered()
         {
-            throw new NotImplementedException(); 
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+
+            repository.Setup(o => o.isEmailInUse(It.IsAny<string>())).Returns(true); 
+
+            LoginService service = new LoginService(repository.Object,
+                                                    passwordService.Object,
+                                                    mailService.Object); 
+            UserEntity user = new UserEntity();
+            user.ID = Guid.NewGuid(); 
+            user.FirstName = "Test"; 
+            user.UserPassword = "123sadojasdDDIAD";
+            user.Email = "test@test.com";
+
+            user = service.RegisterUser(user);
+            Assert.IsNull(user);
         }
 
+        /// <summary>
+        /// Ensures null is returned when an empty password is passed
+        /// </summary>
+        [Test]
+        public void RegisterUser_EmptyPassword_NotRegistered()
+        {
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+
+            repository.Setup(o => o.isEmailInUse(It.IsAny<string>())).Returns(false); 
+            passwordService.SetupSequence(o => o.GenerateCredentials(It.IsAny<UserEntity>())).Returns(null);
+
+             LoginService service = new LoginService(repository.Object,
+                                                    passwordService.Object,
+                                                    mailService.Object); 
+            UserEntity user = new UserEntity();
+            user.ID = Guid.NewGuid(); 
+            user.FirstName = "Test"; 
+            user.UserPassword = string.Empty;
+            user.Email = "test@test.com";
+
+            UserEntity retuser = service.RegisterUser(user);
+            Assert.IsNull(retuser);
+        }
+
+        /// <summary>
+        /// Ensures null is returned when user is null
+        /// </summary>
         [Test]
         public void RegisterUser_NullUser_NotRegistered()
         {
-            throw new NotImplementedException();
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+
+            LoginService service = new LoginService(repository.Object,
+                                                   passwordService.Object,
+                                                   mailService.Object);
+   
+            UserEntity retuser = service.RegisterUser(null);
+            Assert.IsNull(retuser);
         }
 
         /// <summary>
@@ -50,11 +124,13 @@
         public void SignIn_CorrectDetails_ReturnTrue()
         {
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>(); 
 
             string Role; 
             repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
 
-            LoginService service = new LoginService(repository.Object);
+            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
             bool flag = service.SignIn("test@test.com", "123", out Role);
 
             Assert.IsTrue(flag);
@@ -67,11 +143,13 @@
         public void SignIn_NullEmail_ReturnFalse()
         {
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>(); 
 
             string Role;
             repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
 
-            LoginService service = new LoginService(repository.Object);
+            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
             bool flag = service.SignIn(null, "123", out Role);
 
             Assert.IsFalse(flag);
@@ -84,11 +162,13 @@
         public void SignIn_NullPassword_ReturnFalse()
         {
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>(); 
 
             string Role;
             repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
 
-            LoginService service = new LoginService(repository.Object);
+            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
             bool flag = service.SignIn("test@test.com", null, out Role);
 
             Assert.IsFalse(flag);

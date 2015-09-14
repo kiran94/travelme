@@ -52,10 +52,15 @@ namespace com.kiransprojects.travelme.Framework.Entities
 
         /// <summary>
         /// Gets or sets the user passwords
+        /// Password must have atleast 1 lower case character
+        /// Password must have atleast 1 upper case character
+        /// Password must have atleast 1 numerical character
+        /// Password must be length 8 - 100
         /// </summary>
         [Required]
         [Display(Name="Password")]
         [StringLength(256, ErrorMessage = "{0} has a maximum length of {1} characters")]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,100}$", ErrorMessage="{0} must have atleast one number, uppercase character and lowercase character. {0} has a minimum length of 8.")]
         public virtual string UserPassword { get; set; }
 
         /// <summary>
