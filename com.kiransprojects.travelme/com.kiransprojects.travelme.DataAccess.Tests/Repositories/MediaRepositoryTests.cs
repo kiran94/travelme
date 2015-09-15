@@ -137,7 +137,7 @@
         /// Ensures Exception is thrown when null entity is passed
         /// </summary>
         [Test]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Update_NullEntity_ExceptionThrown()
         {
             MediaRepository Repository = new MediaRepository(helper);

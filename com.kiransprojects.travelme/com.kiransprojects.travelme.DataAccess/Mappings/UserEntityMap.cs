@@ -28,8 +28,9 @@
             this.Property(o => o.Registered, p => { p.Type<DateTimeType>(); });
             this.Property(o => o.LastLogin, p => {p.Type<DateTimeType>(); });
             this.Property(o => o.InvalidPasswordDate, p => {p.Type<DateTimeType>(); });
-            this.Property(o => o.InvalidPassswordCount);
-            this.Property(o => o.Salt, p => {p.Length(256); }); 
+            this.Property(o => o.InvalidPasswordCount);
+            this.Property(o => o.Salt, p => {p.Length(256); });
+            this.Property(o => o.PasswordReset);
             
             this.Bag(
                 o => o.Trips,

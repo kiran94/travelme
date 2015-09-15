@@ -101,12 +101,17 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets Invalid Password Count
         /// </summary>
-        public virtual int InvalidPassswordCount {get; set;}
+        public virtual int InvalidPasswordCount {get; set;}
 
         /// <summary>
         /// Gets or sets Salt
         /// </summary>
         [StringLength(256, ErrorMessage="Bad Authentication")]
         public virtual string Salt { get; set; }
+
+        /// <summary>
+        /// Gets or sets Password Reset
+        /// </summary>
+        public virtual bool PasswordReset { get; set; }
     }
 }

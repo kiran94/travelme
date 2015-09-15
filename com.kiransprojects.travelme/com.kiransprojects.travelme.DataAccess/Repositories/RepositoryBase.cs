@@ -67,8 +67,12 @@
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-
-                    T DatabaseVersion = session.Load<T>(Entity.ID);
+                    T DatabaseVersion;
+                    if (load)
+                    {
+                        DatabaseVersion = session.Load<T>(Entity.ID);
+                    }
+                    
                     DatabaseVersion = Entity;
 
                     session.Merge(DatabaseVersion);

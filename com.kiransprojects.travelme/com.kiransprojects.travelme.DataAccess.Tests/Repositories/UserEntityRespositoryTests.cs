@@ -88,7 +88,10 @@
                 LastName = "Patel",
                 DateOfBirth = new DateTime(1994, 08, 05, 10, 0, 0),
                 Email = "Kiran@test.com",
-                UserPassword = "password"
+                UserPassword = "password",
+                Registered = DateTime.Now,
+                LastLogin = DateTime.Now,
+                InvalidPasswordDate = DateTime.Now
             };
 
             TestTrip = new Trip()
@@ -130,7 +133,10 @@
                 LastName = "Deleted",
                 DateOfBirth = new DateTime(1994, 08, 05, 10, 0, 0),
                 Email = "Deleted@Deleted.com",
-                UserPassword = "Deleted"
+                UserPassword = "Deleted",
+                InvalidPasswordDate = DateTime.Now,
+                LastLogin = DateTime.Now,
+                Registered = DateTime.Now
             };
 
             UserEntityRepository ForDelete = new UserEntityRepository(helper);
@@ -191,7 +197,10 @@
                 LastName = "NonExisting",
                 DateOfBirth = DateTime.Now,
                 Email = "NonExisting",
-                UserPassword = "NonExisting"
+                UserPassword = "NonExisting",
+                Registered = DateTime.Now,
+                LastLogin = DateTime.Now,
+                InvalidPasswordDate = DateTime.Now
             };
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
@@ -225,7 +234,10 @@
                 LastName = "NonExisting",
                 DateOfBirth = DateTime.Now,
                 Email = "NonExisting",
-                UserPassword = "NonExisting"
+                UserPassword = "NonExisting",
+                Registered = DateTime.Now,
+                LastLogin = DateTime.Now,
+                InvalidPasswordDate = DateTime.Now
             };
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
@@ -257,7 +269,10 @@
                 LastName = "NonExisting",
                 DateOfBirth = DateTime.Now,
                 Email = "NonExisting",
-                UserPassword = "NonExisting"
+                UserPassword = "NonExisting",
+                Registered = DateTime.Now,
+                LastLogin = DateTime.Now,
+                InvalidPasswordDate = DateTime.Now
             };
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
@@ -292,7 +307,10 @@
                 LastName = "NonExisting",
                 DateOfBirth = DateTime.Now,
                 Email = "NonExisting",
-                UserPassword = "NonExisting"
+                UserPassword = "NonExisting",
+                Registered = DateTime.Now,
+                LastLogin = DateTime.Now,
+                InvalidPasswordDate = DateTime.Now
             };
 
             UserEntityRepository Repository = new UserEntityRepository(helper);
@@ -355,7 +373,10 @@
                 LastName = "SecondEntity",
                 DateOfBirth = new DateTime(1994, 08, 05, 10, 0, 0),
                 Email = "SecondEntity",
-                UserPassword = "SecondEntity"
+                UserPassword = "SecondEntity",
+                Registered = DateTime.Now,
+                LastLogin = DateTime.Now,
+                InvalidPasswordDate = DateTime.Now
             };
 
             Trip trip = new Trip()

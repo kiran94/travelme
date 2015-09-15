@@ -88,3 +88,6 @@ ALTER COLUMN UserPassword nvarchar(256)
 GO
 ALTER TABLE UserEntity
 ALTER COLUMN Salt nvarchar(256)
+GO
+ALTER TABLE UserEntity
+ADD PasswordReset bit

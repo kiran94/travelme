@@ -40,7 +40,8 @@
             User.UserPassword = this.GeneratePassword(plaintext, salt);
             User.Salt = salt; 
             User.Registered = DateTime.Now;
-            User.InvalidPassswordCount = 0;
+            User.InvalidPasswordCount = 0;
+            User.PasswordReset = false; 
 
             return User; 
         }

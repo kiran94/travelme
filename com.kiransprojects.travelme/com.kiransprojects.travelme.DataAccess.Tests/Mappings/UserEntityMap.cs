@@ -22,9 +22,16 @@
             this.Property(o => o.LastName, p => { p.Length(100); });
             this.Property(o => o.DateOfBirth, p => { p.Type<DateTimeType>(); });
             this.Property(o => o.Email, p => { p.Length(500); p.NotNullable(true); });
-            this.Property(o => o.UserPassword, p => { p.Length(128); p.NotNullable(true); });
-            this.Property(o => o.ProfilePicture, p => { p.Length(1000); });           
-
+            this.Property(o => o.UserPassword, p => { p.Length(256); p.NotNullable(true); });
+            this.Property(o => o.ProfilePicture, p => { p.Length(1000); });
+            this.Property(o => o.Role, p => { p.Length(20); });
+            this.Property(o => o.Registered, p => { p.Type<DateTimeType>(); });
+            this.Property(o => o.LastLogin, p => {p.Type<DateTimeType>(); });
+            this.Property(o => o.InvalidPasswordDate, p => {p.Type<DateTimeType>(); });
+            this.Property(o => o.InvalidPasswordCount);
+            this.Property(o => o.Salt, p => {p.Length(256); });
+            this.Property(o => o.PasswordReset);
+            
             this.Bag(
                 o => o.Trips,
                 p =>
