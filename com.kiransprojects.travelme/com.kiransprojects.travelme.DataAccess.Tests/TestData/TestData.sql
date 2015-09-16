@@ -15,7 +15,14 @@ VALUES
 	'19940805 10:00:00 AM',
 	'Kiran@test.com',
 	'password',
-	null
+	null,
+	'tester',
+	'19940805 10:00:00 AM',
+	'19940805 10:00:00 AM',
+	'19940805 10:00:00 AM',
+	2,
+	'test',
+	0
 )
 GO
 INSERT INTO Trip
@@ -58,7 +65,14 @@ VALUES
 	'19940805 10:00:00 AM',
 	'SecondEntity',
 	'SecondEntity',
-	null
+	null,
+	'tester',
+	'19940805 10:00:00 AM',
+	'19940805 10:00:00 AM',
+	'19940805 10:00:00 AM',
+	2,
+	'salt',
+	0
 )
 GO
 INSERT INTO UserEntity VALUES
@@ -69,7 +83,14 @@ INSERT INTO UserEntity VALUES
 	'19940805 10:00:00 AM',
 	'email',
 	'password',
-	null
+	null,
+	'tester',
+	'19940805 10:00:00 AM',
+	'19940805 10:00:00 AM',
+	'19940805 10:00:00 AM',
+	2,
+	'salt',
+	0
 )
 
 INSERT INTO Trip VALUES

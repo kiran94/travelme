@@ -171,7 +171,7 @@
         /// Ensures that trying to store a null entity will throw an exception
         /// </summary>
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void Update_NullEntity_ExceptionThrown()
         {
             TripRepository Repository = new TripRepository(helper);
