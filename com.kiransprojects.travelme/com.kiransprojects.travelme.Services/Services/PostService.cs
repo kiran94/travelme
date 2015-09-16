@@ -30,11 +30,15 @@
         /// <summary>
         /// File Service
         /// </summary>
-        private readonly IFileService _fileService = null; 
+        private readonly IFileService _fileService = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PostService"/> class.
         /// </summary>
+        /// <param name="postRepository">Post Repository</param>
+        /// <param name="loggerService">Logger Service</param>
+        /// <param name="mediaService">Media Service</param>
+        /// <param name="fileService">File Service</param>
         public PostService(
             IRepository<Post> postRepository, 
             ILoggerService loggerService,
@@ -105,8 +109,7 @@
             }
             catch(Exception e)
             {
-                Log log = new Log(e.Message, true);
-                this._logger.Log(log);
+                this._logger.Log(new Log(e.Message, true));
                 return false; 
             }
         }
@@ -130,8 +133,7 @@
             }
             catch(Exception e)
             {
-                Log log = new Log(e.Message, true);
-                this._logger.Log(log);
+                this._logger.Log(new Log(e.Message, true));
                 return false; 
             }
         }
@@ -155,8 +157,7 @@
             }
             catch(Exception e)
             {
-                Log log = new Log(e.Message, true);
-                this._logger.Log(log);
+                this._logger.Log(new Log(e.Message, true));
                 return false; 
             }
         }

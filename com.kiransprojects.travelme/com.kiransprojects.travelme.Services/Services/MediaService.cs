@@ -19,12 +19,16 @@
         /// <summary>
         /// Logger Service
         /// </summary>
-        private readonly ILoggerService _loggerService; 
+        private readonly ILoggerService _loggerService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaService"/> class.
         /// </summary>
-        public MediaService(IRepository<Media> repository, ILoggerService loggerService)
+        /// <param name="repository">Media Repository</param>
+        /// <param name="loggerService">Logger Service</param>
+        public MediaService(
+            IRepository<Media> repository, 
+            ILoggerService loggerService)
         {
             if(repository == null)
             {

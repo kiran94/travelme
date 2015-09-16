@@ -25,7 +25,12 @@
         /// <summary>
         /// Mail Service
         /// </summary>
-        private readonly IMailService _mailService = null; 
+        private readonly IMailService _mailService = null;
+
+        /// <summary>
+        /// Logge Service
+        /// </summary>
+        private readonly ILoggerService _loggerService = null; 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginService"/> class.
@@ -33,29 +38,37 @@
         /// <param name="repository">User Repository</param>
         /// <param name="passwordService">Password Service</param>
         /// <param name="mailService">Mail Service</param>
+        /// <param name="loggerService">Logger Service</param>
         public LoginService(
             IUserEntityRepository repository, 
             IPasswordService passwordService,
-            IMailService mailService)
+            IMailService mailService, 
+            ILoggerService loggerService)
         {
             if (repository == null)
             {
-                throw new NotImplementedException("Login Repository");
+                throw new ArgumentNullException("Login Repository");
             }
 
             if(passwordService == null)
             {
-                throw new NotImplementedException("Password Service");
+                throw new ArgumentNullException("Password Service");
             }
 
             if (mailService == null)
             {
-                throw new NotImplementedException("Password Service");
+                throw new ArgumentNullException("Mail Service");
+            }
+
+            if (loggerService == null)
+            {
+                throw new ArgumentNullException("Logger Service");
             }
 
             this._repository = repository;
             this._passwordService = passwordService;
-            this._mailService = mailService; 
+            this._mailService = mailService;
+            this._loggerService = loggerService; 
         }
 
         /// <summary>
@@ -83,8 +96,10 @@
 
             List<string> toList = new List<string>(); 
             toList.Add(User.Email);
+
             if(this._mailService.SendMessage(toList, "travelme", "Registration Confirmation", "You have been successfully registered", false))
             {
+                this._loggerService.Log(new Log("Registration Email Sent!", false));
                 return User; 
             }
 

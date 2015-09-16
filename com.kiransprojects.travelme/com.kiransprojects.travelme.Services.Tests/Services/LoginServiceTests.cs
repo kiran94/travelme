@@ -28,7 +28,8 @@
 
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
             Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
-            Mock<IMailService> mailService = new Mock<IMailService>(); 
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
             repository.Setup(o => o.Insert(It.IsAny<UserEntity>()));
             repository.Setup(o => o.isEmailInUse(It.IsAny<string>())).Returns(false);
@@ -41,7 +42,11 @@
                 It.IsAny<bool>()))
                 .Returns(true);
 
-            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
+            LoginService service = new LoginService(
+                                        repository.Object, 
+                                        passwordService.Object, 
+                                        mailService.Object, 
+                                        loggerService.Object);
 
             entity = service.RegisterUser(entity);
 
@@ -57,12 +62,16 @@
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
             Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
             Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            repository.Setup(o => o.isEmailInUse(It.IsAny<string>())).Returns(true); 
+            repository.Setup(o => o.isEmailInUse(It.IsAny<string>())).Returns(true);
 
-            LoginService service = new LoginService(repository.Object,
-                                                    passwordService.Object,
-                                                    mailService.Object); 
+            LoginService service = new LoginService(
+                                      repository.Object,
+                                      passwordService.Object,
+                                      mailService.Object,
+                                      loggerService.Object);
+
             UserEntity user = new UserEntity();
             user.ID = Guid.NewGuid(); 
             user.FirstName = "Test"; 
@@ -82,13 +91,17 @@
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
             Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
             Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
             repository.Setup(o => o.isEmailInUse(It.IsAny<string>())).Returns(false); 
             passwordService.SetupSequence(o => o.GenerateCredentials(It.IsAny<UserEntity>())).Returns(null);
 
-             LoginService service = new LoginService(repository.Object,
-                                                    passwordService.Object,
-                                                    mailService.Object); 
+            LoginService service = new LoginService(
+                                       repository.Object,
+                                       passwordService.Object,
+                                       mailService.Object,
+                                       loggerService.Object);
+
             UserEntity user = new UserEntity();
             user.ID = Guid.NewGuid(); 
             user.FirstName = "Test"; 
@@ -108,10 +121,13 @@
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
             Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
             Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
 
-            LoginService service = new LoginService(repository.Object,
-                                                   passwordService.Object,
-                                                   mailService.Object);
+            LoginService service = new LoginService(
+                                      repository.Object,
+                                      passwordService.Object,
+                                      mailService.Object,
+                                      loggerService.Object);
    
             UserEntity retuser = service.RegisterUser(null);
             Assert.IsNull(retuser);
@@ -125,12 +141,18 @@
         {
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
             Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
-            Mock<IMailService> mailService = new Mock<IMailService>(); 
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
             string Role; 
             repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
 
-            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
+            LoginService service = new LoginService(
+                                      repository.Object,
+                                      passwordService.Object,
+                                      mailService.Object,
+                                      loggerService.Object);
+
             bool flag = service.SignIn("test@test.com", "123", out Role);
 
             Assert.IsTrue(flag);
@@ -144,12 +166,18 @@
         {
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
             Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
-            Mock<IMailService> mailService = new Mock<IMailService>(); 
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
             string Role;
             repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
 
-            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
+            LoginService service = new LoginService(
+                                       repository.Object,
+                                       passwordService.Object,
+                                       mailService.Object,
+                                       loggerService.Object);
+
             bool flag = service.SignIn(null, "123", out Role);
 
             Assert.IsFalse(flag);
@@ -163,12 +191,18 @@
         {
             Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
             Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
-            Mock<IMailService> mailService = new Mock<IMailService>(); 
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
             string Role;
             repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
 
-            LoginService service = new LoginService(repository.Object, passwordService.Object, mailService.Object);
+            LoginService service = new LoginService(
+                                      repository.Object,
+                                      passwordService.Object,
+                                      mailService.Object,
+                                      loggerService.Object);
+
             bool flag = service.SignIn("test@test.com", null, out Role);
 
             Assert.IsFalse(flag);

@@ -21,15 +21,15 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MailService"/> class.
         /// </summary>
-        /// <param name="service">Logger Service</param>
-        public MailService(ILoggerService service)
+        /// <param name="logger">Logger Service</param>
+        public MailService(ILoggerService logger)
         {
-            if(service == null)
+            if (logger == null)
             {
-                throw new ArgumentNullException("Logger"); 
+                throw new ArgumentNullException("Logger Service, Mail Service"); 
             }
 
-            this._logger = service; 
+            this._logger = logger; 
         }
 
 

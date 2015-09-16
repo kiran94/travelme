@@ -7,7 +7,8 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Logger Service
+    /// Logger Service 
+    /// Service will make use of Console.WriteLine Methods as the loggerservice cannot log itself
     /// </summary>
     public class LoggerService : ILoggerService
     {
@@ -24,6 +25,7 @@
         {
             if(repository == null)
             {
+                Console.WriteLine("ArgumentNullException: LoggerRepository Null");
                 throw new ArgumentNullException("Logger Repository null"); 
             }
 
@@ -45,7 +47,7 @@
             }
             catch(Exception e)
             {
-                Console.Write(e.Message);
+                Console.WriteLine("Error: ", e.Message);
                 return false; 
             }
         }
@@ -56,6 +58,7 @@
         /// <returns>List of all logs in the repository</returns>
         public IList<Log> GetLogs()
         {
+            Console.WriteLine("Logs Retrieved");
             return this._repository.GetAll(); 
         }
 

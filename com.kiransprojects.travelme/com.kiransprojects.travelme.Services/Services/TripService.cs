@@ -21,11 +21,13 @@
         /// <summary>
         /// Logger Service
         /// </summary>
-        private readonly ILoggerService _loggerService = null; 
+        private readonly ILoggerService _loggerService = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TripService"/> class.
         /// </summary>
+        /// <param name="TripRepository">Trip Repository</param>
+        /// <param name="LoggerService">Logger Service</param>
         public TripService(
             ITripRepository TripRepository,
             ILoggerService LoggerService)
@@ -157,7 +159,6 @@
                 }
 
                 return Locations;
-
             }
 
             return null;

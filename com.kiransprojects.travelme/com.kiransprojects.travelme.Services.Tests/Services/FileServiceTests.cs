@@ -1,6 +1,9 @@
 ﻿namespace com.kiransprojects.travelme.Services.Tests.Services
 {
+    using com.kiransprojects.travelme.Framework.Entities;
+    using com.kiransprojects.travelme.Services.Interfaces;
     using com.kiransprojects.travelme.Services.Services;
+    using Moq;
     using NUnit.Framework;
     using System; 
 
@@ -26,7 +29,10 @@
         [SetUp]
         public void Setup()
         {
-            FileService Service = new FileService();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+            loggerService.SetupSequence(o => o.Log(It.IsAny<Log>())).Returns(true);
+
+            FileService Service = new FileService(loggerService.Object);
             Service.SaveMedia(StoredMedia, data); 
         }
 
@@ -36,7 +42,10 @@
         [Test]
         public void SaveMedia_NormalCase_Saved()
         {
-            FileService Service = new FileService();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+            loggerService.SetupSequence(o => o.Log(It.IsAny<Log>())).Returns(true);
+
+            FileService Service = new FileService(loggerService.Object);
             string path = "/test.txt";
             bool flag = Service.SaveMedia(path, new byte[1]);
             Assert.IsTrue(flag); 
@@ -48,7 +57,11 @@
         [Test]
         public void GetMedia_NormalCase_Saved()
         {
-            FileService Service = new FileService();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+            loggerService.SetupSequence(o => o.Log(It.IsAny<Log>())).Returns(true);
+
+            FileService Service = new FileService(loggerService.Object);
+
             byte[] retrieved = Service.GetMedia(this.StoredMedia);
             Assert.AreEqual("System.Byte[]", retrieved.ToString()); 
         }
@@ -59,7 +72,10 @@
         [Test]
         public void DeleteMedia_NormalCase_Deleted()
         {
-            FileService Service = new FileService();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+            loggerService.SetupSequence(o => o.Log(It.IsAny<Log>())).Returns(true);
+
+            FileService Service = new FileService(loggerService.Object);
             bool flag = Service.DeleteMedia(this.StoredMedia);
             Assert.IsTrue(flag); 
         }
