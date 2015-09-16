@@ -127,11 +127,33 @@
         /// <summary>
         /// Allows the user to reset thier password
         /// </summary>
-        /// <param name="Email"></param>
-        /// <returns></returns>
+        /// <param name="Email">Email of user to send too</param>
+        /// <returns>Flag indicating if email was sent successfully</returns>
         public bool ForgotPassword(string Email)
         {
-            throw new NotImplementedException();
+            if(string.IsNullOrEmpty(Email))
+            {
+                return false; 
+            }
+
+            UserEntity user = this._repository.GetByEmail(Email);
+
+            if(user == null)
+            {
+                return false; 
+            }
+
+            user.PasswordReset = true; 
+            IList<string> to = new List<string>(); 
+            to.Add(Email);
+            string body = "";
+
+            if(_mailService.SendMessage(to, "travelme", "Password Reset", body, false))
+            {
+                Log log = new Log(string.Format("Password Reset sent for {0} to {1}", user.ID, user.Email));
+                this._loggerService.Log(new Log(log));
+            }
+
         }
     }
 }

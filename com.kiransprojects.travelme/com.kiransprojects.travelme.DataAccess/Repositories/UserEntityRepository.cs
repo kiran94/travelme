@@ -71,5 +71,30 @@
                 }
             }
         }
+
+        /// <summary>
+        /// Gets a user by an email
+        /// </summary>
+        /// <param name="Email">Email to search by</param>
+        /// <returns>User Entity</returns>
+        public UserEntity GetByEmail(string Email)
+        {
+            using (ISession session = this.helper.GetSession())
+            {
+                using(ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<UserEntity> users = session.QueryOver<UserEntity>()
+                        .Where(o => o.Email.Equals(Email))
+                        .List();
+
+                    if(users != null && users[0] != null)
+                    {
+                        return users[0];
+                    }
+
+                    return null; 
+                }
+            }
+        }
     }
 }

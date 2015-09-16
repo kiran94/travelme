@@ -207,5 +207,97 @@
 
             Assert.IsFalse(flag);
         }
+
+        /// <summary>
+        /// Ensures when an email is sent, email is sent out
+        /// </summary>
+        [Test]
+        public void ForgotPassword_NormalEmail_True()
+        {
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+
+            UserEntity user = new UserEntity(); 
+            user.ID = Guid.NewGuid(); 
+            user.FirstName = "Test";
+
+            repository.Setup(o => o.GetByEmail(It.IsAny<string>())).Returns(user);
+
+            LoginService service = new LoginService(
+                                  repository.Object,
+                                  passwordService.Object,
+                                  mailService.Object,
+                                  loggerService.Object);
+
+            bool flag = service.ForgotPassword("test@test.com");
+            Assert.IsTrue(flag);
+        }
+
+        /// <summary>
+        /// Ensures when an email is sent, email is sent out
+        /// </summary>
+        [Test]
+        public void ForgotPassword_NonExistingUser_True()
+        {
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+
+            repository.SetupSequence(o => o.GetByEmail(It.IsAny<string>())).Returns(null);
+
+            LoginService service = new LoginService(
+                                  repository.Object,
+                                  passwordService.Object,
+                                  mailService.Object,
+                                  loggerService.Object);
+
+            bool flag = service.ForgotPassword("test@test.com");
+            Assert.IsFalse(flag);
+        }
+
+        /// <summary>
+        /// Ensures false is returned when email is stringempty
+        /// </summary>
+        [Test]
+        public void ForgotPassword_stringEmpty_False()
+        {
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+
+            LoginService service = new LoginService(
+                                  repository.Object,
+                                  passwordService.Object,
+                                  mailService.Object,
+                                  loggerService.Object);
+
+            bool flag = service.ForgotPassword(string.Empty);
+            Assert.IsFalse(flag);
+        }
+
+        /// <summary>
+        /// Ensures false is returned when email is null
+        /// </summary>
+        [Test]
+        public void ForgotPassword_null_False()
+        {
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+
+            LoginService service = new LoginService(
+                                  repository.Object,
+                                  passwordService.Object,
+                                  mailService.Object,
+                                  loggerService.Object);
+
+            bool flag = service.ForgotPassword(null);
+            Assert.IsFalse(flag);
+        }
     }
 }

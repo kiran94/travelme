@@ -22,5 +22,12 @@
         /// <param name="Email">Email to check</param>
         /// <returns>Flag indicating if email exists</returns>
         bool isEmailInUse(string Email);
+
+        /// <summary>
+        /// Retrieves a user by an email
+        /// </summary>
+        /// <param name="Email">Email to filter by</param>
+        /// <returns>User Entity</returns>
+        UserEntity GetByEmail(string Email); 
     }
 }
