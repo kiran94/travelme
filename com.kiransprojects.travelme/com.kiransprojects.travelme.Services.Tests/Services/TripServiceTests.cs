@@ -2,6 +2,7 @@
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
+    using com.kiransprojects.travelme.Services.Interfaces;
     using com.kiransprojects.travelme.Services.Services;
     using Moq;
     using NUnit.Framework;
@@ -30,11 +31,12 @@
                 trips.Add(trip);
             }
 
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
+
             TripRepository.Setup(o => o.GetTrips(It.IsAny<Guid>())).Returns(trips);
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             IList<Trip> list = Service.GetTrips(Guid.NewGuid());
             Assert.AreEqual(trips, list);
         }
@@ -45,11 +47,12 @@
         [Test]
         public void GetTrips_NonExisting_Null()
         {
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
+
             TripRepository.SetupSequence(o => o.GetTrips(It.IsAny<Guid>())).Returns(null);
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             IList<Trip> list = Service.GetTrips(Guid.NewGuid());
             Assert.IsNull(list);
         }
@@ -60,11 +63,12 @@
         [Test]
         public void AddTrip_NonExistingEntity_Added()
         {
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
-            Repository.Setup(o => o.Insert(It.IsAny<Trip>()));
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripRepository.Setup(o => o.Insert(It.IsAny<Trip>()));
+
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             Trip trip = new Trip()
             {
                 ID = Guid.NewGuid()
@@ -79,11 +83,12 @@
         [Test]
         public void AddTrip_ExistingEntity_NotAdded()
         {
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
-            Repository.Setup(o => o.Insert(It.IsAny<Trip>())).Throws<Exception>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripRepository.Setup(o => o.Insert(It.IsAny<Trip>())).Throws<Exception>();
+
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             Trip trip = new Trip()
             {
                 ID = Guid.NewGuid()
@@ -103,12 +108,13 @@
                 ID = Guid.NewGuid()
             };
 
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
-            Repository.Setup(o => o.Update(It.IsAny<Trip>(), true));
-            Repository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(trip);
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripRepository.Setup(o => o.Update(It.IsAny<Trip>(), true));
+            TripRepository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(trip);
+
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
 
             Trip Retrieved = Service.EditTrip(trip);
             Assert.AreEqual(trip, Retrieved);
@@ -126,12 +132,13 @@
 
             };
 
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
-            Repository.Setup(o => o.Update(It.IsAny<Trip>(), true));
-            Repository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(null);
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripRepository.Setup(o => o.Update(It.IsAny<Trip>(), true));
+            TripRepository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(null);
+
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             Trip Result = Service.EditTrip(trip);
 
             Assert.AreEqual(null, Result);
@@ -143,10 +150,10 @@
         [Test]
         public void Delete_NullEntity_ReturnsFalse()
         {
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             bool Result = Service.DeleteTrip(null);
             Assert.IsFalse(Result);
         }
@@ -163,12 +170,12 @@
 
             };
 
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            Repository.Setup(o => o.Delete(It.IsAny<Trip>()));
-            Repository.SetupSequence(o => o.GetByID(trip.ID)).Returns(trip);
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripRepository.Setup(o => o.Delete(It.IsAny<Trip>()));
+            TripRepository.SetupSequence(o => o.GetByID(trip.ID)).Returns(trip);
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
 
             Assert.IsTrue(Service.DeleteTrip(trip));
         }
@@ -185,14 +192,12 @@
                 ID = Guid.NewGuid()
 
             };
-
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            Repository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(null);
+            TripRepository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(null);
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
-
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             Assert.IsFalse(Service.DeleteTrip(trip));
         }
 
@@ -228,12 +233,12 @@
             trip.Posts.Add(Posts1);
             trip.Posts.Add(Posts2);
 
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            Repository.Setup(o => o.GetByID(It.IsAny<Guid>())).Returns(trip); 
+            TripRepository.Setup(o => o.GetByID(It.IsAny<Guid>())).Returns(trip);
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
 
             IList<Location> Locations = Service.GetLocations(Guid.NewGuid());
 
@@ -246,11 +251,12 @@
         [Test]
         public void GetLocations_NonExistingTrip_NullReturn()
         {
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
-            Mock<ITripRepository> TripRepository = new Mock<ITripRepository>(); 
-            Repository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(null); 
+            Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripRepository.SetupSequence(o => o.GetByID(It.IsAny<Guid>())).Returns(null);
+
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
             IList<Location> Locations = Service.GetLocations(Guid.NewGuid());
 
             Assert.IsNull(Locations); 
@@ -269,12 +275,12 @@
                 Posts = new List<Post>(),
             };
 
-            Mock<IRepository<Trip>> Repository = new Mock<IRepository<Trip>>();
             Mock<ITripRepository> TripRepository = new Mock<ITripRepository>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            Repository.Setup(o => o.GetByID(It.IsAny<Guid>())).Returns(trip);
+            TripRepository.Setup(o => o.GetByID(It.IsAny<Guid>())).Returns(trip);
 
-            TripService Service = new TripService(Repository.Object, TripRepository.Object);
+            TripService Service = new TripService(TripRepository.Object, loggerService.Object);
 
             IList<Location> Locations = Service.GetLocations(tripID);
             Assert.IsEmpty(Locations); 

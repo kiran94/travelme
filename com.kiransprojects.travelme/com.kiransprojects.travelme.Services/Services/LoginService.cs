@@ -30,6 +30,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginService"/> class.
         /// </summary>
+        /// <param name="repository">User Repository</param>
+        /// <param name="passwordService">Password Service</param>
+        /// <param name="mailService">Mail Service</param>
         public LoginService(
             IUserEntityRepository repository, 
             IPasswordService passwordService,

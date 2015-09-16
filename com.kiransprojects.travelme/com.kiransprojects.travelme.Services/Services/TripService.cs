@@ -3,6 +3,7 @@
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Service.Interfaces;
+    using com.kiransprojects.travelme.Services.Interfaces;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -13,31 +14,36 @@
     public class TripService : ITripService
     {
         /// <summary>
-        /// Trip Repository
-        /// </summary>
-        private readonly IRepository<Trip> _repository = null;
-
-        /// <summary>
         /// Trip Repository Methods
         /// </summary>
         private readonly ITripRepository _tripRepository = null;
 
         /// <summary>
+        /// Logger Service
+        /// </summary>
+        private readonly ILoggerService _loggerService = null; 
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TripService"/> class.
         /// </summary>
-        public TripService(IRepository<Trip> Repository, ITripRepository TripRepository)
+        public TripService(
+            ITripRepository TripRepository,
+            ILoggerService LoggerService)
         {
-            if (Repository == null)
-            {
-                throw new NullReferenceException("Trip Repository, Null Repository");
-            }
             if (TripRepository == null)
             {
+                this._loggerService.Log(new Log("NullReferenceException: Trip Repository in Trip Service", true));
                 throw new NullReferenceException("Trip Repository, Null Trip Repository");
             }
 
-            this._repository = Repository;
+            if (LoggerService == null)
+            {
+                this._loggerService.Log(new Log("NullReferenceException: Logger Service in Trip Service", true));
+                throw new NullReferenceException("Logger Service, Null Logger Service");
+            }
+
             this._tripRepository = TripRepository;
+            this._loggerService = LoggerService;
         }
 
         /// <summary>
@@ -66,12 +72,12 @@
 
             try
             {
-                this._repository.Insert(trip);
+                this._tripRepository.Insert(trip);
                 return true;
             }
             catch (Exception e)
             {
-                Console.Write(e.Message);
+                this._loggerService.Log(new Log(e.Message, true));
                 return false;
             }
         }
@@ -90,15 +96,15 @@
 
             try
             {
-                if (this._repository.GetByID(trip.ID) != null)
+                if (this._tripRepository.GetByID(trip.ID) != null)
                 {
-                    this._repository.Update(trip, true);
+                    this._tripRepository.Update(trip, true);
                     return trip;
                 }
             }
             catch (Exception e)
             {
-                Console.Write(e.Message);
+                this._loggerService.Log(new Log(e.Message, true));
             }
 
             return null;
@@ -111,19 +117,19 @@
         /// <returns>flag indicating if trip was successfull</returns>
         public bool DeleteTrip(Trip trip)
         {
-            if (trip == null || this._repository.GetByID(trip.ID) == null)
+            if (trip == null || this._tripRepository.GetByID(trip.ID) == null)
             {
                 return false;
             }
 
             try
             {
-                this._repository.Delete(trip);
+                this._tripRepository.Delete(trip);
                 return true;
             }
             catch (Exception e)
             {
-                Console.Write(e.Message);
+                this._loggerService.Log(new Log(e.Message, true));
                 return false;
             }
         }
@@ -135,7 +141,7 @@
         /// <returns>List of Locations</returns>
         public IList<Location> GetLocations(Guid ID)
         {
-            Trip trip = this._repository.GetByID(ID);
+            Trip trip = this._tripRepository.GetByID(ID);
             if (trip != null)
             {
                 IList<Location> Locations = new List<Location>();

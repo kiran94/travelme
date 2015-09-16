@@ -1,5 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.Services.Services
 {
+    using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Services.Interfaces;
     using System;
     using System.IO;
@@ -9,6 +10,26 @@
     /// </summary>
     public class FileService : IFileService
     {
+        /// <summary>
+        /// Logger Service
+        /// </summary>
+        private readonly ILoggerService _logger; 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginService"/> class.
+        /// </summary>
+        public FileService(ILoggerService logger)
+        {
+            if (logger == null)
+            {
+                //if logger cannot be initialised then console.write
+                Console.Write("ArgumentNullException: ILoggerService in FileService");
+                throw new ArgumentNullException("ArgumentNullException: ILoggerService in FileService");
+            }
+
+            this._logger = logger; 
+        }
+
         /// <summary>
         /// Saves media to the path
         /// </summary>
@@ -23,11 +44,12 @@
                 Writer = new StreamWriter(path);
                 Writer.WriteLine(picture.ToString());
                 Writer.Close();
+                this._logger.Log(new Log(string.Format("Data stored at {0}",path), false));
                 return true; 
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message); 
+                this._logger.Log(new Log(e.Message, true)); 
                 return false; 
             }
         }
@@ -47,11 +69,12 @@
                 Reader.Close();
 
                 byte[] picture = System.Text.Encoding.UTF8.GetBytes(string_picture);
+                this._logger.Log(new Log(string.Format("Data Retrieved from {0}", path), false));
                 return picture; 
             }
             catch(Exception e)
             {
-                Console.Write(e.Message);
+                this._logger.Log(new Log(e.Message, true)); 
                 return null; 
             }
         }
@@ -67,13 +90,14 @@
             {
                 if (File.Exists(path))
                 {
+                    this._logger.Log(new Log(string.Format("Data Deleted from {0}", path), false));
                     File.Delete(path);
                     return true; 
                 }
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                this._logger.Log(new Log(e.Message, true)); 
             }
             return false; 
         }
