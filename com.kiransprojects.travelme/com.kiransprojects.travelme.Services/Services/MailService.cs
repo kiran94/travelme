@@ -64,7 +64,7 @@
             {
                 builder.Append(to[i]);
 
-                if(i!=to.Count-1)
+                if(i != to.Count-1)
                 {
                      builder.Append(",");
                 }

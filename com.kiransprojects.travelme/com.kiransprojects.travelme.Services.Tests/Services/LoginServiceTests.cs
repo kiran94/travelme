@@ -7,6 +7,7 @@
     using Moq;
     using NUnit.Framework;
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// LoginService Tests
@@ -209,6 +210,73 @@
         }
 
         /// <summary>
+        /// Ensures false is returned when the wrong credentials are sent
+        /// </summary>
+        [Test]
+        public void SignIn_WrongCredentails_False()
+        {
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+
+            string Role;
+            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(false);
+            repository.Setup(o => o.Update(It.IsAny<UserEntity>(), false));
+
+
+            UserEntity user = new UserEntity(); 
+            user.ID = Guid.NewGuid(); 
+            user.FirstName = "Test";
+
+            repository.Setup(o => o.GetByEmail(It.IsAny<string>())).Returns(user);
+
+            LoginService service = new LoginService(
+                                      repository.Object,
+                                      passwordService.Object,
+                                      mailService.Object,
+                                      loggerService.Object);
+
+            bool flag = service.SignIn("test@test.com", "123", out Role);
+
+            Assert.IsFalse(flag);
+        }
+
+        /// <summary>
+        /// Ensures false is returned when the wrong credentials with existing count are sent
+        /// </summary>
+        [Test]
+        public void SignIn_WrongCredentailsWithExistingCount_False()
+        {
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>();
+            Mock<IMailService> mailService = new Mock<IMailService>();
+            Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
+
+            string Role;
+            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(false);
+            repository.Setup(o => o.Update(It.IsAny<UserEntity>(), false));
+
+
+            UserEntity user = new UserEntity();
+            user.ID = Guid.NewGuid();
+            user.FirstName = "Test";
+            user.InvalidPasswordCount = 1; 
+
+            repository.Setup(o => o.GetByEmail(It.IsAny<string>())).Returns(user);
+
+            LoginService service = new LoginService(
+                                      repository.Object,
+                                      passwordService.Object,
+                                      mailService.Object,
+                                      loggerService.Object);
+
+            bool flag = service.SignIn("test@test.com", "123", out Role);
+
+            Assert.IsFalse(flag);
+        }
+
+        /// <summary>
         /// Ensures when an email is sent, email is sent out
         /// </summary>
         [Test]
@@ -219,11 +287,14 @@
             Mock<IMailService> mailService = new Mock<IMailService>();
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
 
+            mailService.Setup(o => o.SendMessage(It.IsAny<List<string>>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<bool>())).Returns(true);
+
             UserEntity user = new UserEntity(); 
             user.ID = Guid.NewGuid(); 
             user.FirstName = "Test";
 
             repository.Setup(o => o.GetByEmail(It.IsAny<string>())).Returns(user);
+            loggerService.Setup(o => o.Log(It.IsAny<Log>()));
 
             LoginService service = new LoginService(
                                   repository.Object,

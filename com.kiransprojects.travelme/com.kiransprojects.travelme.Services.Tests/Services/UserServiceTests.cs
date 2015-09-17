@@ -20,7 +20,7 @@
         [Test]
         public void Constructor_RepositoryInjected_PropertySet()
         {
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Mock<IFileService> FileService = new Mock<IFileService>();
             Mock<ILoggerService> LoggerService = new Mock<ILoggerService>(); 
 
@@ -48,7 +48,7 @@
         [ExpectedException(typeof(NullReferenceException))]
         public void Constructor_FileServiceNull_ExceptionThrown()
         {
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Mock<ILoggerService> LoggerService = new Mock<ILoggerService>();
 
             UserService Service = new UserService(Repository.Object, null, LoggerService.Object);
@@ -61,7 +61,7 @@
         [ExpectedException(typeof(NullReferenceException))]
         public void Constructor_LoggerNull_ExceptionThrown()
         {
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Mock<IFileService> FileService = new Mock<IFileService>();
 
             UserService Service = new UserService(null, FileService.Object, null);
@@ -80,7 +80,7 @@
                 LastName = "Patel"
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(User.ID)).Returns(User);
 
             Mock<IFileService> FileService = new Mock<IFileService>();
@@ -98,7 +98,7 @@
         public void GetUser_NonExistingUser_NullRetrieved()
         {
             Guid ID = Guid.NewGuid();
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(ID)).Returns(null);
 
             Mock<IFileService> FileService = new Mock<IFileService>();
@@ -121,7 +121,7 @@
                 FirstName = "Kiran"
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.Setup(o => o.Update(Entity, false));
             Repository.Setup(o => o.GetByID(Entity.ID)).Returns(Entity);
 
@@ -149,7 +149,7 @@
                 FirstName = "Kiran"
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.Setup(o => o.Update(Entity, false));
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(null);
 
@@ -177,7 +177,7 @@
                 ProfilePicture = "Path/ProfilePicture.jpg"
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(Entity);
             Repository.Setup(o => o.Update(Entity, false));
 
@@ -205,7 +205,7 @@
                 ProfilePicture = "Path/ProfilePicture.jpg"
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(null);
             Repository.Setup(o => o.Update(Entity, false));
 
@@ -233,7 +233,7 @@
                 ProfilePicture = string.Empty
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(Entity);
             Repository.Setup(o => o.Update(Entity, false));
 
@@ -261,7 +261,7 @@
                 ProfilePicture = null
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(Entity);
             Repository.Setup(o => o.Update(Entity, false));
 
@@ -289,7 +289,7 @@
                 ProfilePicture = "OldProfilepicture/pic.jpg"
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(Entity);
             Repository.Setup(o => o.Update(Entity, false));
 
@@ -317,7 +317,7 @@
                 ProfilePicture = "OldProfilepicture/pic.jpg"
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(null);
             Repository.Setup(o => o.Update(null, false));
 
@@ -345,7 +345,7 @@
                 ProfilePicture = string.Empty
             };
 
-            Mock<IRepository<UserEntity>> Repository = new Mock<IRepository<UserEntity>>();
+            Mock<IUserEntityRepository> Repository = new Mock<IUserEntityRepository>();
             Repository.SetupSequence(o => o.GetByID(Entity.ID)).Returns(Entity);
             Repository.Setup(o => o.Update(Entity, false));
 

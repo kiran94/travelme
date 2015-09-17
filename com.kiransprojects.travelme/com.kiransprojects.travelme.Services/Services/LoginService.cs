@@ -121,7 +121,18 @@
                 return false;
             }
 
-            return this._repository.Authenticate(Email, Password, out Role);
+            if(this._repository.Authenticate(Email, Password, out Role))
+            {
+                return true; 
+            }
+            else
+            {
+                UserEntity user = this._repository.GetByEmail(Email);
+                user.InvalidPasswordCount++;
+                user.InvalidPasswordDate = DateTime.Now;
+                this._repository.Update(user, false);
+                return false; 
+            }
         }
 
         /// <summary>
@@ -143,17 +154,20 @@
                 return false; 
             }
 
-            user.PasswordReset = true; 
+            user.PasswordReset = true;
             IList<string> to = new List<string>(); 
             to.Add(Email);
+
             string body = "";
 
             if(_mailService.SendMessage(to, "travelme", "Password Reset", body, false))
             {
                 Log log = new Log(string.Format("Password Reset sent for {0} to {1}", user.ID, user.Email));
-                this._loggerService.Log(new Log(log));
+                this._loggerService.Log(log);
+                return true; 
             }
 
+            return false; 
         }
     }
 }

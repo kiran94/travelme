@@ -1,4 +1,4 @@
-﻿namespace com.kiransprojects.travelme.Service
+﻿namespace com.kiransprojects.travelme.Services.Services
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
@@ -33,7 +33,7 @@
         /// <param name="FileService">File Service</param>
         /// <param name="LoggerService">Logger Service</param>
         public UserService(
-            IRepository<UserEntity> Repository,
+            IUserEntityRepository Repository,
             IFileService FileService,
             ILoggerService LoggerService)
         {

@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,11 +219,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\com.kiransprojects.travelme.Framework\com.kiransprojects.travelme.Framework.csproj">
+      <Project>{724d9e3d-d242-43b7-8cc1-5299fba167e1}</Project>
+      <Name>com.kiransprojects.travelme.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\com.kiransprojects.travelme.Services\com.kiransprojects.travelme.Services.csproj">
+      <Project>{6d46c504-4f99-4052-bc3e-a7e98f89ca49}</Project>
+      <Name>com.kiransprojects.travelme.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
