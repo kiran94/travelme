@@ -1,5 +1,6 @@
 namespace com.kiransprojects.travelme.Framework.Entities
 {
+    using com.kiransprojects.travelme.Framework.Enums;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -79,7 +80,7 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets User Role
         /// </summary>
-        public virtual string Role { get; set; }
+        public virtual RoleType Role { get; set; }
 
         /// <summary>
         /// Gets or sets Registered datetime

@@ -49,6 +49,7 @@
     </Compile>
     <Compile Include="Entities\Trip.cs" />
     <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Enums\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

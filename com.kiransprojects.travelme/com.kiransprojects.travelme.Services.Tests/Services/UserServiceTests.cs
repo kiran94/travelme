@@ -2,8 +2,8 @@
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
-    using com.kiransprojects.travelme.Service;
     using com.kiransprojects.travelme.Services.Interfaces;
+    using com.kiransprojects.travelme.Services.Services;
     using Moq;
     using NUnit.Framework;
     using System;

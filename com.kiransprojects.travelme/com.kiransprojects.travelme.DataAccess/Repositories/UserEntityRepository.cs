@@ -42,7 +42,7 @@
                         return false; 
                     }
 
-                    Role =  users[0].Role;
+                    Role =  users[0].Role.ToString();
                     return true; 
                 }
             }
