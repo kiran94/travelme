@@ -91,7 +91,9 @@
     <Compile Include="Services\TripService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Templates\TemplateServiceSingleton.cs" />
-    <None Include="Templates\RegistrationTemplate.cshtml" />
+    <None Include="Templates\RegistrationTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="Templates\RegistrationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -103,9 +103,11 @@
             templateData.ID = User.ID;
             templateData.FirstName = User.FirstName;
             templateData.Email = User.Email;
-            string testBody = "Hello @FirstName, this still has to be configured"; 
+            
+            //File is set to copy to output if newer in properties of file
+            string template = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "RegistrationTemplate.cshtml");
 
-            TemplateServiceSingleton.getInstance().RunCompile(testBody, "CacheID", typeof(RegistrationViewModel), templateData); 
+            TemplateServiceSingleton.getInstance().RunCompile(template, "CacheID", typeof(RegistrationViewModel), templateData); 
 
             if(this._mailService.SendMessage(toList, "travelme", "Registration Confirmation", "You have been successfully registered", false))
             {
