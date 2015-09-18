@@ -4,8 +4,10 @@
     using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Service.Interfaces;
     using com.kiransprojects.travelme.Services.Interfaces;
+    using com.kiransprojects.travelme.Services.Templates;
     using System;
     using System.Collections.Generic;
+    using RazorEngine.Templating; 
 
     /// <summary>
     /// Login Service
@@ -96,6 +98,14 @@
 
             List<string> toList = new List<string>(); 
             toList.Add(User.Email);
+
+            RegistrationViewModel templateData = new RegistrationViewModel();
+            templateData.ID = User.ID;
+            templateData.FirstName = User.FirstName;
+            templateData.Email = User.Email;
+            string testBody = "Hello @FirstName, this still has to be configured"; 
+
+            TemplateServiceSingleton.getInstance().RunCompile(testBody, "CacheID", typeof(RegistrationViewModel), templateData); 
 
             if(this._mailService.SendMessage(toList, "travelme", "Registration Confirmation", "You have been successfully registered", false))
             {
