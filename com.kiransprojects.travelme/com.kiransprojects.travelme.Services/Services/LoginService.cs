@@ -107,6 +107,7 @@
             //File is set to copy to output if newer in properties of file
             string template = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "RegistrationTemplate.cshtml");
 
+            //TODO: This singleton needs to be decoupled from this class
             TemplateServiceSingleton.getInstance().RunCompile(template, "CacheID", typeof(RegistrationViewModel), templateData); 
 
             if(this._mailService.SendMessage(toList, "travelme", "Registration Confirmation", "You have been successfully registered", false))
