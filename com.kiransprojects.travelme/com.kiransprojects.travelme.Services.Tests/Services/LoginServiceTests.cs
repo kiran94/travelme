@@ -145,8 +145,9 @@
             Mock<IMailService> mailService = new Mock<IMailService>();
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
-            string Role; 
-            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
+            string Role;
+            Guid ID;
+            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role, out ID)).Returns(true);
 
             LoginService service = new LoginService(
                                       repository.Object,
@@ -154,7 +155,7 @@
                                       mailService.Object,
                                       loggerService.Object);
 
-            bool flag = service.SignIn("test@test.com", "123", out Role);
+            bool flag = service.SignIn("test@test.com", "123", out Role, out ID);
 
             Assert.IsTrue(flag);
         }
@@ -171,7 +172,8 @@
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
             string Role;
-            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
+            Guid ID;
+            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role, out ID)).Returns(true);
 
             LoginService service = new LoginService(
                                        repository.Object,
@@ -179,7 +181,7 @@
                                        mailService.Object,
                                        loggerService.Object);
 
-            bool flag = service.SignIn(null, "123", out Role);
+            bool flag = service.SignIn(null, "123", out Role, out ID);
 
             Assert.IsFalse(flag);
         }
@@ -196,7 +198,8 @@
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>(); 
 
             string Role;
-            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(true);
+            Guid ID; 
+            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role, out ID)).Returns(true);
 
             LoginService service = new LoginService(
                                       repository.Object,
@@ -204,7 +207,7 @@
                                       mailService.Object,
                                       loggerService.Object);
 
-            bool flag = service.SignIn("test@test.com", null, out Role);
+            bool flag = service.SignIn("test@test.com", null, out Role, out ID);
 
             Assert.IsFalse(flag);
         }
@@ -221,7 +224,8 @@
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
 
             string Role;
-            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(false);
+            Guid ID; 
+            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role, out ID)).Returns(false);
             repository.Setup(o => o.Update(It.IsAny<UserEntity>(), false));
 
 
@@ -237,7 +241,7 @@
                                       mailService.Object,
                                       loggerService.Object);
 
-            bool flag = service.SignIn("test@test.com", "123", out Role);
+            bool flag = service.SignIn("test@test.com", "123", out Role, out ID);
 
             Assert.IsFalse(flag);
         }
@@ -254,7 +258,8 @@
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
 
             string Role;
-            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role)).Returns(false);
+            Guid ID; 
+            repository.Setup(o => o.Authenticate(It.IsAny<string>(), It.IsAny<string>(), out Role, out ID)).Returns(false);
             repository.Setup(o => o.Update(It.IsAny<UserEntity>(), false));
 
 
@@ -271,7 +276,7 @@
                                       mailService.Object,
                                       loggerService.Object);
 
-            bool flag = service.SignIn("test@test.com", "123", out Role);
+            bool flag = service.SignIn("test@test.com", "123", out Role, out ID);
 
             Assert.IsFalse(flag);
         }

@@ -126,15 +126,16 @@
         /// <param name="password">User's Password</param>
         /// <param name="Role">User's Role to be set</param>
         /// <returns>Flag indicating if the user has been authenticated</returns>
-        public bool SignIn(string Email, string Password, out string Role)
+        public bool SignIn(string Email, string Password, out string Role, out Guid ID)
         {
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
             {
                 Role =  string.Empty;
+                ID = Guid.Empty; 
                 return false;
             }
 
-            if(this._repository.Authenticate(Email, Password, out Role))
+            if(this._repository.Authenticate(Email, Password, out Role, out ID))
             {
                 return true; 
             }

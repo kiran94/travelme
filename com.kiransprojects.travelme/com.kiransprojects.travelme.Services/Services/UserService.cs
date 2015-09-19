@@ -151,5 +151,24 @@
         {
             return (this._repository != null) ? true : false;
         }
+
+        /// <summary>
+        /// Updates the given user
+        /// </summary>
+        /// <param name="user">User to update</param>
+        /// <returns>Flag to indicate if successfull</returns>
+        public bool UpdateUser(UserEntity user)
+        {
+            try
+            {
+                this._repository.Update(user, false);
+                return true; 
+            }
+            catch (Exception e)
+            {
+                this._loggerservice.Log(new Log(e.Message, true));
+                return false;
+            }
+        }
     }
 }

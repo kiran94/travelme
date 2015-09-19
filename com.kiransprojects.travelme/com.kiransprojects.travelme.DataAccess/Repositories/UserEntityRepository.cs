@@ -3,6 +3,7 @@
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
     using NHibernate;
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -25,7 +26,7 @@
         /// <param name="password">User's Password</param>
         /// <param name="Role">User's Role to be set</param>
         /// <returns>Flag indicating if the user has been authenticated</returns>
-        public bool Authenticate(string Email, string password, out string Role)
+        public bool Authenticate(string Email, string password, out string Role, out Guid ID)
         {
             using(ISession session = helper.GetSession())
             {
@@ -38,10 +39,12 @@
 
                     if(users == null && users[0] != null)
                     {
+                        ID = Guid.Empty; 
                         Role =  string.Empty;
                         return false; 
                     }
 
+                    ID = users[0].ID; 
                     Role =  users[0].Role.ToString();
                     return true; 
                 }

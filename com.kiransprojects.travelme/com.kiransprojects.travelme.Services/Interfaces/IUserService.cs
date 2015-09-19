@@ -37,5 +37,12 @@
         /// <param name="ID"></param>
         /// <returns></returns>
         bool RemoveProfilePicture(Guid ID); 
+
+        /// <summary>
+        /// Updates the given user
+        /// </summary>
+        /// <param name="user">User to update</param>
+        /// <returns>Flag to indicate if successfull</returns>
+        bool UpdateUser(UserEntity user);
     }
 }
