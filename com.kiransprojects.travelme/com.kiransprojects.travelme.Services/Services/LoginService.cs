@@ -2,12 +2,11 @@
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
-    using com.kiransprojects.travelme.Service.Interfaces;
     using com.kiransprojects.travelme.Services.Interfaces;
     using com.kiransprojects.travelme.Services.Templates;
+    using RazorEngine.Templating;
     using System;
-    using System.Collections.Generic;
-    using RazorEngine.Templating; 
+    using System.Collections.Generic; 
 
     /// <summary>
     /// Login Service

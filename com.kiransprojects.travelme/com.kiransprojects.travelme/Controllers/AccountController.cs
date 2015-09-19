@@ -1,6 +1,5 @@
 ﻿namespace com.kiransprojects.travelme.Controllers
 {
-    using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Models;
     using com.kiransprojects.travelme.Services.Interfaces;
     using System;
@@ -62,6 +61,11 @@
         [HttpGet]
         public ActionResult Login(UserViewModel userViewModel = null)
         {
+            if(userViewModel == null)
+            {
+                return this.View(); 
+            }
+
             return this.View(userViewModel.User); 
         }
 

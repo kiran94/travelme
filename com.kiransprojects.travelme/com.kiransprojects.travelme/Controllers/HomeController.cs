@@ -22,6 +22,7 @@
         /// Displays the home page
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return this.View();

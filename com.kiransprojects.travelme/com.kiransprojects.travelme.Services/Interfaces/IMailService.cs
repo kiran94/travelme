@@ -1,7 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.Services.Interfaces
 {
     using System.Collections.Generic;
-    using System.Net;
     using System.Net.Mail;
 
     /// <summary>

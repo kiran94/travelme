@@ -3,11 +3,6 @@
     using com.kiransprojects.travelme.Services.Templates;
     using NUnit.Framework;
     using RazorEngine.Templating;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     [TestFixture]
     public class TemplateServiceSingletonTests

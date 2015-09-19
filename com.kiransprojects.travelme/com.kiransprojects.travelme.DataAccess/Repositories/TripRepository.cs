@@ -2,11 +2,10 @@
 {
     using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.Framework.Entities;
-    using System;
-    using System.Linq; 
-    using System.Collections.Generic;
     using NHibernate;
-    using System.Collections; 
+    using System;
+    using System.Collections;
+    using System.Collections.Generic; 
 
     /// <summary>
     /// Trip Repository for interacting with the trip table

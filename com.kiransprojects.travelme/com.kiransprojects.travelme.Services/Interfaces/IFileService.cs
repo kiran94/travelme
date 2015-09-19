@@ -1,5 +1,4 @@
-﻿using System.IO;
-namespace com.kiransprojects.travelme.Services.Interfaces
+﻿namespace com.kiransprojects.travelme.Services.Interfaces
 {
     /// <summary>
     /// Contract for file service operations

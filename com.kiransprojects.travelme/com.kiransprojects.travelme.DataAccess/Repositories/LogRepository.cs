@@ -1,6 +1,5 @@
-﻿namespace com.kiransprojects.travelme.DataAccess.Mappings
+﻿namespace com.kiransprojects.travelme.DataAccess.Interfaces
 {
-    using com.kiransprojects.travelme.DataAccess.Interfaces;
     using com.kiransprojects.travelme.DataAccess.Repositories;
     using com.kiransprojects.travelme.Framework.Entities;
 

@@ -1,10 +1,9 @@
 ﻿namespace com.kiransprojects.travelme.DataAccess.Mappings
 {
     using com.kiransprojects.travelme.Framework.Entities;
+    using NHibernate.Mapping.ByCode;
     using NHibernate.Mapping.ByCode.Conformist;
-    using NHibernate.Mapping.ByCode; 
     using NHibernate.Type;
-    using System;
 
     /// <summary>
     /// Maps User Entity object to database table

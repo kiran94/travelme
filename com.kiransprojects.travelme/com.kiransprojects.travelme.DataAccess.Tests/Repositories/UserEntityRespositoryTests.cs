@@ -11,10 +11,10 @@
     using NHibernate.Mapping.ByCode;
     using NUnit.Framework;
     using System;
-    using System.Reflection;
-    using System.Linq;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
 
     /// <summary>
     /// User Entity Respository Tests

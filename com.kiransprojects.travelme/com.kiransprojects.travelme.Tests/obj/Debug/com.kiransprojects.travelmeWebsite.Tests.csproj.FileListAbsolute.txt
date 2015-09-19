@@ -29,7 +29,6 @@ C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.
 C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelmeWebsite.Tests.csprojResolveAssemblyReference.cache
 C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelme.Tests.dll
 C:\Users\kpatel\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelme.Tests.pdb
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelmeWebsite.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\Templates\RegistrationTemplate.cshtml
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\com.kiransprojects.travelme.Tests.dll.config
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\com.kiransprojects.travelme.Tests.dll
@@ -50,7 +49,8 @@ C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.k
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\com.kiransprojects.travelme.DataAccess.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\RazorEngine.dll
-C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\System.Web.Optimization.dll
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\Ninject.Web.Common.dll
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\Ninject.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\NHibernate.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\Iesi.Collections.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\com.kiransprojects.travelme.Framework.pdb
@@ -67,7 +67,10 @@ C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.k
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\com.kiransprojects.travelme.DataAccess.pdb
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\RazorEngine.xml
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\Ninject.Web.Common.xml
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\Ninject.xml
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\NHibernate.xml
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\bin\Debug\Iesi.Collections.xml
+C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelmeWebsite.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelme.Tests.dll
 C:\Users\Kiran\Documents\HomeProjects\travelme\com.kiransprojects.travelme\com.kiransprojects.travelme.Tests\obj\Debug\com.kiransprojects.travelme.Tests.pdb

@@ -1,7 +1,7 @@
 ﻿namespace com.kiransprojects.travelme.DataAccess.Interfaces
 {
-    using System;
     using com.kiransprojects.travelme.Framework.Entities;
+    using System;
     using System.Collections.Generic;
 
     /// <summary>

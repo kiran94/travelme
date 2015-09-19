@@ -1,4 +1,4 @@
-﻿namespace com.kiransprojects.travelme.Service.Interfaces
+﻿namespace com.kiransprojects.travelme.Services.Interfaces
 {
     using com.kiransprojects.travelme.Framework.Entities;
     using System;
