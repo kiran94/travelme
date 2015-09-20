@@ -1,7 +1,41 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Travel Me";
 }
 
-<h2>Index</h2>
+<div id="head">
 
-<p>test</p>
+    <div class="row">
+
+
+        <div class="col-sm-6">
+            <div class="box">
+            <h2></h2>
+            <ul class="signin_option">
+                <li><button class="button">Register</button></li>
+                <li><button class="button">Log In</button></li>
+            </ul>  
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <h2 id="title" data-anijs="if: mouseover, do: pulse animated" class="col-xs-12 col-sm-6">@ViewBag.Title<hr /></h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-6">
+            <ul id="sellingpoints">
+                <li><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-plane fa-3x"></i></li>
+                <li>Track your jouney as often as you like</li>
+
+                <li><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-map fa-3x"></i></li>
+                <li>Map your adventures using location data</li>
+
+                <li><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-share-square-o fa-3x"></i></li>
+                <li>Share you journey with your friends</li>
+            </ul>
+        </div>
+    </div>
+
+</div>

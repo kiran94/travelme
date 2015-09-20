@@ -1,16 +1,25 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
+    @Styles.Render("~/Content/Site.min.css")
+    @Styles.Render("http://anijs.github.io/lib/anicollection/anicollection.css")
 </head>
 <body>
-    @RenderBody()
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+    @Scripts.Render("https://cdn.jsdelivr.net/anijs/0.9.3/anijs-min.js")
 </body>
 </html>

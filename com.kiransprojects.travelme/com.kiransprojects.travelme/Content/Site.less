@@ -1,0 +1,108 @@
+﻿/*Travel Me Style*/
+
+@primary-font: Consolas,monaco,monospace;
+
+@primary-color: #ffa500;
+@primary-text-color: #FFF;
+@dark-color: #000; 
+
+@opacity-level: 30%;
+@opacity-level-button: 80%;
+
+@header-size: 8em;
+@subheader-size: 1.0em;
+
+@default-list-type: none; 
+
+@button-size: 2.0em;
+
+/* Mixins */
+
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+/* Page */
+
+body {
+	font-family: @primary-font;
+}
+
+/*
+	Header
+*/
+
+#head {
+	background-image: url("../Content/res/images/surf.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	min-width: 956px;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#title {
+	color: @primary-text-color;
+	font-size: @header-size;
+}
+
+#sellingpoints
+{
+	color: @primary-text-color; 
+	font-size: @subheader-size;
+
+	li{
+		list-style-type: @default-list-type;
+		margin:1em;  
+	} 
+}
+
+.button
+{
+	font-size: @button-size; 
+	background-color: @primary-color; 
+	color:@primary-text-color;
+	border: none; 
+	padding: .5em;
+
+    @margin : .3em; 
+    margin-top: @margin; 
+    margin-bottom: @margin;  
+	.border-radius
+}
+
+.signin_option
+{
+	li
+		{
+		margin-top: 1em;
+		list-style-type: @default-list-type; 
+	}
+}
+
+.box
+{
+	text-align: center; 
+	background-color: fade(@dark-color, @opacity-level);
+	padding: 0; 
+	width: 50%; 
+	top: 40%; 
+
+	margin: auto auto; 
+    .border-radius;
+
+	h2{
+		color: @primary-color; 
+	} 
+}
