@@ -3,13 +3,17 @@
 
 namespace com.kiransprojects.travelme.App_Start
 {
-    using System;
-    using System.Web;
-
+    using com.kiransprojects.travelme.DataAccess;
+    using com.kiransprojects.travelme.DataAccess.Interfaces;
+    using com.kiransprojects.travelme.DataAccess.Repositories;
+    using com.kiransprojects.travelme.Framework.Entities;
+    using com.kiransprojects.travelme.Services.Interfaces;
+    using com.kiransprojects.travelme.Services.Services;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
+    using System;
+    using System.Web;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +65,27 @@ namespace com.kiransprojects.travelme.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            //Config
+            kernel.Bind<IDatabaseConfig>().To<NhibernateConfigurationSingleton>();
+            kernel.Bind<INhibernateHelper>().To<NhibernateHelper>();
+
+            //Repository
+            kernel.Bind<IUserEntityRepository>().To<UserEntityRepository>();
+            kernel.Bind<ITripRepository>().To<TripRepository>();
+            kernel.Bind<IRepository<Post>>().To<RepositoryBase<Post>>();
+            kernel.Bind<IRepository<Media>>().To<MediaRepository>();
+            kernel.Bind<IRepository<Log>>().To<LogRepository>();
+
+            //Services
+            kernel.Bind<ILoginService>().To<LoginService>();
+            kernel.Bind<ILoggerService>().To<LoggerService>();
+            kernel.Bind<IFileService>().To<IFileService>();
+            kernel.Bind<IMailService>().To<MailService>();
+            kernel.Bind<IMediaService>().To<MediaService>();
+            kernel.Bind<IPasswordService>().To<PasswordService>();
+            kernel.Bind<IPostService>().To<PostService>();
+            kernel.Bind<ITripService>().To<TripService>();
+            kernel.Bind<IUserService>().To<UserService>();
         }        
     }
 }
