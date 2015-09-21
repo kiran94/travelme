@@ -2,7 +2,7 @@
 
 @primary-font: Consolas,monaco,monospace;
 
-@primary-color: #ffa500;
+@primary-color: #ee7600;
 @primary-text-color: #FFF;
 @dark-color: #000;
 
@@ -90,13 +90,17 @@ body {
     border: none;
     padding: .5em;
 
-    @margin: .3em;
-    margin-top: @margin;
-    margin-bottom: @margin;
-    .border-radius
+    @button-size-dim : 5em;
+    width: @button-size-dim; 
+    height: @button-size-dim; 
+    .border-radius;
+
+    margin-top : .75em; 
+    margin-right: 1em; 
 }
 
 .signin_option {
+    top: 50%; 
     li {
         margin-top: 0.5em;
         list-style-type: @default-list-type;
@@ -104,10 +108,12 @@ body {
 }
 
 .box {
-    text-align: center;
     background-color: fade(@dark-color, @opacity-level);
-    width: 40%;
-    margin-top: 2em;
+
+    @box-size : 25em; 
+    width: @box-size; 
+    height: @box-size; 
+    
     margin: 0 auto;
     .border-radius;
    
@@ -116,4 +122,20 @@ body {
         text-align: center;
         margin: 0 auto;
     }
+
+
+    ul
+        
+    {
+        li
+            
+        {
+            text-align: center; 
+            @margin: .3em;
+            margin-top: @margin;
+            margin-bottom: @margin;
+
+        }
+    }
+
 }

@@ -45,28 +45,32 @@ body {
 }
 .button {
   font-size: 2em;
-  background-color: #ffa500;
+  background-color: #ee7600;
   color: #ffffff;
   border: none;
   padding: .5em;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
+  width: 5em;
+  height: 5em;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  margin-top: .75em;
+  margin-right: 1em;
+}
+.signin_option {
+  top: 50%;
 }
 .signin_option li {
   margin-top: 0.5em;
   list-style-type: none;
 }
 .box {
-  text-align: center;
   background-color: rgba(0, 0, 0, 0.3);
-  width: 40%;
-  margin-top: 2em;
+  width: 25em;
+  height: 25em;
   margin: 0 auto;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -76,8 +80,13 @@ body {
   background-clip: padding-box;
 }
 .box h2 {
-  color: #ffa500;
+  color: #ee7600;
   text-align: center;
   margin: 0 auto;
+}
+.box ul li {
+  text-align: center;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
 /*# sourceMappingURL=Site.css.map */

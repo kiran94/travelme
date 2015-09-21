@@ -8,7 +8,7 @@
         object.removeClass("hide").addClass("show");
     }
 
-    var animation_speed = 1000; 
+     var animation_speed = 1000; 
 
     ///Animate Title
     $("#title").fadeIn(animation_speed, function ()
