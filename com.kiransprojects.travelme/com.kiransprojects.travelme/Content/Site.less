@@ -4,7 +4,7 @@
 
 @primary-color: #ffa500;
 @primary-text-color: #FFF;
-@dark-color: #000; 
+@dark-color: #000;
 
 @opacity-level: 30%;
 @opacity-level-button: 80%;
@@ -12,97 +12,108 @@
 @header-size: 8em;
 @subheader-size: 1.0em;
 
-@default-list-type: none; 
+@default-list-type: none;
 
 @button-size: 2.0em;
 
 /* Mixins */
 
 .border-radius (@radius: 5px) {
-	-webkit-border-radius: @radius;
-	-moz-border-radius:    @radius;
-	border-radius:         @radius;
-
-	-moz-background-clip:    padding;
-	-webkit-background-clip: padding-box;
-	background-clip:         padding-box;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
 }
 
 /* Page */
 
 body {
-	font-family: @primary-font;
+    font-family: @primary-font;
 }
 
 /*
 	Header
 */
 
+.hide
+{
+    display: none; 
+}
+
+.show 
+{
+    display: block; 
+}
+
 #head {
-	background-image: url("../Content/res/images/surf.jpg");
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	width: 100%;
-	height: auto;
-	min-height: 100%;
-	min-width: 956px;
-	position: fixed;
-	top: 0;
-	left: 0;
+    background-image: url("../Content/res/images/surf.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    min-width: 956px;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 #title {
-	color: @primary-text-color;
-	font-size: @header-size;
+    color: @primary-text-color;
+    font-size: @header-size;
+    .hide;
 }
 
-#sellingpoints
+#title_underline
 {
-	color: @primary-text-color; 
-	font-size: @subheader-size;
-
-	li{
-		list-style-type: @default-list-type;
-		margin:1em;  
-	} 
+    .hide; 
 }
 
-.button
-{
-	font-size: @button-size; 
-	background-color: @primary-color; 
-	color:@primary-text-color;
-	border: none; 
-	padding: .5em;
+#sellingpoints {
+    color: @primary-text-color;
+    font-size: @subheader-size;
 
-    @margin : .3em; 
-    margin-top: @margin; 
-    margin-bottom: @margin;  
-	.border-radius
+    li {
+        list-style-type: @default-list-type;
+        margin: 1em;
+        .hide;
+    }
 }
 
-.signin_option
-{
-	li
-		{
-		margin-top: 1em;
-		list-style-type: @default-list-type; 
-	}
+.button {
+    font-size: @button-size;
+    background-color: @primary-color;
+    color: @primary-text-color;
+    border: none;
+    padding: .5em;
+
+    @margin: .3em;
+    margin-top: @margin;
+    margin-bottom: @margin;
+    .border-radius
 }
 
-.box
-{
-	text-align: center; 
-	background-color: fade(@dark-color, @opacity-level);
-	padding: 0; 
-	width: 50%; 
-	top: 40%; 
+.signin_option {
+    li {
+        margin-top: 0.5em;
+        list-style-type: @default-list-type;
+    }
+}
 
-	margin: auto auto; 
+.box {
+    text-align: center;
+    background-color: fade(@dark-color, @opacity-level);
+    width: 40%;
+    margin-top: 2em;
+    margin: 0 auto;
     .border-radius;
-
-	h2{
-		color: @primary-color; 
-	} 
+   
+    h2 {
+        color: @primary-color;
+        text-align: center;
+        margin: 0 auto;
+    }
 }
