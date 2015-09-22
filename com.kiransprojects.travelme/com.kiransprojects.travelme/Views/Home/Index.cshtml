@@ -6,36 +6,24 @@
 
     <div class="row">
 
-        <div class="col-sm-6 col-sm-offset-6">
-            <h2 id="title" data-anijs="if: mouseover, do: pulse animated" class="col-xs-12 col-sm-6">@ViewBag.Title <hr id="title_underline" /> </h2>
-        </div>
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <div id="title-container">
+                <h2 id="title">@ViewBag.Title</h2>
+                <hr id="title_underline" />
 
-    </div>
-
-    <div class="row">
-
-        <div class="col-sm-6">
-            <div class="box">
-                <ul class="signin_option">
-                    <li><button class="button">Register</button></li>
-                    <li><button class="button">Log In</button></li>
-                </ul>
+                <div class="box">
+                    <input type="text" class="form-control credential-enter" placeholder="E-mail" />
+                    <input type="text" class="form-control credential-enter" placeholder="Password" />
+                    <button class="button">Log In</button>
+                    @*
+            
+            
+            <button class="button">Register</button>*@
+                </div>
             </div>
-        </div>
 
-        <div class="col-sm-6">
-            <ul id="sellingpoints">
-                <li class="selling_point_node"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-plane fa-3x"></i></li>
-                <li class="selling_point_node">Track your jouney as often as you like</li>
-
-                <li class="selling_point_node2"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-map fa-3x"></i></li>
-                <li class="selling_point_node2">Map your adventures using location data</li>
-
-                <li class="selling_point_node3"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-share-square-o fa-3x"></i></li>
-                <li class="selling_point_node3">Share you journey with your friends</li>
-            </ul>
         </div>
     </div>
 
-</div>
 
+</div> 

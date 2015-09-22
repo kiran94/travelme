@@ -9,22 +9,32 @@
 @opacity-level: 30%;
 @opacity-level-button: 80%;
 
-@header-size: 8em;
+@header-size: 6em;
 @subheader-size: 1.0em;
 
 @default-list-type: none;
 
-@button-size: 2.0em;
+@button-size: 1.2em;
 
 /* Mixins */
 
-.border-radius (@radius: 5px) {
+.border-radius (@radius: 15%) {
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;
     border-radius: @radius;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
+}
+
+
+.blur(@value: 5px)
+{
+    -webkit-filter: blur(@value);
+    -moz-filter: blur(@value);
+    -o-filter: blur(@value);
+    -ms-filter: blur(@value);
+    filter: blur(@value);
 }
 
 /* Page */
@@ -37,17 +47,15 @@ body {
 	Header
 */
 
-.hide
-{
-    display: none; 
+.hide {
+    display: none;
 }
 
-.show 
-{
-    display: block; 
+.show {
+    display: block;
 }
 
-#head {
+#head:before {
     background-image: url("../Content/res/images/surf.jpg");
     background-position: center center;
     background-repeat: no-repeat;
@@ -55,10 +63,20 @@ body {
     width: 100%;
     height: auto;
     min-height: 100%;
-    min-width: 956px;
+    min-width: inherit;
     position: fixed;
+    display: block; 
     top: 0;
     left: 0;
+    z-index: -1;
+    content: ""; 
+    .blur(2px); 
+}
+
+.content
+{
+    clear: both; 
+    z-index: 0;
 }
 
 #title {
@@ -67,9 +85,16 @@ body {
     .hide;
 }
 
-#title_underline
+#title_underline {
+    .hide;
+}
+
+#title-container
 {
-    .hide; 
+    top: 50%; 
+
+    margin: 0 auto; 
+   
 }
 
 #sellingpoints {
@@ -84,23 +109,25 @@ body {
 }
 
 .button {
+    display: block; 
+
     font-size: @button-size;
-    background-color: @primary-color;
+    background-color: fade(@primary-color, 65%);
     color: @primary-text-color;
-    border: none;
-    padding: .5em;
+  
+    @button-size-dim: 2em;
+    height: @button-size-dim;
 
-    @button-size-dim : 5em;
-    width: @button-size-dim; 
-    height: @button-size-dim; 
-    .border-radius;
+     border: none;
+    .border-radius(5%);
 
-    margin-top : .75em; 
-    margin-right: 1em; 
+    margin: 0 auto; 
+    margin-top: 1em;     
 }
 
 .signin_option {
-    top: 50%; 
+    top: 50%;
+
     li {
         margin-top: 0.5em;
         list-style-type: @default-list-type;
@@ -110,32 +137,17 @@ body {
 .box {
     background-color: fade(@dark-color, @opacity-level);
 
-    @box-size : 25em; 
-    width: @box-size; 
-    height: @box-size; 
-    
+    width: inherit;
+    height: 30em;
     margin: 0 auto;
-    .border-radius;
+    .border-radius(2%);
    
-    h2 {
-        color: @primary-color;
-        text-align: center;
-        margin: 0 auto;
-    }
+}
 
-
-    ul
-        
-    {
-        li
-            
-        {
-            text-align: center; 
-            @margin: .3em;
-            margin-top: @margin;
-            margin-bottom: @margin;
-
-        }
-    }
-
+.credential-enter
+{
+    width: 70%; 
+    padding: 1em; 
+    margin: 0 auto; 
+    margin-top: 2em; 
 }

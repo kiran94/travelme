@@ -13,7 +13,7 @@ body {
 .show {
   display: block;
 }
-#head {
+#head:before {
   background-image: url("../Content/res/images/surf.jpg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -21,18 +21,34 @@ body {
   width: 100%;
   height: auto;
   min-height: 100%;
-  min-width: 956px;
+  min-width: inherit;
   position: fixed;
+  display: block;
   top: 0;
   left: 0;
+  z-index: -1;
+  content: "";
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+.content {
+  clear: both;
+  z-index: 0;
 }
 #title {
   color: #ffffff;
-  font-size: 8em;
+  font-size: 6em;
   display: none;
 }
 #title_underline {
   display: none;
+}
+#title-container {
+  top: 50%;
+  margin: 0 auto;
 }
 #sellingpoints {
   color: #ffffff;
@@ -44,21 +60,20 @@ body {
   display: none;
 }
 .button {
-  font-size: 2em;
-  background-color: #ee7600;
+  display: block;
+  font-size: 1.2em;
+  background-color: rgba(238, 118, 0, 0.65);
   color: #ffffff;
+  height: 2em;
   border: none;
-  padding: .5em;
-  width: 5em;
-  height: 5em;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5%;
+  -moz-border-radius: 5%;
+  border-radius: 5%;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  margin-top: .75em;
-  margin-right: 1em;
+  margin: 0 auto;
+  margin-top: 1em;
 }
 .signin_option {
   top: 50%;
@@ -69,24 +84,20 @@ body {
 }
 .box {
   background-color: rgba(0, 0, 0, 0.3);
-  width: 25em;
-  height: 25em;
+  width: inherit;
+  height: 30em;
   margin: 0 auto;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 2%;
+  -moz-border-radius: 2%;
+  border-radius: 2%;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.box h2 {
-  color: #ee7600;
-  text-align: center;
+.credential-enter {
+  width: 70%;
+  padding: 1em;
   margin: 0 auto;
-}
-.box ul li {
-  text-align: center;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
+  margin-top: 2em;
 }
 /*# sourceMappingURL=Site.css.map */
