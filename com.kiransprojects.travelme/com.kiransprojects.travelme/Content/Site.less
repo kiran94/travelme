@@ -1,6 +1,6 @@
 ﻿/*Travel Me Style*/
 
-@primary-font: Consolas,monaco,monospace;
+@primary-font: Century Gothic, sans-serif;
 
 @primary-color: #ee7600;
 @primary-text-color: #FFF;
@@ -28,13 +28,16 @@
 }
 
 
-.blur(@value: 5px)
-{
+.blur(@value: 5px) {
     -webkit-filter: blur(@value);
     -moz-filter: blur(@value);
     -o-filter: blur(@value);
     -ms-filter: blur(@value);
     filter: blur(@value);
+}
+
+.comPosition {
+    position: relative;
 }
 
 /* Page */
@@ -55,6 +58,11 @@ body {
     display: block;
 }
 
+.center-box {
+    margin: 0 auto;
+    width: 25%;
+}
+
 #head:before {
     background-image: url("../Content/res/images/surf.jpg");
     background-position: center center;
@@ -65,64 +73,74 @@ body {
     min-height: 100%;
     min-width: inherit;
     position: fixed;
-    display: block; 
+    display: block;
     top: 0;
     left: 0;
     z-index: -1;
-    content: ""; 
-    .blur(2px); 
+    content: "";
+    .blur(2px);
 }
 
-.content
-{
-    clear: both; 
+.content {
+    clear: both;
     z-index: 0;
 }
 
 #title {
+    .hide;
+    .center-box;
+    .comPosition;
+    top: 2em;
     color: @primary-text-color;
     font-size: @header-size;
-    .hide;
 }
 
 #title_underline {
     .hide;
+    .center-box;
+    .comPosition;
+    top: 5.5em;
 }
 
-#title-container
-{
-    top: 50%; 
-
-    margin: 0 auto; 
-   
+#title-container {
+    top: 50%;
+    margin: 0 auto;
 }
 
 #sellingpoints {
     color: @primary-text-color;
     font-size: @subheader-size;
+    text-align: center;
 
     li {
+        .hide;
         list-style-type: @default-list-type;
         margin: 1em;
-        .hide;
+        display: inline-block;
+        .comPosition;
+        top: 20em;
     }
 }
 
 .button {
-    display: block; 
-
+    .border-radius(5%);
+    display: block;
     font-size: @button-size;
     background-color: fade(@primary-color, 65%);
     color: @primary-text-color;
-  
+
     @button-size-dim: 2em;
     height: @button-size-dim;
+    border: none;
+    margin: 0 auto;
+    margin-top: 1em;
+    position: relative;
+    top: 30%;
 
-     border: none;
-    .border-radius(5%);
-
-    margin: 0 auto; 
-    margin-top: 1em;     
+    a {
+        color: @primary-text-color;
+        text-decoration: none;
+    }
 }
 
 .signin_option {
@@ -135,19 +153,33 @@ body {
 }
 
 .box {
-    background-color: fade(@dark-color, @opacity-level);
-
-    width: inherit;
-    height: 30em;
-    margin: 0 auto;
+    .center-box;
     .border-radius(2%);
-   
+    .comPosition;
+    background-color: fade(@dark-color, @opacity-level);
+    height: 25em;
+    top: 10em;
 }
 
-.credential-enter
-{
-    width: 70%; 
-    padding: 1em; 
-    margin: 0 auto; 
-    margin-top: 2em; 
+.credential-enter {
+    .comPosition;
+    top: 20%;
+    width: 70%;
+    padding: 1em;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+/*
+    Footer
+*/
+
+#footer {
+    background-color: fade(@dark-color, 50%);
+    color: @primary-text-color;
+    font-size: @subheader-size;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }

@@ -22,17 +22,17 @@
         addShowClass($(this));
 
         //icon 1
-        $(".selling_point_node").slideDown(animation_speed / 2, function ()
+        $(".selling_point_node").fadeToggle(animation_speed / 2, function ()
         {
             addShowClass($(this));
 
             //icon 2
-            $(".selling_point_node2").slideDown(animation_speed / 2, function ()
+            $(".selling_point_node2").fadeToggle(animation_speed / 2, function ()
             {
                 addShowClass($(this));
 
                 //icon 3
-                $(".selling_point_node3").slideDown(animation_speed / 2, function ()
+                $(".selling_point_node3").fadeToggle(animation_speed / 2, function ()
                 {
                     addShowClass($(this));
                 });
