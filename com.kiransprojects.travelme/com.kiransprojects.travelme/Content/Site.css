@@ -18,7 +18,7 @@ body {
 }
 .center-box {
   margin: 0 auto;
-  width: 25%;
+  width: 30%;
 }
 #head:before {
   background-image: url("../Content/res/images/surf.jpg");
@@ -47,23 +47,10 @@ body {
 }
 #title {
   display: none;
-  margin: 0 auto;
-  width: 25%;
   position: relative;
-  top: 2em;
+  text-align: center;
   color: #ffffff;
   font-size: 6em;
-}
-#title_underline {
-  display: none;
-  margin: 0 auto;
-  width: 25%;
-  position: relative;
-  top: 5.5em;
-}
-#title-container {
-  top: 50%;
-  margin: 0 auto;
 }
 #sellingpoints {
   color: #ffffff;
@@ -109,7 +96,7 @@ body {
 }
 .box {
   margin: 0 auto;
-  width: 25%;
+  width: 30%;
   -webkit-border-radius: 2%;
   -moz-border-radius: 2%;
   border-radius: 2%;
@@ -140,5 +127,11 @@ body {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+/*
+    Components
+*/
+.error {
+  background-color: rgba(255, 0, 0, 0.3);
 }
 /*# sourceMappingURL=Site.css.map */

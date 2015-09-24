@@ -79,7 +79,7 @@ namespace com.kiransprojects.travelme.App_Start
             //Services
             kernel.Bind<ILoginService>().To<LoginService>();
             kernel.Bind<ILoggerService>().To<LoggerService>();
-            kernel.Bind<IFileService>().To<IFileService>();
+            kernel.Bind<IFileService>().To<FileService>();
             kernel.Bind<IMailService>().To<MailService>();
             kernel.Bind<IMediaService>().To<MediaService>();
             kernel.Bind<IPasswordService>().To<PasswordService>();

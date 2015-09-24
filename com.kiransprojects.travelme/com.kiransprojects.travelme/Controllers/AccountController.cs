@@ -80,7 +80,8 @@
             if (userViewModel == null
                || userViewModel.User == null
                || string.IsNullOrEmpty(userViewModel.User.Email)
-               || string.IsNullOrEmpty(userViewModel.User.UserPassword))
+               || string.IsNullOrEmpty(userViewModel.User.UserPassword)
+               || !ModelState.IsValid)
             {
                 return this.View();
             }
@@ -106,10 +107,10 @@
             userViewModel.User.InvalidPasswordDate = DateTime.Now;
             this.userService.UpdateUser(userViewModel.User); 
 
-            userViewModel.Feedback.Message = "Invlid Email/Password";
-            userViewModel.Feedback.isError = true; 
+            userViewModel.Feedback.Message = "Invalid Email/Password";
+            userViewModel.Feedback.isError = true;
 
-            return View(userViewModel); 
+            return this.RedirectToAction("Index", "Home", userViewModel);
         }
 
 

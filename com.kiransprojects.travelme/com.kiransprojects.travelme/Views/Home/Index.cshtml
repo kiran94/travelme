@@ -1,23 +1,39 @@
-﻿@{
+﻿@model com.kiransprojects.travelme.Models.UserViewModel
+@{
     ViewBag.Title = "travel me";
 }
 
 <div id="head">
 
-
-
-    <div id="title-container">
-        <h2 id="title" data-anijs="if: mouseover, do: tada animated">@ViewBag.Title</h2>
-      
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="">
+                <h2 id="title" data-anijs="if: mouseover, do: tada animated">@ViewBag.Title</h2>
+            </div>
+        </div>
     </div>
 
-    <div class="box">
-        <input type="text" class="form-control credential-enter" placeholder="E-mail" />
-        <input type="text" class="form-control credential-enter" placeholder="Password" />
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("LoginRedirect", "Account", FormMethod.Post, null))
+            {
+                if (Model.Feedback != null)
+                {
+                    <div class="@(Model.Feedback.isError? "error": "standard")" >@Model.Feedback.Message</div>
+                }
 
-        <button class="button">@Html.ActionLink("Log In", "Login", "Account")</button>
-        <button class="button">@Html.ActionLink("Register", "Register", "Account")</button>
+
+                @Html.ValidationSummary();
+                @Html.TextBoxFor(o => o.User.Email, new { @class = "form-control credential-enter", @placeholder = "Email" })
+                @Html.PasswordFor(o => o.User.UserPassword, new { @class = "form-control credential-enter", @placeholder = "Password" })
+
+                <input type="submit" name="Login" value="Log In" class="button" />
+                <input type="submit" name="Register" value="Register" class="button" />
+            }
+        </div>
     </div>
+
+
 
     <ul id="sellingpoints">
         <li class="selling_point_node"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-plane fa-3x"></i></li>
