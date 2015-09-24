@@ -58,10 +58,7 @@ body {
     display: block;
 }
 
-.center-box {
-    margin: 0 auto;
-    width: 30%;
-}
+
 
 #head:before {
     background-image: url("../Content/res/images/surf.jpg");
@@ -105,10 +102,12 @@ body {
     li {
         .hide;
         list-style-type: @default-list-type;
-        margin: 1em;
         display: inline-block;
         .comPosition;
-        top: 20em;
+        
+        padding: 1em; 
+        right: 1.5em; 
+        top: 1em; 
     }
 }
 
@@ -143,7 +142,6 @@ body {
 }
 
 .box {
-    .center-box;
     .border-radius(2%);
     .comPosition;
     background-color: fade(@dark-color, @opacity-level);
@@ -168,10 +166,11 @@ body {
     background-color: fade(@dark-color, 50%);
     color: @primary-text-color;
     font-size: @subheader-size;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+    
+    width: 100%; 
+    position: fixed; 
+    bottom: 0; 
+    text-align: right; 
 }
 
 /*

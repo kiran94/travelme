@@ -4,7 +4,6 @@
 }
 
 <div id="head">
-
     <div class="row">
         <div class="col-xs-12">
             <div id="">
@@ -17,10 +16,10 @@
         <div class="col-xs-12">
             @using (Html.BeginForm("LoginRedirect", "Account", FormMethod.Post, null))
             {
-                if (Model.Feedback != null)
+                @*if (Model.Feedback != null)
                 {
                     <div class="@(Model.Feedback.isError? "error": "standard")" >@Model.Feedback.Message</div>
-                }
+                }*@
 
 
                 @Html.ValidationSummary();
@@ -33,20 +32,18 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-xs-12">
+            <ul id="sellingpoints">
+                <li class="selling_point_node"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-plane fa-3x"></i></li>
+                <li class="selling_point_node">Track your jouney as often as you like</li>
 
+                <li class="selling_point_node2"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-map fa-3x"></i></li>
+                <li class="selling_point_node2">Map your adventures using location data</li>
 
-    <ul id="sellingpoints">
-        <li class="selling_point_node"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-plane fa-3x"></i></li>
-        <li class="selling_point_node">Track your jouney as often as you like</li>
-
-        <li class="selling_point_node2"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-map fa-3x"></i></li>
-        <li class="selling_point_node2">Map your adventures using location data</li>
-
-        <li class="selling_point_node3"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-share-square-o fa-3x"></i></li>
-        <li class="selling_point_node3">Share you journey with your friends</li>
-    </ul>
-
-    <div id="footer">
-        &copy; @string.Format("{0} - {1}", ViewBag.Title, DateTime.Now.Year)
+                <li class="selling_point_node3"><i data-anijs="if: mouseover, do: pulse animated" class="fa fa-share-square-o fa-3x"></i></li>
+                <li class="selling_point_node3">Share you journey with your friends</li>
+            </ul>
+        </div>
     </div>
 </div> 
