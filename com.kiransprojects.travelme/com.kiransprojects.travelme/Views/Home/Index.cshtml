@@ -16,13 +16,6 @@
         <div class="col-xs-12">
             @using (Html.BeginForm("LoginRedirect", "Account", FormMethod.Post, null))
             {
-                @*if (Model.Feedback != null)
-                {
-                    <div class="@(Model.Feedback.isError? "error": "standard")" >@Model.Feedback.Message</div>
-                }*@
-
-
-                @Html.ValidationSummary();
                 @Html.TextBoxFor(o => o.User.Email, new { @class = "form-control credential-enter", @placeholder = "Email" })
                 @Html.PasswordFor(o => o.User.UserPassword, new { @class = "form-control credential-enter", @placeholder = "Password" })
 

@@ -127,12 +127,18 @@ body {
     Components
 */
 .error {
-  background-color: rgba(255, 0, 0, 0.3);
+  background-color: rgba(255, 0, 0, 0.55);
 }
 .push-down-md {
   margin-top: 33%;
 }
 .push-down-lg {
   margin-top: 20%;
+}
+#validation-error ul {
+  background-color: rgba(255, 0, 0, 0.55);
+}
+#validation-error ul li {
+  color: #ffffff;
 }
 /*# sourceMappingURL=Site.css.map */

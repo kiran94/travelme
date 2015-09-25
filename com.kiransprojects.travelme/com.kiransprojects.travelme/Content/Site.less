@@ -5,6 +5,8 @@
 @primary-color: #ee7600;
 @primary-text-color: #FFF;
 @dark-color: #000;
+@error-color: red;
+@error-opacity: 55%;
 
 @opacity-level: 30%;
 @opacity-level-button: 80%;
@@ -85,9 +87,8 @@ body {
 
 #title {
     .hide;
-     .comPosition;
-   
-     text-align: center; 
+    .comPosition;
+    text-align: center;
     color: @primary-text-color;
     font-size: @header-size;
 }
@@ -104,10 +105,9 @@ body {
         list-style-type: @default-list-type;
         display: inline-block;
         .comPosition;
-        
-        padding: 1em; 
-        right: 1.5em; 
-        top: 1em; 
+        padding: 1em;
+        right: 1.5em;
+        top: 1em;
     }
 }
 
@@ -166,29 +166,36 @@ body {
     background-color: fade(@dark-color, 50%);
     color: @primary-text-color;
     font-size: @subheader-size;
-    
-    width: 100%; 
-    position: fixed; 
-    bottom: 0; 
-    text-align: right; 
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: right;
 }
 
 /*
     Components
 */
 
-.error
-{
-    background-color: fade(red, @opacity-level); 
+.error {
+    background-color: fade(@error-color, @error-opacity);
 }
 
 
-.push-down-md
-{
-    margin-top:33%; 
+.push-down-md {
+    margin-top: 33%;
 }
 
-.push-down-lg
-{
-    margin-top:20%; 
+.push-down-lg {
+    margin-top: 20%;
 }
+
+#validation-error {
+    ul {
+        background-color: fade(@error-color, @error-opacity);
+
+        li {
+            color: @primary-text-color;
+        }
+    }
+}
+
