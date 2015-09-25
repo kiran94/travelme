@@ -129,4 +129,10 @@ body {
 .error {
   background-color: rgba(255, 0, 0, 0.3);
 }
+.push-down-md {
+  margin-top: 33%;
+}
+.push-down-lg {
+  margin-top: 20%;
+}
 /*# sourceMappingURL=Site.css.map */

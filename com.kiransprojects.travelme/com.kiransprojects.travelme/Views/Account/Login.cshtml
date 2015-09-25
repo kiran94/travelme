@@ -1,21 +1,24 @@
 ﻿@model com.kiransprojects.travelme.Models.UserViewModel
-
 @{
     ViewBag.Title = "Login";
 }
 
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("LoginRedirect", "Account", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
 
+            <h2>Login</h2>
 
-@Html.BeginForm("LoginRedirect", "Account", FormMethod.Post)
-{
-<h2>Login</h2>
-
-@Html.LabelFor(model => model.User.Email);
-<br />
-@Html.TextBoxFor(model => model.User.Email);
-<br />
-@Html.LabelFor(model => model.User.UserPassword);
-<br />
-@Html.TextBoxFor(model => model.User.UserPassword);
-<br />
-}
+            @Html.LabelFor(model => model.User.Email);
+            <br />
+            @Html.TextBoxFor(model => model.User.Email);
+            <br />
+            @Html.LabelFor(model => model.User.UserPassword);
+            <br />
+            @Html.TextBoxFor(model => model.User.UserPassword);
+            <br />
+        }
+    </div>
+</div>

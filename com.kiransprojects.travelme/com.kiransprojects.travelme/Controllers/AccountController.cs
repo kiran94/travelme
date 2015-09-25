@@ -70,9 +70,9 @@
         }
 
         /// <summary>
-        /// Posts login data
+        /// Posts Login data and checks if the model is valid
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns Login Screen on Fail and Home Screen on success</returns>
         [AllowAnonymous]
         [HttpPost]
         public ActionResult LoginRedirect(UserViewModel userViewModel)
@@ -83,7 +83,8 @@
                || string.IsNullOrEmpty(userViewModel.User.UserPassword)
                || !ModelState.IsValid)
             {
-                return this.View();
+                
+                return this.View("Login"); 
             }
 
             string Role = string.Empty;
@@ -112,10 +113,5 @@
 
             return this.RedirectToAction("Index", "Home", userViewModel);
         }
-
-
-        
-        
-
     }
 }
