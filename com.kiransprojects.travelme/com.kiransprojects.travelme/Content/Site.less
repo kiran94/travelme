@@ -209,10 +209,54 @@ body {
     color: @primary-text-color;
     position: relative;
     width: 30%;
-    padding: 1em; 
+    padding: 1em;
 
     label {
         display: block;
-        font-size: @subheader-size; 
+        font-size: @subheader-size;
+    }
+}
+
+
+/* Navigation */
+
+#nav {
+    ul 
+    {
+        li 
+        {
+            display: inline-block;
+        }
+    }
+}
+
+/*
+    Registration
+*/
+
+#register-page
+{
+    background-color: fade( @primary-color, @opacity-level); 
+
+
+    .title{
+        color: white; 
+    }
+}
+
+#register-form
+{
+    background-color: white; 
+    color:@primary-color; 
+
+    label
+    {
+        margin: 1em;
+    }
+
+    input[type=text]
+    {
+        margin-bottom: 1em; 
+        left: 50%; 
     }
 }

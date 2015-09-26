@@ -97,7 +97,7 @@ namespace com.kiransprojects.travelme.Framework.Entities
         /// <summary>
         /// Gets or sets Invalid Password Date datetime
         /// </summary>
-        public virtual DateTime InvalidPasswordDate { get; set; }
+        public virtual DateTime? InvalidPasswordDate { get; set; }
 
         /// <summary>
         /// Gets or sets Invalid Password Count

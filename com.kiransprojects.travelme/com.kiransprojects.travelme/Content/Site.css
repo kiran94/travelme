@@ -156,4 +156,28 @@ body {
   display: block;
   font-size: 1em;
 }
+/* Navigation */
+#nav ul li {
+  display: inline-block;
+}
+/*
+    Registration
+*/
+#register-page {
+  background-color: rgba(238, 118, 0, 0.3);
+}
+#register-page .title {
+  color: white;
+}
+#register-form {
+  background-color: white;
+  color: #ee7600;
+}
+#register-form label {
+  margin: 1em;
+}
+#register-form input[type=text] {
+  margin-bottom: 1em;
+  left: 50%;
+}
 /*# sourceMappingURL=Site.css.map */

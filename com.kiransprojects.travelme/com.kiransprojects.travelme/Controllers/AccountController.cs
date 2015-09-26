@@ -1,5 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.Controllers
 {
+    using com.kiransprojects.travelme.Framework.Enums;
     using com.kiransprojects.travelme.Models;
     using com.kiransprojects.travelme.Services.Interfaces;
     using System;
@@ -99,9 +100,8 @@
                 IIdentity identity = new GenericIdentity(userViewModel.User.Email);
                 IPrincipal principle = new GenericPrincipal(identity, Role.Split(','));
                 this.HttpContext.User = principle;
-                FormsAuthentication.SetAuthCookie(userViewModel.User.Email, true);
-
-                this.RedirectToAction("Index", "Profile");
+                FormsAuthentication.SetAuthCookie(userViewModel.User.ID.ToString(), true);
+                this.RedirectToAction("Home", "User");
             }
 
             userViewModel.User.InvalidPasswordCount++;
@@ -122,5 +122,34 @@
         {
             return this.View(); 
         }
+
+        /// <summary>
+        /// Validates the user model and posts to service
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Register(UserViewModel userViewModel)
+        {
+            if (userViewModel != null 
+                && ModelState.IsValid)
+            {
+                userViewModel.User.Registered = DateTime.Now;
+                userViewModel.User.LastLogin = DateTime.Now;
+                userViewModel.User.Role = RoleType.NormalUser;
+                userViewModel.User.InvalidPasswordCount = 0;
+                userViewModel.User.InvalidPasswordDate = null; 
+                //password encryption
+
+                bool flag = this.userService.AddUser(userViewModel.User);
+
+                if(flag)
+                {
+                    return this.RedirectToAction("Home", "User");
+                }
+            }
+
+            return this.View(userViewModel); 
+        }
+
     }
 }

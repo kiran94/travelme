@@ -169,5 +169,25 @@
                 return false;
             }
         }
+
+        /// <summary>
+        /// Adds a user
+        /// </summary>
+        /// <param name="user">User to add</param>
+        /// <returns>Flag indicating if the user is added</returns>
+        public bool AddUser(UserEntity user)
+        {
+            try
+            {
+                this._repository.Insert(user);
+                this._loggerservice.Log(new Log("User Added", false)); 
+                return true; 
+            }
+            catch(Exception e)
+            {
+                this._loggerservice.Log(new Log(e.Message, true));
+                return false; 
+            }
+        }
     }
 }

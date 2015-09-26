@@ -9,6 +9,13 @@
     public interface IUserService
     {
         /// <summary>
+        /// Adds a user 
+        /// </summary>
+        /// <param name="user">User to add</param>
+        /// <returns>Flag indicating if the user is added</returns>
+        bool AddUser(UserEntity user);
+
+        /// <summary>
         /// Gets a User Entity 
         /// </summary>
         /// <param name="ID">User ID</param>

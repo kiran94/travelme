@@ -357,5 +357,26 @@
 
             Assert.IsFalse(flag); 
         }
+
+        /// <summary>
+        /// Ensures a user can be added
+        /// </summary>
+        [Test]
+        public void AddUser_ValidUser_True()
+        {
+            UserEntity user = new UserEntity();
+            user.ID = Guid.NewGuid();
+            user.FirstName = "test";
+
+            Mock<IUserEntityRepository> repository = new Mock<IUserEntityRepository>();
+            Mock<IFileService> service = new Mock<IFileService>();
+            Mock<ILoggerService> logger = new Mock<ILoggerService>(); 
+
+            UserService userService = new UserService(repository.Object, service.Object, logger.Object);
+
+            bool flag = userService.AddUser(user);
+
+            Assert.IsTrue(flag); 
+        }
     }
 }
