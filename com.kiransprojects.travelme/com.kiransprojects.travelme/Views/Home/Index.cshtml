@@ -19,9 +19,11 @@
                 @Html.TextBoxFor(o => o.User.Email, new { @class = "form-control credential-enter", @placeholder = "Email" })
                 @Html.PasswordFor(o => o.User.UserPassword, new { @class = "form-control credential-enter", @placeholder = "Password" })
 
-                <input type="submit" name="Login" value="Log In" class="button" />
-                <input type="submit" name="Register" value="Register" class="button" />
+                <input type="submit" name="Login" value="Log In" class="button center" />
             }
+
+            <button class="button center">@Html.ActionLink("Register", "Register", "Account")</button>
+
         </div>
     </div>
 

@@ -3,27 +3,30 @@
     ViewBag.Title = "Login";
 }
 
-<div class="row">
-    <div class="col-xs-12">
-        @using (Html.BeginForm("LoginRedirect", "Account", FormMethod.Post))
-        {
+
+<div id="head">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 id="title">Login</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12">
+
             <div id="validation-error">
                 @Html.ValidationSummary()
             </div>
 
-            <h2>Login</h2>
+            @using (Html.BeginForm("LoginRedirect", "Account", FormMethod.Post, null))
+            {
+                @Html.TextBoxFor(o => o.User.Email, new { @class = "form-control credential-enter", @placeholder = "Email" })
+                @Html.PasswordFor(o => o.User.UserPassword, new { @class = "form-control credential-enter", @placeholder = "Password" })
 
-    <div class="LoginRedirectForm">
-        @Html.LabelFor(model => model.User.Email)
-        <br />
-        @Html.TextBoxFor(model => model.User.Email)
-        <br />
-        @Html.LabelFor(model => model.User.UserPassword)
-        <br />
-        @Html.TextBoxFor(model => model.User.UserPassword)
-        <br />
+                <input type="submit" name="Login" value="Log In" class="button center" />
+            }
+        </div>
     </div>
-            <input type="submit" class="button" name="name" value="Log In" />
-        }
-    </div>
+
 </div>

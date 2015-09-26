@@ -6,7 +6,7 @@
 @primary-text-color: #FFF;
 @dark-color: #000;
 @error-color: red;
-@error-opacity: 55%;
+@error-opacity: 75%;
 
 @opacity-level: 30%;
 @opacity-level-button: 80%;
@@ -111,6 +111,11 @@ body {
     }
 }
 
+.center {
+    position: relative;
+    margin: 0 auto;
+}
+
 .button {
     .border-radius(5%);
     display: block;
@@ -121,7 +126,6 @@ body {
     @button-size-dim: 2em;
     height: @button-size-dim;
     border: none;
-    margin: 0 auto;
     margin-top: 1em;
     position: relative;
     top: 30%;
@@ -199,3 +203,16 @@ body {
     }
 }
 
+#LoginRedirectForm {
+    .center;
+    background-color: fade(@dark-color, @opacity-level);
+    color: @primary-text-color;
+    position: relative;
+    width: 30%;
+    padding: 1em; 
+
+    label {
+        display: block;
+        font-size: @subheader-size; 
+    }
+}

@@ -17,13 +17,7 @@
         @RenderBody()
     </div>
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div id="footer">
-                &copy; @string.Format("{0} - {1}", ViewBag.Title, DateTime.Now.Year)
-            </div>
-        </div>
-    </div>
+    @Html.Partial("Footer")
        
     @*@RenderSection("scripts", required: false)*@
     @Scripts.Render("~/Scripts/jquery-1.9.1.min.js")

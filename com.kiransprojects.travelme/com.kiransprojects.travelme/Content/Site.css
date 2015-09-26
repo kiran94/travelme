@@ -62,6 +62,10 @@ body {
   right: 1.5em;
   top: 1em;
 }
+.center {
+  position: relative;
+  margin: 0 auto;
+}
 .button {
   -webkit-border-radius: 5%;
   -moz-border-radius: 5%;
@@ -75,7 +79,6 @@ body {
   color: #ffffff;
   height: 2em;
   border: none;
-  margin: 0 auto;
   margin-top: 1em;
   position: relative;
   top: 30%;
@@ -127,7 +130,7 @@ body {
     Components
 */
 .error {
-  background-color: rgba(255, 0, 0, 0.55);
+  background-color: rgba(255, 0, 0, 0.75);
 }
 .push-down-md {
   margin-top: 33%;
@@ -136,9 +139,21 @@ body {
   margin-top: 20%;
 }
 #validation-error ul {
-  background-color: rgba(255, 0, 0, 0.55);
+  background-color: rgba(255, 0, 0, 0.75);
 }
 #validation-error ul li {
   color: #ffffff;
+}
+#LoginRedirectForm {
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  position: relative;
+  width: 30%;
+  padding: 1em;
+}
+#LoginRedirectForm label {
+  display: block;
+  font-size: 1em;
 }
 /*# sourceMappingURL=Site.css.map */

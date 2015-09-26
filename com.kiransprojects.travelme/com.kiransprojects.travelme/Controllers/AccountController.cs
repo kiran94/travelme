@@ -78,22 +78,22 @@
         public ActionResult LoginRedirect(UserViewModel userViewModel)
         {
             if (userViewModel == null
-               || userViewModel.User == null
-               || string.IsNullOrEmpty(userViewModel.User.Email)
-               || string.IsNullOrEmpty(userViewModel.User.UserPassword)
-               || !ModelState.IsValid)
+             || userViewModel.User == null
+             || string.IsNullOrEmpty(userViewModel.User.Email)
+             || string.IsNullOrEmpty(userViewModel.User.UserPassword)
+             || !ModelState.IsValid)
             {
-                
-                return this.View("Login"); 
+
+                return this.View("Login");
             }
 
             string Role = string.Empty;
-            Guid ID = Guid.Empty; 
+            Guid ID = Guid.Empty;
 
             if (this.loginService.SignIn(
-                userViewModel.User.Email, 
-                userViewModel.User.UserPassword, 
-                out Role, 
+                userViewModel.User.Email,
+                userViewModel.User.UserPassword,
+                out Role,
                 out ID))
             {
                 IIdentity identity = new GenericIdentity(userViewModel.User.Email);
@@ -101,17 +101,26 @@
                 this.HttpContext.User = principle;
                 FormsAuthentication.SetAuthCookie(userViewModel.User.Email, true);
 
-                this.RedirectToAction("Index", "Profile"); 
+                this.RedirectToAction("Index", "Profile");
             }
 
             userViewModel.User.InvalidPasswordCount++;
             userViewModel.User.InvalidPasswordDate = DateTime.Now;
-            this.userService.UpdateUser(userViewModel.User); 
+            this.userService.UpdateUser(userViewModel.User);
 
             userViewModel.Feedback.Message = "Invalid Email/Password";
             userViewModel.Feedback.isError = true;
 
             return this.RedirectToAction("Index", "Home", userViewModel);
+        }
+
+        /// <summary>
+        /// Returns the Register View
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Register()
+        {
+            return this.View(); 
         }
     }
 }
