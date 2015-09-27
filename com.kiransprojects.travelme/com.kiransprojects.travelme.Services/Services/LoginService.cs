@@ -134,6 +134,16 @@
                 return false;
             }
 
+            UserEntity entity = this._repository.GetByEmail(Email); 
+            if(entity == null)
+            {
+                Role = string.Empty;
+                ID = Guid.Empty;
+                return false; 
+            }
+
+            Password = this._passwordService.GeneratePassword(entity.UserPassword, entity.Salt);
+
             if(this._repository.Authenticate(Email, Password, out Role, out ID))
             {
                 return true; 

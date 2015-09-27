@@ -27,28 +27,29 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// </summary>
+        /// <param name="loggerService">Logger Service</param>
         /// <param name="userService">User Service</param>
         /// <param name="tripService">Trip Service</param>
         /// <param name="postService">Post Service</param>
-        /// <param name="loggerService">Logger Service</param>
+       
         public UserController(
+            ILoggerService loggerService,
             IUserService userService,
             ITripService tripService,
-            IPostService postService,
-            ILoggerService loggerService) 
+            IPostService postService) 
             : base(loggerService)
         {
-            if(this.userService == null)
+            if(userService == null)
             {
                 throw new ArgumentNullException("User Service, User Controller");
             }
 
-            if (this.tripService == null)
+            if (tripService == null)
             {
                 throw new ArgumentNullException("Trip Service, User Controller");
             }
 
-            if (this.postService == null)
+            if (postService == null)
             {
                 throw new ArgumentNullException("Post Service, User Controller");
             }

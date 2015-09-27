@@ -1,5 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.Controllers
 {
+    using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Framework.Enums;
     using com.kiransprojects.travelme.Models;
     using com.kiransprojects.travelme.Services.Interfaces;
@@ -16,30 +17,32 @@
         /// <summary>
         /// Login Service
         /// </summary>
-        private readonly ILoginService loginService = null;
+        private readonly ILoginService _loginService = null;
 
         /// <summary>
         /// User Service
         /// </summary>
-        private readonly IUserService userService = null;
+        private readonly IUserService _userService = null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseController"/> class.
+        /// Password Service
+        /// </summary>
+        private readonly IPasswordService _passwordService = null; 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountController"/> class.
         /// </summary>
         /// <param name="logger">Logger Service</param>
         /// <param name="loginService">Login Service</param>
         /// <param name="userService">User Service</param>
+        /// <param name="passwordService">Password Service</param>
         public AccountController(
             ILoggerService logger, 
             ILoginService loginService, 
-            IUserService userService) 
+            IUserService userService, 
+            IPasswordService passwordService) 
             : base(logger)
         {
-            if(logger == null)
-            {
-                throw new ArgumentNullException("ILoggerService, LoginController"); 
-            }
-
             if (loginService == null)
             {
                 throw new ArgumentNullException("ILoginService, LoginController");
@@ -50,8 +53,14 @@
                 throw new ArgumentNullException("IUserService, LoginController");
             }
 
-            this.loginService = loginService;
-            this.userService = userService; 
+            if(passwordService == null)
+            {
+                throw new ArgumentNullException("IPasswordService, LoginController");
+            }
+
+            this._loginService = loginService;
+            this._userService = userService;
+            this._passwordService = passwordService; 
         }
 
         /// <summary>
@@ -76,40 +85,40 @@
         /// <returns>Returns Login Screen on Fail and Home Screen on success</returns>
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult LoginRedirect(UserViewModel userViewModel)
+        public ActionResult LoginRedirect(LoginModel userViewModel)
         {
-            if (userViewModel == null
-             || userViewModel.User == null
-             || string.IsNullOrEmpty(userViewModel.User.Email)
-             || string.IsNullOrEmpty(userViewModel.User.UserPassword)
-             || !ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
+                ModelState.AddModelError("Error", "Invalid Email/Password");
                 return this.View("Login");
             }
 
             string Role = string.Empty;
             Guid ID = Guid.Empty;
 
-            if (this.loginService.SignIn(
-                userViewModel.User.Email,
-                userViewModel.User.UserPassword,
+            if (this._loginService.SignIn(
+                userViewModel.Email,
+                userViewModel.UserPassword,
                 out Role,
                 out ID))
             {
-                IIdentity identity = new GenericIdentity(userViewModel.User.Email);
+                UserEntity user = this._userService.GetUser(ID); 
+
+
+                IIdentity identity = new GenericIdentity(user.Email);
                 IPrincipal principle = new GenericPrincipal(identity, Role.Split(','));
                 this.HttpContext.User = principle;
-                FormsAuthentication.SetAuthCookie(userViewModel.User.ID.ToString(), true);
+
+                FormsAuthentication.SetAuthCookie(user.ID.ToString(), true);
                 this.RedirectToAction("Home", "User");
             }
 
-            userViewModel.User.InvalidPasswordCount++;
-            userViewModel.User.InvalidPasswordDate = DateTime.Now;
-            this.userService.UpdateUser(userViewModel.User);
+            //userViewModel.User.InvalidPasswordCount++;
+            //userViewModel.User.InvalidPasswordDate = DateTime.Now;
+            //this._userService.UpdateUser(userViewModel.User);
 
-            userViewModel.Feedback.Message = "Invalid Email/Password";
-            userViewModel.Feedback.isError = true;
+            //userViewModel.Feedback.Message = "Invalid Email/Password";
+            //userViewModel.Feedback.isError = true;
 
             return this.RedirectToAction("Index", "Home", userViewModel);
         }
@@ -133,14 +142,15 @@
             if (userViewModel != null 
                 && ModelState.IsValid)
             {
+                userViewModel.User.ID = Guid.NewGuid(); 
                 userViewModel.User.Registered = DateTime.Now;
                 userViewModel.User.LastLogin = DateTime.Now;
                 userViewModel.User.Role = RoleType.NormalUser;
                 userViewModel.User.InvalidPasswordCount = 0;
                 userViewModel.User.InvalidPasswordDate = null; 
-                //password encryption
+                userViewModel.User = this._passwordService.GenerateCredentials(userViewModel.User); 
 
-                bool flag = this.userService.AddUser(userViewModel.User);
+                bool flag = this._userService.AddUser(userViewModel.User);
 
                 if(flag)
                 {

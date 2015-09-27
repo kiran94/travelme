@@ -23,12 +23,14 @@
         {
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
             Mock<ILoginService> loginService = new Mock<ILoginService>();
-            Mock<IUserService> userService = new Mock<IUserService>(); 
+            Mock<IUserService> userService = new Mock<IUserService>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>(); 
 
             AccountController controller = new AccountController(
                 loggerService.Object,
                 loginService.Object,
-                userService.Object);
+                userService.Object, 
+                passwordService.Object);
 
             UserViewModel model = new UserViewModel(); 
             
@@ -52,11 +54,13 @@
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
             Mock<ILoginService> loginService = new Mock<ILoginService>();
             Mock<IUserService> userService = new Mock<IUserService>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>(); 
 
             AccountController controller = new AccountController(
                 loggerService.Object,
                 loginService.Object,
-                userService.Object);
+                userService.Object,
+                passwordService.Object);
 
             ActionResult actionResult = controller.Login(null);
         }
@@ -70,11 +74,13 @@
             Mock<ILoggerService> loggerService = new Mock<ILoggerService>();
             Mock<ILoginService> loginService = new Mock<ILoginService>();
             Mock<IUserService> userService = new Mock<IUserService>();
+            Mock<IPasswordService> passwordService = new Mock<IPasswordService>(); 
 
             AccountController controller = new AccountController(
                 loggerService.Object,
                 loginService.Object,
-                userService.Object);
+                userService.Object,
+                passwordService.Object);
 
             UserViewModel model = new UserViewModel(); 
 
@@ -84,7 +90,6 @@
             user.UserPassword = string.Empty;
 
             model.User = user;
-
 
             ActionResult actionResult = controller.Login(model);
         }
