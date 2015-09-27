@@ -110,7 +110,7 @@
                 this.HttpContext.User = principle;
 
                 FormsAuthentication.SetAuthCookie(user.ID.ToString(), true);
-                this.RedirectToAction("Home", "User");
+                return this.RedirectToAction("Home", "User", new { ID = ID});
             }
 
             //userViewModel.User.InvalidPasswordCount++;
@@ -120,7 +120,7 @@
             //userViewModel.Feedback.Message = "Invalid Email/Password";
             //userViewModel.Feedback.isError = true;
 
-            return this.RedirectToAction("Index", "Home", userViewModel);
+            return this.RedirectToAction("Index", "Home");
         }
 
         /// <summary>

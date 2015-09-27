@@ -33,17 +33,19 @@
                 using(ITransaction transaction = session.BeginTransaction())
                 {
                     IList<UserEntity> users = session.QueryOver<UserEntity>()
-                                                .Where(o => o.Email.Equals(Email))
-                                                .Where(o => o.UserPassword.Equals(password))
+                                                .Where(o => o.Email == Email)
+                                                .Where(o => o.UserPassword == password)
                                                 .List();
 
-                    if(users == null && users[0] != null)
+
+
+                    if(users == null || users.Count == 0 || users[0] == null)
                     {
-                        ID = Guid.Empty; 
-                        Role =  string.Empty;
+                        ID = Guid.Empty;
+                        Role = string.Empty;
                         return false; 
                     }
-
+     
                     ID = users[0].ID; 
                     Role =  users[0].Role.ToString();
                     return true; 
@@ -87,7 +89,7 @@
                 using(ITransaction transaction = session.BeginTransaction())
                 {
                     IList<UserEntity> users = session.QueryOver<UserEntity>()
-                        .Where(o => o.Email.Equals(Email))
+                        .Where(o => o.Email == Email) 
                         .List();
 
                     if(users != null && users[0] != null)

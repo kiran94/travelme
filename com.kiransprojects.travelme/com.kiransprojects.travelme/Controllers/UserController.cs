@@ -1,5 +1,6 @@
 ﻿namespace com.kiransprojects.travelme.Controllers
 {
+    using com.kiransprojects.travelme.Framework.Entities;
     using com.kiransprojects.travelme.Services.Interfaces;
     using System;
     using System.Web.Mvc; 
@@ -64,9 +65,10 @@
         /// </summary>
         /// <returns></returns>
         [Authorize]
-        public ActionResult Home()
+        public ActionResult Home(string ID)
         {
-            return this.View();
+            UserEntity entity = this.userService.GetUser(Guid.Parse(ID));
+            return this.View(entity);
         }
 
     }

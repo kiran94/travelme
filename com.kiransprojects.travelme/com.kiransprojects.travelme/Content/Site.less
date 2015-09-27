@@ -221,11 +221,27 @@ body {
 /* Navigation */
 
 #nav {
-    ul 
-    {
-        li 
-        {
+   
+    ul {
+        .comPosition;
+        background-color: fade(@primary-color, 70%);
+        right: 0;
+        margin: 0; 
+
+        li {
+            color: @primary-text-color;
             display: inline-block;
+
+            @padding-spacing: 1em;
+            padding-right: @padding-spacing;
+            padding-left: @padding-spacing;
+            border-right: 1px solid @primary-text-color;
+            font-size: @subheader-size * 1.2;
+
+            a {
+                color: @primary-text-color;
+                text-decoration: none;
+            }
         }
     }
 }
@@ -234,29 +250,37 @@ body {
     Registration
 */
 
-#register-page
-{
-    background-color: fade( @primary-color, @opacity-level); 
+#register-page {
+    background-color: fade( @primary-color, @opacity-level);
 
 
-    .title{
-        color: white; 
+    .title {
+        color: white;
     }
 }
 
-#register-form
-{
-    background-color: white; 
-    color:@primary-color; 
+#register-form {
+    background-color: white;
+    color: @primary-color;
 
-    label
-    {
+    label {
         margin: 1em;
     }
 
-    input[type=text]
+    input[type=text] {
+        margin-bottom: 1em;
+        left: 50%;
+    }
+}
+
+.panels
+{
+    color: @primary-text-color;
+    background-color: fade(@dark-color,@opacity-level);
+    width: 80%; 
+    
+    #title
     {
-        margin-bottom: 1em; 
-        left: 50%; 
+        text-align: center; 
     }
 }

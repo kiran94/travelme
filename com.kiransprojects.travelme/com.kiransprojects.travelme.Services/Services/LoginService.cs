@@ -142,7 +142,7 @@
                 return false; 
             }
 
-            Password = this._passwordService.GeneratePassword(entity.UserPassword, entity.Salt);
+            Password = this._passwordService.GeneratePassword(Password, entity.Salt);
 
             if(this._repository.Authenticate(Email, Password, out Role, out ID))
             {

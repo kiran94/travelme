@@ -157,8 +157,23 @@ body {
   font-size: 1em;
 }
 /* Navigation */
+#nav ul {
+  position: relative;
+  background-color: rgba(238, 118, 0, 0.7);
+  right: 0;
+  margin: 0;
+}
 #nav ul li {
+  color: #ffffff;
   display: inline-block;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-right: 1px solid #ffffff;
+  font-size: 1.2em;
+}
+#nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
 }
 /*
     Registration
@@ -179,5 +194,13 @@ body {
 #register-form input[type=text] {
   margin-bottom: 1em;
   left: 50%;
+}
+.panels {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 80%;
+}
+.panels #title {
+  text-align: center;
 }
 /*# sourceMappingURL=Site.css.map */
