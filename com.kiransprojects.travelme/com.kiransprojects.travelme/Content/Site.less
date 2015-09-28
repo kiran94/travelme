@@ -18,6 +18,8 @@
 
 @button-size: 1.2em;
 
+@background-url : "../Content/res/images/surf.jpg"; 
+
 /* Mixins */
 
 .border-radius (@radius: 15%) {
@@ -63,7 +65,7 @@ body {
 
 
 #head:before {
-    background-image: url("../Content/res/images/surf.jpg");
+    background-image: url(@background-url);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -222,6 +224,7 @@ body {
 
 #nav {
    
+    display: none; 
     ul {
         .comPosition;
         background-color: fade(@primary-color, 70%);
@@ -275,12 +278,40 @@ body {
 
 .panels
 {
-    color: @primary-text-color;
-    background-color: fade(@dark-color,@opacity-level);
+    color: @primary-color;
+    
     width: 80%; 
     
     #title
     {
         text-align: center; 
+        text-decoration: underline; 
     }
+}
+
+/* User Page */
+
+#banner
+{
+    background-image: url(@background-url); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center;  
+    height: auto; 
+    min-height: 33%;  
+    padding: 5em;  
+
+    h1
+        {
+        color: @primary-text-color;
+        text-align: center; 
+    }
+       
+}
+
+#panel-location
+{
+    display: block; 
+    position: relative; 
+    border: 1x solid @primary-color; 
 }

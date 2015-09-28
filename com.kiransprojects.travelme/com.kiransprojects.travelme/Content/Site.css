@@ -157,6 +157,9 @@ body {
   font-size: 1em;
 }
 /* Navigation */
+#nav {
+  display: none;
+}
 #nav ul {
   position: relative;
   background-color: rgba(238, 118, 0, 0.7);
@@ -196,11 +199,30 @@ body {
   left: 50%;
 }
 .panels {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.3);
+  color: #ee7600;
   width: 80%;
 }
 .panels #title {
   text-align: center;
+  text-decoration: underline;
+}
+/* User Page */
+#banner {
+  background-image: url("../Content/res/images/surf.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  min-height: 33%;
+  padding: 5em;
+}
+#banner h1 {
+  color: #ffffff;
+  text-align: center;
+}
+#panel-location {
+  display: block;
+  position: relative;
+  border: 1x solid #ee7600;
 }
 /*# sourceMappingURL=Site.css.map */
