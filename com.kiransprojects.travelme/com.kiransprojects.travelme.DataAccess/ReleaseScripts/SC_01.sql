@@ -91,3 +91,6 @@ ALTER COLUMN Salt nvarchar(256)
 GO
 ALTER TABLE UserEntity
 ADD PasswordReset bit
+GO
+ALTER TABLE Trip 
+ADD TripCreated datetime

@@ -1,5 +1,6 @@
 namespace com.kiransprojects.travelme.Framework.Entities
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -40,6 +41,12 @@ namespace com.kiransprojects.travelme.Framework.Entities
         [Display(Name = "Trip Location")]
         [StringLength(75, ErrorMessage = "{0} has a maximum of {1} characters")]
         public virtual string TripLocation { get; set; }
+
+        /// <summary>
+        /// Gets or sets Trip Created date time
+        /// </summary>
+        [Display(Name="Date Created")]
+        public virtual DateTime? TripCreated { get; set; }
 
         /// <summary>
         /// Gets or sets posts for a current trip

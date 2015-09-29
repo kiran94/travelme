@@ -92,7 +92,7 @@
                         .Where(o => o.Email == Email) 
                         .List();
 
-                    if(users != null && users[0] != null)
+                    if(users != null && users.Count != 0 && users[0] != null)
                     {
                         return users[0];
                     }

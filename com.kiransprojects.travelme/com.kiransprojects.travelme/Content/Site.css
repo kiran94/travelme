@@ -158,11 +158,14 @@ body {
 }
 /* Navigation */
 #nav {
-  display: none;
+  position: fixed;
+  display: initial;
+  min-width: 100%;
+  width: 100%;
 }
 #nav ul {
   position: relative;
-  background-color: rgba(238, 118, 0, 0.7);
+  background-color: rgba(238, 118, 0, 0.8);
   right: 0;
   margin: 0;
 }
