@@ -4,10 +4,7 @@
     using com.kiransprojects.travelme.Services.Interfaces;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-    using System.Web.Security;
 
     /// <summary>
     /// Trip Controller
@@ -51,6 +48,5 @@
 
             return this.View(trips);
         }
-
     }
 }

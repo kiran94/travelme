@@ -33,7 +33,6 @@
         /// <param name="userService">User Service</param>
         /// <param name="tripService">Trip Service</param>
         /// <param name="postService">Post Service</param>
-       
         public UserController(
             ILoggerService loggerService,
             IUserService userService,
