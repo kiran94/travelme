@@ -1,0 +1,23 @@
+﻿@model com.kiransprojects.travelme.Framework.Entities.Trip
+
+@Html.BeginForm("Add", "Trip", FormMethod.Post, null)
+{
+    @Html.ValidationSummary()
+
+    @Html.DisplayFor(model => Model.TripName)
+    @Html.TextAreaFor(model => Model.TripName)
+    <br />
+
+    @Html.DisplayFor(model => Model.TripDescription)
+    @Html.TextAreaFor(model => Model.TripDescription)
+    <br />
+
+    @Html.DisplayFor(model => Model.TripLocation)
+    @Html.TextAreaFor(model => Model.TripLocation)
+    <br />
+
+
+    @Html.HiddenFor(model => Model.RelationID)
+
+    <input type="submit" value="Add" />
+}

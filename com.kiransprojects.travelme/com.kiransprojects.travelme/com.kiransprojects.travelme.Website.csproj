@@ -147,6 +147,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Extensions\ListExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,6 +283,8 @@
     <Content Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Views\User\Home.cshtml" />
     <Content Include="Views\Trip\Index.cshtml" />
+    <Content Include="Views\Shared\PartialAddTrip.cshtml" />
+    <Content Include="Views\Shared\PartialListTrips.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
