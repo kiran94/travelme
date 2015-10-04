@@ -1,5 +1,5 @@
 ﻿@model IList<com.kiransprojects.travelme.Framework.Entities.Trip>
-@using com.kiransprojects.travelme.Framework.Entities.Trip
+@using com.kiransprojects.travelme.Framework.Entities
 @{
     ViewBag.Title = "Trips";
 }
@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-xs-12 col-xs-push-12 col-sm-6">
-       @Html.Partial("PartialListTrips", Model)
+       @Html.Partial("PartialListTrips", Model) 
     </div>
 </div>
 

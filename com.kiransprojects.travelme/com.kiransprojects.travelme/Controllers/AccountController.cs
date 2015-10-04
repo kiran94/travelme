@@ -109,7 +109,7 @@
                 IPrincipal principle = new GenericPrincipal(identity, Role.Split(','));
                 this.HttpContext.User = principle;
 
-                FormsAuthentication.SetAuthCookie(user.ID.ToString(), true);
+                FormsAuthentication.SetAuthCookie(user.ID.ToString(), false);
                 return this.RedirectToAction("Home", "User", new { ID = ID});
             }
 

@@ -46,7 +46,7 @@
 
             IList<Trip> trips = this._tripService.GetTrips(Guid.Parse(ID)); 
 
-            return this.View(trips);
+            return this.View("Index",trips);
         }
     }
 }

@@ -32,9 +32,12 @@
                 <h4>@Html.Encode("No Trips!")</h4>
             }
 
-
-            <button class="button">@Html.ActionLink("Add", "Index", "Trip")</button>
-
+            @using (Html.BeginForm("Index", "Trip", FormMethod.Post, null))
+            {
+                
+                @Html.Hidden("ID", Model.User.ID.ToString());
+                <input type="submit" value="Add" class="button" />
+            }
         </div>
     </div>
 

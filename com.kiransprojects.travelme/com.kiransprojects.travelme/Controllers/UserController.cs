@@ -60,6 +60,11 @@
             this.postService = postService;
         }
 
+        public string Index()
+        {
+            return "test";
+        }
+
         /// <summary>
         /// Home page for a logged in user
         /// </summary>

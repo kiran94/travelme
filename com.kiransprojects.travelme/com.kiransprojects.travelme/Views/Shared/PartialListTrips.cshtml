@@ -1,10 +1,11 @@
 ﻿@model IList<com.kiransprojects.travelme.Framework.Entities.Trip>
 @using com.kiransprojects.travelme.Extensions
-@using com.kiransprojects.travelme.Framework.Entities.Trip
+@using com.kiransprojects.travelme.Framework.Entities;
 
-@if (Model.HasContent<Trip>())
+<h3>Previous Trips</h3>
+@if (Model != null)
 {
-    @for (int i = 0; i < Model.Count; i++)
+    for (int i = 0; i < Model.Count; i++)
     {
         @Html.DisplayFor(model => model[0].TripName)
         <hr />
